@@ -8,9 +8,12 @@ namespace Lisa.Excelsis.Mobile
         {
             InitializeComponent();
 
-            ExamList.ItemsSource = new Exam[]
-            {
-                new Exam
+            ExamList.ItemsSource = _exams;
+        }
+
+        private readonly Exam[] _exams = new Exam[]
+        {
+            new Exam
                 {
                     Id = 1,
                     Name = "Spreken",
@@ -31,7 +34,6 @@ namespace Lisa.Excelsis.Mobile
                     Cohort = 2015,
                     Subject = "Nederlands"
                 }
-            };
-        }
+        };
     }
 }
