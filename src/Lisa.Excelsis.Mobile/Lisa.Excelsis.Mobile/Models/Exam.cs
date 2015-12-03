@@ -1,5 +1,8 @@
-﻿namespace Lisa.Excelsis.Mobile
+﻿using Newtonsoft.Json;
+
+namespace Lisa.Excelsis.Mobile
 {
+    [JsonObject]
     public class Exam
     {
         public int Id { get; set; }
