@@ -1,10 +1,12 @@
 ﻿using Newtonsoft.Json;
+using SQLite;
 
 namespace Lisa.Excelsis.Mobile
 {
-    [JsonObject]
+    [Table("Exams")]
     public class Exam
     {
+        [PrimaryKey]
         public int Id { get; set; }
         public string Name { get; set; }
         public int Cohort { get; set; }

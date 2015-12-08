@@ -34,31 +34,6 @@ namespace Lisa.Excelsis.Mobile
             ExamList.EndRefresh();
         }
 
-        private readonly Exam[] _exams = new Exam[]
-        {
-            new Exam
-                {
-                    Id = 1,
-                    Name = "Spreken",
-                    Cohort = 2015,
-                    Subject = "Nederlands"
-                },
-                new Exam
-                {
-                    Id = 2,
-                    Name = "Lezen & Luisteren",
-                    Cohort = 2015,
-                    Subject = "Nederlands"
-                },
-                new Exam
-                {
-                    Id = 3,
-                    Name = "Gesprekken voeren",
-                    Cohort = 2015,
-                    Subject = "Nederlands"
-                }
-        };
-
         private readonly Proxy<Exam> _examProxy = new Proxy<Exam>("http://excelsis-develop-webapi.azurewebsites.net/exams", new JsonSerializerSettings
         {
             ContractResolver = new CamelCasePropertyNamesContractResolver(),
