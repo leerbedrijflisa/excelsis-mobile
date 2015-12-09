@@ -30,7 +30,7 @@ namespace Lisa.Excelsis.Mobile
             {
                 await DisplayAlert("Error", ex.Message, "Sluiten");
             }
-
+            
             ExamList.EndRefresh();
         }
 
