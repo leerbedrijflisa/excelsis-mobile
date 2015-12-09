@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using SQLite;
+﻿using SQLite.Net.Attributes;
 
 namespace Lisa.Excelsis.Mobile
 {

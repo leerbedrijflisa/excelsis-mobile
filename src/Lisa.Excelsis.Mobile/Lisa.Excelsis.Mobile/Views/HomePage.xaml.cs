@@ -12,7 +12,12 @@ namespace Lisa.Excelsis.Mobile
         {
             InitializeComponent();
 
-            ExamList.ItemsSource = _exams;
+            _examProxy = new Proxy<Exam>("http://excelsis-develop-webapi.azurewebsites.net/exams", new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                NullValueHandling = NullValueHandling.Ignore
+            });
+
             ExamList.IsPullToRefreshEnabled = true;
         }
 
@@ -21,8 +26,21 @@ namespace Lisa.Excelsis.Mobile
             try
             {
                 var exams = await _examProxy.GetAsync();
+                
 
-                ExamList.ItemsSource = exams;
+                foreach(var exam in exams)
+                {
+                    if(_db.Get(exam.Id) == null)
+                    {
+                        _db.Create(exam);
+                    }
+                    else
+                    {
+                        _db.Replace(exam);
+                    }
+                }
+
+                ExamList.ItemsSource = _db.Get();
 
                 await DisplayAlert("Gerefreshed", "success", "sluiten");
             }
@@ -34,10 +52,7 @@ namespace Lisa.Excelsis.Mobile
             ExamList.EndRefresh();
         }
 
-        private readonly Proxy<Exam> _examProxy = new Proxy<Exam>("http://excelsis-develop-webapi.azurewebsites.net/exams", new JsonSerializerSettings
-        {
-            ContractResolver = new CamelCasePropertyNamesContractResolver(),
-            NullValueHandling = NullValueHandling.Ignore
-        });
+        private readonly Database<Exam> _db = new Database<Exam>();
+        private readonly Proxy<Exam> _examProxy;
     }
 }
