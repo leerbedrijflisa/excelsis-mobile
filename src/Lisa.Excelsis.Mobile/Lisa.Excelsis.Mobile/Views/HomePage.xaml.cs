@@ -32,17 +32,17 @@ namespace Lisa.Excelsis.Mobile
             {
                 exams = (List<Exam>) await _examProxy.GetAsync();
             }
-            catch(WebException ex)
+            catch(WebException)
             {
                 ExamList.EndRefresh();
 
-                //await DisplayAlert("Error", "Kan niet verbinden met de Web API, controleer de internetverbinding", "Sluiten");
+                await DisplayAlert("Error", "Kan niet verbinden met de Web API, controleer de internetverbinding", "Sluiten");
             }
             catch(Exception ex)
             {
                 ExamList.EndRefresh();
 
-                //await DisplayAlert("Error", String.Join("|", ex.Message, ex.GetType()), "Sluiten");
+                await DisplayAlert("Error", String.Join("|", ex.Message, ex.GetType()), "Sluiten");
             }
             
             foreach(var exam in exams)

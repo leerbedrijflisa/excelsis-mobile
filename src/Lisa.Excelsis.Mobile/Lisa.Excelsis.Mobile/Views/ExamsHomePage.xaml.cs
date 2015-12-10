@@ -12,12 +12,12 @@ namespace Lisa.Excelsis.Mobile
             InitializeComponent();
         }
 
-        public void ExamsList(Object sender, EventArgs e)
+        public void ExamsList(object sender, EventArgs e)
         {
             Navigation.PushAsync(new HomePage());
         }
 
-        public void CreateExam(Object sender, EventArgs e)
+        public void CreateExam(object sender, EventArgs e)
         {
             Navigation.PushAsync(new CreateExamPage());
         }
