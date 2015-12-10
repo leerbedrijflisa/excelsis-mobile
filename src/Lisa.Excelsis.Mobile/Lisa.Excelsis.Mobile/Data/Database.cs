@@ -1,5 +1,6 @@
 ﻿using SQLite.Net;
 using SQLiteNetExtensions.Extensions;
+using System;
 using System.Collections.Generic;
 
 namespace Lisa.Excelsis.Mobile
@@ -24,7 +25,15 @@ namespace Lisa.Excelsis.Mobile
 
         public T Get(int id)
         {
-            return _database.GetWithChildren<T>(id);
+            try
+            {
+                return _database.GetWithChildren<T>(id, true);
+            }
+            catch(Exception e)
+            {
+                return null;
+            }
+            
         }
 
         public IEnumerable<T> Get()
@@ -46,7 +55,7 @@ namespace Lisa.Excelsis.Mobile
         {
             _database.InsertOrReplaceWithChildren(model);
         }
-
+        
         private SQLiteConnection _database;
     }
 }
