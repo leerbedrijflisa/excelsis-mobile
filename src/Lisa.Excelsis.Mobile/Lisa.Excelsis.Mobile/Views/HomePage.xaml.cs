@@ -2,6 +2,8 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
+using System.Collections.Generic;
+using System.Net;
 using Xamarin.Forms;
 
 namespace Lisa.Excelsis.Mobile
@@ -24,42 +26,42 @@ namespace Lisa.Excelsis.Mobile
 
         private async void UpdateExams(object sender, EventArgs e)
         {
+            var exams = new List<Exam>();
+
             try
             {
-                var exams = await _examProxy.GetAsync();
-                
-
-                foreach(var exam in exams)
-                {
-                    if(_db.Get(exam.Id) == null)
-                    {
-                        _db.Create(exam);
-                    }
-                    else
-                    {
-                        _db.Replace(exam);
-                    }
-                }
-
-                ExamList.ItemsSource = _db.Get();
-
+                exams = (List<Exam>) await _examProxy.GetAsync();
+            }
+            catch(WebException ex)
+            {
                 ExamList.EndRefresh();
 
-                await DisplayAlert("Gerefreshed", "success", "sluiten");
+                await DisplayAlert("Error", "Kan niet verbinden met de Web API, controleer de internetverbinding", "Sluiten");
             }
             catch(Exception ex)
             {
                 ExamList.EndRefresh();
 
-                if(ex.GetType().ToString() == "System.Net.WebException")
+                await DisplayAlert("Error", String.Join("|", ex.Message, ex.GetType()), "Sluiten");
+            }
+            
+            foreach(var exam in exams)
+            {
+                if(_db.Get(exam.Id) == null)
                 {
-                    await DisplayAlert("Error", "Kan niet verbinden met de Web API, controleer de internetverbinding", "Sluiten");
+                    _db.Create(exam);
                 }
                 else
                 {
-                    await DisplayAlert("Error", String.Join("|", ex.Message, ex.GetType()), "Sluiten");
+                    _db.Replace(exam);
                 }
             }
+
+            ExamList.ItemsSource = _db.Get();
+
+            ExamList.EndRefresh();
+
+            await DisplayAlert("Gerefreshed", "success", "sluiten");
         }
 
         private readonly Database<Exam> _db = new Database<Exam>();
