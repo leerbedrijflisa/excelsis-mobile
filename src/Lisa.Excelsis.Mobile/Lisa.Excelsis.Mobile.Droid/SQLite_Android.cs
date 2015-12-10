@@ -5,7 +5,7 @@ using Xamarin.Forms;
 [assembly: Dependency(typeof(Lisa.Excelsis.Mobile.Droid.SQLite_Android))]
 namespace Lisa.Excelsis.Mobile.Droid
 {
-    public class SQLite_Android
+    public class SQLite_Android : ISQLite
     {
         public SQLite_Android() { }
 

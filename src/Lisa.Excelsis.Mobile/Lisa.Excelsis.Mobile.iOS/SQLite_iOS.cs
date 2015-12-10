@@ -6,7 +6,7 @@ using Xamarin.Forms;
 [assembly: Dependency(typeof(Lisa.Excelsis.Mobile.iOS.SQLite_iOS))]
 namespace Lisa.Excelsis.Mobile.iOS
 {
-    public class SQLite_iOS
+    public class SQLite_iOS : ISQLite
     {
         public SQLite_iOS() { }
 
