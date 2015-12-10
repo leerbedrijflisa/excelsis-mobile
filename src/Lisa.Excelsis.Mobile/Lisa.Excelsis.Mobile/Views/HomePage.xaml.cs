@@ -18,6 +18,7 @@ namespace Lisa.Excelsis.Mobile
                 NullValueHandling = NullValueHandling.Ignore
             });
 
+            ExamList.ItemsSource = _db.Get();
             ExamList.IsPullToRefreshEnabled = true;
         }
 
@@ -42,14 +43,23 @@ namespace Lisa.Excelsis.Mobile
 
                 ExamList.ItemsSource = _db.Get();
 
+                ExamList.EndRefresh();
+
                 await DisplayAlert("Gerefreshed", "success", "sluiten");
             }
             catch(Exception ex)
             {
-                await DisplayAlert("Error", ex.Message, "Sluiten");
+                ExamList.EndRefresh();
+
+                if(ex.GetType().ToString() == "System.Net.WebException")
+                {
+                    await DisplayAlert("Error", "Kan niet verbinden met de Web API, controleer de internetverbinding", "Sluiten");
+                }
+                else
+                {
+                    await DisplayAlert("Error", String.Join("|", ex.Message, ex.GetType()), "Sluiten");
+                }
             }
-            
-            ExamList.EndRefresh();
         }
 
         private readonly Database<Exam> _db = new Database<Exam>();
