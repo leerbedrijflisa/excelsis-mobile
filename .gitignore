@@ -194,3 +194,4 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
+src/Lisa.Excelsis.Mobile/Lisa.Excelsis.Mobile.Droid/Resources/Resource.Designer.cs
