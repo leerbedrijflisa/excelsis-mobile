@@ -89,8 +89,10 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ConnectionChecker.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Reachability.cs" />
     <Compile Include="SQLite_iOS.cs" />
     <None Include="app.config" />
     <None Include="Entitlements.plist" />

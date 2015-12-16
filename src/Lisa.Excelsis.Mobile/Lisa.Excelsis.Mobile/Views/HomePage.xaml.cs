@@ -67,6 +67,37 @@ namespace Lisa.Excelsis.Mobile
 
         private async void UpdateExams(object sender, EventArgs e)
         {
+            if (_isOffline)
+            {
+                if(DependencyService.Get<IConnectionChecker>().IsOnline())
+                {
+                    if (await DisplayAlert("App is Offline", "Wil je overschakelen naar online?", "Ja", "Nee"))
+                    {
+                        _isOffline = false;
+                        Application.Current.Properties["IsOffline"] = false;
+                        OfflineButton.Text = "Ga Offline";
+
+                        await Application.Current.SavePropertiesAsync();
+                    }
+                    else
+                    {
+                        ExamList.EndRefresh();
+
+                        return;
+                    }
+                }
+                else
+                {
+                    ExamList.EndRefresh();
+
+                    await DisplayAlert("App is Offline", "Kan geen data ophalen als apparaat niet is verbonden met netwerk", "Sluiten");
+
+                    return;
+                }
+
+                
+            }
+
             var exams = new List<Exam>();
 
             try
