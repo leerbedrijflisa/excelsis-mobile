@@ -2,7 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Lisa.Excelsis.Mobile.HomePage">
-  <ListView x:Name="ExamList" Refreshing="UpdateExams">
+  <ListView x:Name="ExamList" 
+            Refreshing="UpdateExams"
+            ItemTapped="CreateExam">
     <ListView.ItemTemplate>
       <DataTemplate>
         <TextCell Text="{Binding Name}" />

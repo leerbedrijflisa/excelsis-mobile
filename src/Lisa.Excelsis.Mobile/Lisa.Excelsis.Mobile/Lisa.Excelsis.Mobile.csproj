@@ -43,9 +43,6 @@
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ExamsHomePage.xaml.cs">
-      <DependentUpon>ExamsHomePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\CreateExamPage.xaml.cs">
       <DependentUpon>CreateExamPage.xaml</DependentUpon>
     </Compile>
@@ -54,9 +51,6 @@
     <EmbeddedResource Include="Views\HomePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\ExamsHomePage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\CreateExamPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

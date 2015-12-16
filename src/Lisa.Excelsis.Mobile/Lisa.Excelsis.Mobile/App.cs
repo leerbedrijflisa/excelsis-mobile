@@ -6,7 +6,7 @@ namespace Lisa.Excelsis.Mobile
     {
         public App()
         {
-            MainPage = new NavigationPage(new ExamsHomePage());
+            MainPage = new NavigationPage(new HomePage());
         }
     }
 }

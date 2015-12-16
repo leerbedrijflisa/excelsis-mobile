@@ -4,6 +4,7 @@ using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Lisa.Excelsis.Mobile
@@ -22,6 +23,12 @@ namespace Lisa.Excelsis.Mobile
 
             ExamList.ItemsSource = _db.Get();
             ExamList.IsPullToRefreshEnabled = true;
+        }
+
+        private async void CreateExam(object sender, EventArgs e)
+        {
+            Exam exam = (Exam)((ListView)sender).SelectedItem;
+            await Navigation.PushAsync(new CreateExamPage(exam));
         }
 
         private async void UpdateExams(object sender, EventArgs e)
