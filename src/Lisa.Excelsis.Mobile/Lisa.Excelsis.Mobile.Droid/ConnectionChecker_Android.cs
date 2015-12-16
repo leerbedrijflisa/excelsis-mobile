@@ -6,7 +6,7 @@ using Lisa.Excelsis.Mobile.Droid;
 [assembly: Dependency(typeof(ConnectionChecker_Android))]
 namespace Lisa.Excelsis.Mobile.Droid
 {
-    public class ConnectionChecker_Android
+    public class ConnectionChecker_Android : IConnectionChecker
     {
         public ConnectionChecker_Android() { }
 
@@ -16,7 +16,7 @@ namespace Lisa.Excelsis.Mobile.Droid
 
             var netInfo = cm.ActiveNetworkInfo;
 
-            return netInfo != null && netInfo.IsConnectedOrConnecting;
+            return netInfo != null && netInfo.IsConnected;
         }
     }
 }

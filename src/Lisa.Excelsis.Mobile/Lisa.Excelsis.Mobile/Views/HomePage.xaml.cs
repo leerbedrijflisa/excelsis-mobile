@@ -90,7 +90,7 @@ namespace Lisa.Excelsis.Mobile
                 {
                     ExamList.EndRefresh();
 
-                    await DisplayAlert("App is Offline", "Kan geen data ophalen als apparaat niet is verbonden met netwerk", "Sluiten");
+                    await DisplayAlert("App is Offline", "App staat in offline, en er is geen verbinding met het netwerk", "Sluiten");
 
                     return;
                 }
