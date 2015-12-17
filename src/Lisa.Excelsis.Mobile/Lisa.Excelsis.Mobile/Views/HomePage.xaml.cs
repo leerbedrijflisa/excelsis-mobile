@@ -4,6 +4,7 @@ using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Lisa.Excelsis.Mobile
@@ -62,7 +63,20 @@ namespace Lisa.Excelsis.Mobile
                 OfflineButton.Text = "Ga Offline";
             }
 
-             await app.SavePropertiesAsync();
+            await app.SavePropertiesAsync();
+        }
+
+        private async void CreateExam(object sender, EventArgs e)
+        {
+            Exam exam = (Exam)((ListView)sender).SelectedItem;
+            try
+            {
+                await Navigation.PushAsync(new CreateExamPage(exam));
+            }
+            catch (Exception ee)
+            {
+                throw;
+            }
         }
 
         private async void UpdateExams(object sender, EventArgs e)
@@ -104,7 +118,7 @@ namespace Lisa.Excelsis.Mobile
             {
                 exams = (List<Exam>) await _examProxy.GetAsync();
             }
-            catch(WebException ex)
+            catch(WebException)
             {
                 ExamList.EndRefresh();
 

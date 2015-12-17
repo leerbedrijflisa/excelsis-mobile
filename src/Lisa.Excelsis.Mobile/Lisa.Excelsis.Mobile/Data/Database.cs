@@ -29,7 +29,7 @@ namespace Lisa.Excelsis.Mobile
             {
                 return _database.GetWithChildren<T>(id, true);
             }
-            catch(Exception e)
+            catch(Exception)
             {
                 return null;
             }

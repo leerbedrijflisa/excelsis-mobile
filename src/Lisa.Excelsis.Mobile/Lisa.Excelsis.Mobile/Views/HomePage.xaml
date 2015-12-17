@@ -4,7 +4,7 @@
              x:Class="Lisa.Excelsis.Mobile.HomePage">
   <StackLayout>
     <Button x:Name="OfflineButton" Text="Ga Offline" Clicked="OfflineButtonClick"/>
-    <ListView x:Name="ExamList" Refreshing="UpdateExams">
+    <ListView x:Name="ExamList" Refreshing="UpdateExams" ItemTapped="CreateExam">
       <ListView.ItemTemplate>
         <DataTemplate>
           <TextCell Text="{Binding Name}" />
