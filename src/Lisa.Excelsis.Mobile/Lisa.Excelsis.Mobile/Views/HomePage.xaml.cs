@@ -4,7 +4,6 @@ using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Net;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Lisa.Excelsis.Mobile
@@ -68,12 +67,13 @@ namespace Lisa.Excelsis.Mobile
 
         private async void CreateExam(object sender, EventArgs e)
         {
-            Exam exam = (Exam)((ListView)sender).SelectedItem;
+            var exam = (Exam)((ListView)sender).SelectedItem;
+
             try
             {
                 await Navigation.PushAsync(new CreateExamPage(exam));
             }
-            catch (Exception ee)
+            catch
             {
                 throw;
             }

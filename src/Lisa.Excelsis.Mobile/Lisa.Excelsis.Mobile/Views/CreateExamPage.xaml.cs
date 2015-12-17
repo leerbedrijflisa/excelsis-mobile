@@ -11,7 +11,7 @@ namespace Lisa.Excelsis.Mobile
         {
             InitializeComponent();
 
-            question.Text = "De kanidaat heeft Bla gedaan en ook BlaBla en een deel van Blablabla maar niet blablablabla.";
+            question.Text = "De kandidaat heeft Bla gedaan en ook BlaBla en een deel van Blablabla maar niet blablablabla.";
         }
 
         private void ToggleSwitch(object sender, EventArgs e)
@@ -41,4 +41,3 @@ namespace Lisa.Excelsis.Mobile
         }
     }
 }
-
