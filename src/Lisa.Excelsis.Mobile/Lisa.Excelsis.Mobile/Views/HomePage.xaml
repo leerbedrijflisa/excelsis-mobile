@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Lisa.Excelsis.Mobile.HomePage">
+             x:Class="Lisa.Excelsis.Mobile.HomePage"
+             Padding="0, 15, 0, 0" >
   <StackLayout>
     <Button x:Name="OfflineButton" Text="Ga Offline" Clicked="OfflineButtonClick"/>
     <ListView x:Name="ExamList" Refreshing="UpdateExams">
