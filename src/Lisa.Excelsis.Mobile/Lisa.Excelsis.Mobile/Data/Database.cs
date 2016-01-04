@@ -33,7 +33,6 @@ namespace Lisa.Excelsis.Mobile
             {
                 return null;
             }
-            
         }
 
         public IEnumerable<T> Get()

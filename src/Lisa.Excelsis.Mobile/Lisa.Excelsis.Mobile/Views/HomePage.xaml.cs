@@ -38,8 +38,17 @@ namespace Lisa.Excelsis.Mobile
 
                 OfflineButton.Text = "Ga Offline";
             }
+            
+            var exams = new List<Exam>();
 
-            ExamList.ItemsSource = _db.Get();
+            foreach(var exam in _db.Get())
+            {
+                exam.Name = String.Format("{0}: {1}, {2}", exam.Subject, exam.Name, exam.Cohort);
+
+                exams.Add(exam);
+            }
+
+            ExamList.ItemsSource = exams;
             ExamList.IsPullToRefreshEnabled = true;
         }
 
@@ -108,8 +117,6 @@ namespace Lisa.Excelsis.Mobile
 
                     return;
                 }
-
-                
             }
 
             var exams = new List<Exam>();
@@ -147,13 +154,22 @@ namespace Lisa.Excelsis.Mobile
                 }
             }
 
-            ExamList.ItemsSource = _db.Get();
+            var examsFromDb = new List<Exam>();
+
+            foreach(var exam in _db.Get())
+            {
+                exam.Name = String.Format("{0}: {1}, {2}", exam.Subject, exam.Name, exam.Cohort);
+
+                examsFromDb.Add(exam);
+            }
+
+            ExamList.ItemsSource = examsFromDb;
 
             ExamList.EndRefresh();
 
             await DisplayAlert("Gerefreshed", "success", "sluiten");
         }
-
+        
         private readonly Database<Exam> _db = new Database<Exam>();
         private readonly Proxy<Exam> _examProxy;
         private bool _isOffline;
