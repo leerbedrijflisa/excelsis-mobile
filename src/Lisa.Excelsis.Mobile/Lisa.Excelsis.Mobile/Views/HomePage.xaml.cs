@@ -24,7 +24,7 @@ namespace Lisa.Excelsis.Mobile
 
             if (properties.ContainsKey("IsOffline"))
             {
-                _isOffline = (bool) properties["IsOffline"];
+                _isOffline = (bool)properties["IsOffline"];
 
                 if (_isOffline)
                 {
@@ -38,10 +38,10 @@ namespace Lisa.Excelsis.Mobile
 
                 OfflineButton.Text = "Ga Offline";
             }
-            
+
             var exams = new List<Exam>();
 
-            foreach(var exam in _db.Get())
+            foreach (var exam in _db.Get())
             {
                 exam.Name = String.Format("{0}: {1}, {2}", exam.Subject, exam.Name, exam.Cohort);
 
@@ -92,7 +92,7 @@ namespace Lisa.Excelsis.Mobile
         {
             if (_isOffline)
             {
-				if(DependencyService.Get<IConnectionChecker>().IsOnline())
+                if (DependencyService.Get<IConnectionChecker>().IsOnline())
                 {
                     if (await DisplayAlert("App is Offline", "Wil je overschakelen naar online?", "Ja", "Nee"))
                     {
@@ -123,9 +123,9 @@ namespace Lisa.Excelsis.Mobile
 
             try
             {
-                exams = (List<Exam>) await _examProxy.GetAsync();
+                exams = (List<Exam>)await _examProxy.GetAsync();
             }
-            catch(WebException)
+            catch (WebException)
             {
                 ExamList.EndRefresh();
 
@@ -133,7 +133,7 @@ namespace Lisa.Excelsis.Mobile
 
                 return;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ExamList.EndRefresh();
 
@@ -141,10 +141,10 @@ namespace Lisa.Excelsis.Mobile
 
                 return;
             }
-            
-            foreach(var exam in exams)
+
+            foreach (var exam in exams)
             {
-                if(_db.Get(exam.Id) == null)
+                if (_db.Get(exam.Id) == null)
                 {
                     _db.Create(exam);
                 }
@@ -156,7 +156,7 @@ namespace Lisa.Excelsis.Mobile
 
             var examsFromDb = new List<Exam>();
 
-            foreach(var exam in _db.Get())
+            foreach (var exam in _db.Get())
             {
                 exam.Name = String.Format("{0}: {1}, {2}", exam.Subject, exam.Name, exam.Cohort);
 
@@ -169,7 +169,7 @@ namespace Lisa.Excelsis.Mobile
 
             await DisplayAlert("Gerefreshed", "success", "sluiten");
         }
-        
+
         private readonly Database<Exam> _db = new Database<Exam>();
         private readonly Proxy<Exam> _examProxy;
         private bool _isOffline;
