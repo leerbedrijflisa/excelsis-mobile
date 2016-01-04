@@ -92,7 +92,7 @@ namespace Lisa.Excelsis.Mobile
         {
             if (_isOffline)
             {
-                if(DependencyService.Get<IConnectionChecker>().IsOnline())
+				if(DependencyService.Get<IConnectionChecker>().IsOnline())
                 {
                     if (await DisplayAlert("App is Offline", "Wil je overschakelen naar online?", "Ja", "Nee"))
                     {
