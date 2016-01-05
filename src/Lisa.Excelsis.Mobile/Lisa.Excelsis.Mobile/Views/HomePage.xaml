@@ -12,7 +12,7 @@
     <ListView x:Name="ExamList" Refreshing="UpdateExams" ItemTapped="CreateExam">
       <ListView.ItemTemplate>
         <DataTemplate>
-          <TextCell Text="{Binding Name}" />
+          <TextCell Text="{Binding Text}" />
         </DataTemplate>
       </ListView.ItemTemplate>
     </ListView>

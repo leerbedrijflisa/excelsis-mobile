@@ -14,11 +14,18 @@ namespace Lisa.Excelsis.Mobile
         {
             InitializeComponent();
 
-            _examProxy = new Proxy<Exam>("http://excelsis-develop-webapi.azurewebsites.net/exams", new JsonSerializerSettings
+            var serializerSettings = new JsonSerializerSettings
             {
                 ContractResolver = new CamelCasePropertyNamesContractResolver(),
                 NullValueHandling = NullValueHandling.Ignore
-            });
+            };
+
+            _db = new Database();
+
+            var resourceUrl = "http://excelsis-develop-webapi.azurewebsites.net/";
+
+            _examProxy = new Proxy<Exam>(resourceUrl + "exams", serializerSettings);
+            _assessorProxy = new Proxy<Assessor>(resourceUrl + "assessors", serializerSettings);
 
             var properties = Application.Current.Properties;
 
@@ -39,13 +46,11 @@ namespace Lisa.Excelsis.Mobile
                 OfflineButton.Text = "Ga Offline";
             }
 
-            var exams = new List<Exam>();
+            var exams = new List<ExamListItem>();
 
-            foreach (var exam in _db.Get())
+            foreach (var exam in _db.Exams.Get())
             {
-                exam.Name = String.Format("{0}: {1}, {2}", exam.Subject, exam.Name, exam.Cohort);
-
-                exams.Add(exam);
+                exams.Add(new ExamListItem(exam));
             }
 
             ExamList.ItemsSource = exams;
@@ -77,15 +82,8 @@ namespace Lisa.Excelsis.Mobile
         private async void CreateExam(object sender, EventArgs e)
         {
             var exam = (Exam)((ListView)sender).SelectedItem;
-
-            try
-            {
-                await Navigation.PushAsync(new CreateExamPage(exam));
-            }
-            catch
-            {
-                throw;
-            }
+            
+            await Navigation.PushAsync(new CreateExamPage(exam));
         }
 
         private async void UpdateExams(object sender, EventArgs e)
@@ -120,10 +118,12 @@ namespace Lisa.Excelsis.Mobile
             }
 
             var exams = new List<Exam>();
+            var assessors = new List<Assessor>();
 
             try
             {
                 exams = (List<Exam>)await _examProxy.GetAsync();
+                assessors = (List<Assessor>)await _assessorProxy.GetAsync();
             }
             catch (WebException)
             {
@@ -144,23 +144,33 @@ namespace Lisa.Excelsis.Mobile
 
             foreach (var exam in exams)
             {
-                if (_db.Get(exam.Id) == null)
+                if (_db.Exams.Get(exam.Id) == null)
                 {
-                    _db.Create(exam);
+                    _db.Exams.Insert(exam);
                 }
                 else
                 {
-                    _db.Replace(exam);
+                    _db.Exams.Replace(exam);
                 }
             }
 
-            var examsFromDb = new List<Exam>();
-
-            foreach (var exam in _db.Get())
+            foreach(var assessor in assessors)
             {
-                exam.Name = String.Format("{0}: {1}, {2}", exam.Subject, exam.Name, exam.Cohort);
+                if(_db.Assessors.Get(assessor.Id) == null)
+                {
+                    _db.Assessors.Insert(assessor);
+                }
+                else
+                {
+                    _db.Assessors.Replace(assessor);
+                }
+            }
 
-                examsFromDb.Add(exam);
+            var examsFromDb = new List<ExamListItem>();
+
+            foreach (var exam in _db.Exams.Get())
+            {
+                examsFromDb.Add(new ExamListItem(exam));
             }
 
             ExamList.ItemsSource = examsFromDb;
@@ -170,8 +180,9 @@ namespace Lisa.Excelsis.Mobile
             await DisplayAlert("Gerefreshed", "success", "sluiten");
         }
 
-        private readonly Database<Exam> _db = new Database<Exam>();
+        private readonly Database _db;
         private readonly Proxy<Exam> _examProxy;
+        private readonly Proxy<Assessor> _assessorProxy;
         private bool _isOffline;
     }
 }
