@@ -25,7 +25,7 @@ namespace Lisa.Excelsis.Mobile
 
             var isValid = Int32.TryParse(args.NewTextValue, out result) && args.NewTextValue.Length <= 8;
 
-            ((Entry)sender).TextColor = isValid ? Color.Default : Color.Red;
+            ((Entry)sender).BackgroundColor = isValid ? Color.Default : Color.FromRgb(255, 51, 51);
         }
     }
 }

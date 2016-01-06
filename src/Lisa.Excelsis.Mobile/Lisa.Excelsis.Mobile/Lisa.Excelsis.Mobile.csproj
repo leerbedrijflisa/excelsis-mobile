@@ -41,8 +41,13 @@
     <Compile Include="Data\Table.cs" />
     <Compile Include="Interfaces\IConnectionChecker.cs" />
     <Compile Include="Interfaces\ISQLite.cs" />
+    <Compile Include="Models\Assessment.cs" />
     <Compile Include="Models\Assessor.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Criterion.cs" />
     <Compile Include="Models\Exam.cs" />
+    <Compile Include="Models\Observation.cs" />
+    <Compile Include="Models\Student.cs" />
     <Compile Include="Models\ViewModels\ExamListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\CreateExamPage.xaml.cs">

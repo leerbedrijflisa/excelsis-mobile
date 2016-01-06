@@ -2,18 +2,22 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Lisa.Excelsis.Mobile.CreateExamPage"
-             xmlns:local="clr-namespace:Lisa.Excelsis.Mobile;assembly=Lisa.Excelsis.Mobile">
+             xmlns:local="clr-namespace:Lisa.Excelsis.Mobile;assembly=Lisa.Excelsis.Mobile"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib">
   <StackLayout>
     <Label Text="Naam Kandidaat:"/>
-    <Entry x:Name="StudentName"/>
+    <Entry x:Name="StudentName" TextChanged="EntryChanged"/>
     <Label Text="Studentnummer:"/>
-    <Entry x:Name="StudentNumber" Keyboard="Numeric">
+    <Entry x:Name="StudentNumber" Keyboard="Numeric" TextChanged="EntryChanged">
       <Entry.Behaviors>
         <local:NumericValidationBehavior />
       </Entry.Behaviors>
     </Entry>
-    <Label Text="Examinator"/>
-    <Picker x:Name="AssessorPicker" Title="Examinator kiezen" SelectedIndex="1"/>
-    
+    <Label Text="Examinatoren"/>
+    <Picker x:Name="AssessorPicker" Title="Examinator kiezen" SelectedIndexChanged="AssessorChanged"/>
+    <Picker x:Name="SecondAssessorPicker" Title="Eventuele tweede examinator kiezen"/>
+    <Label Text="Datum"/>
+    <DatePicker x:Name="ExamDate" Format="dd-MM-yyyy" Date="{x:Static sys:DateTime.Now}"/>
+    <Button Text="Examen starten" Clicked="StartExam" />
   </StackLayout>
 </ContentPage>
