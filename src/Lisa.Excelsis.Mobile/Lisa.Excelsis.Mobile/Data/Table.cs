@@ -13,9 +13,15 @@ namespace Lisa.Excelsis.Mobile
             _connection.CreateTable<T>();
         }
 
-        public int Insert(T model) => _connection.Insert(model);
+        public int Insert(T model)
+        {
+            return _connection.Insert(model);
+        }
 
-        public int InsertMultiple(IEnumerable<T> models) => _connection.InsertAll(models);
+        public int InsertMultiple(IEnumerable<T> models)
+        {
+            return _connection.InsertAll(models);
+        }
 
         public T Get(int id)
         {
@@ -29,13 +35,25 @@ namespace Lisa.Excelsis.Mobile
             }
         }
 
-        public IEnumerable<T> Get() => _connection.GetAllWithChildren<T>();
+        public IEnumerable<T> Get()
+        {
+            return _connection.GetAllWithChildren<T>();
+        }
 
-        public int Delete(int id) => _connection.Delete<T>(id);
+        public int Delete(int id)
+        {
+            return _connection.Delete<T>(id);
+        }
 
-        public void DeleteAll() => _connection.DeleteAll<T>();
+        public void DeleteAll()
+        {
+            _connection.DeleteAll<T>();
+        }
 
-        public void Replace(T model) => _connection.InsertOrReplaceWithChildren(model);
+        public void Replace(T model)
+        {
+            _connection.InsertOrReplaceWithChildren(model);
+        }
 
         private readonly SQLiteConnection _connection;
     }
