@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SQLite.Net;
+using System;
+using System.Linq;
 using Xamarin.Forms;
 
 namespace Lisa.Excelsis.Mobile
@@ -11,7 +13,7 @@ namespace Lisa.Excelsis.Mobile
 
             _exam = exam;
 
-            foreach(var assessor in _db.Assessors.Get())
+            foreach(var assessor in _db.Table<Assessor>())
             {
                 AssessorPicker.Items.Add(assessor.UserName);
                 SecondAssessorPicker.Items.Add(assessor.UserName);
@@ -32,7 +34,7 @@ namespace Lisa.Excelsis.Mobile
                 StudentName.BackgroundColor = Color.Default;
             }
 
-            int studentnumber;
+            int studentnumber = 0;
 
             if(StudentNumber.Text == null || StudentNumber.Text.Length != 8 || !Int32.TryParse(StudentNumber.Text, out studentnumber))
             {
@@ -56,6 +58,50 @@ namespace Lisa.Excelsis.Mobile
             
             if (isValid)
             {
+                var student = new Student
+                {
+                    Name = StudentName.Text,
+                    Number = studentnumber
+                };
+
+                _db.Insert(student);
+                
+                var assessment = new Assessment
+                {
+                    StudentId = student.Id,
+                    Assessed = ExamDate.Date,
+                    ExamId = _exam.Id
+                };
+
+                _db.Insert(assessment);
+
+                var username = AssessorPicker.Items[AssessorPicker.SelectedIndex];
+
+                var assessorId = (from s in _db.Table<Assessor>() where s.UserName == username select s.Id).FirstOrDefault();
+
+                var assessmentAssessor = new AssessmentAssessor
+                {
+                    AssessmentId = assessment.Id,
+                    AssessorId = assessorId
+                };
+
+                _db.Insert(assessmentAssessor);
+
+                if(SecondAssessorPicker.SelectedIndex != -1)
+                {
+                    var secondUserName = SecondAssessorPicker.Items[SecondAssessorPicker.SelectedIndex];
+
+                    assessorId = _db.Table<Assessor>().Where(s => s.UserName == secondUserName).Select(s => s.Id).FirstOrDefault();
+
+                    assessmentAssessor = new AssessmentAssessor
+                    {
+                        AssessmentId = assessment.Id,
+                        AssessorId = assessorId
+                    };
+
+                    _db.Insert(assessmentAssessor);
+                }
+
                 Navigation.PushAsync(new ExamPage(_exam));
             }
         }
@@ -89,6 +135,6 @@ namespace Lisa.Excelsis.Mobile
         }
 
         private readonly Exam _exam;
-        private readonly Database _db = new Database();
+        private readonly SQLiteConnection _db = DependencyService.Get<ISQLite>().GetConnection();
     }
 }

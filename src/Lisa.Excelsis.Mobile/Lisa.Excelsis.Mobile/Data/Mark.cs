@@ -2,10 +2,12 @@
 
 namespace Lisa.Excelsis.Mobile
 {
-    public class Assessor
+    [Table("Marks")]
+    public class Mark
     {
         [PrimaryKey]
         public int Id { get; set; }
-        public string UserName { get; set; }
+        public string Name { get; set; }
+        public int ObservationId { get; set; }
     }
 }

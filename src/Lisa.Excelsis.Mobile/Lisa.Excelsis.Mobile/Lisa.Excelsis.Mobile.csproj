@@ -37,17 +37,8 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="Behaviors\NumericValidationBehavior.cs" />
-    <Compile Include="Data\Database.cs" />
-    <Compile Include="Data\Table.cs" />
     <Compile Include="Interfaces\IConnectionChecker.cs" />
     <Compile Include="Interfaces\ISQLite.cs" />
-    <Compile Include="Models\Assessment.cs" />
-    <Compile Include="Models\Assessor.cs" />
-    <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\Criterion.cs" />
-    <Compile Include="Models\Exam.cs" />
-    <Compile Include="Models\Observation.cs" />
-    <Compile Include="Models\Student.cs" />
     <Compile Include="Models\ViewModels\ExamListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\CreateExamPage.xaml.cs">
@@ -56,23 +47,38 @@
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ExamPage.xaml.cs">
-      <DependentUpon>ExamPage.xaml</DependentUpon>
+    <Compile Include="Views\AssessmentPage.xaml.cs">
+      <DependentUpon>AssessmentPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Proxy.cs" />
+    <Compile Include="Data\Assessment.cs" />
+    <Compile Include="Data\AssessmentAssessor.cs" />
+    <Compile Include="Data\Assessor.cs" />
+    <Compile Include="Data\Category.cs" />
+    <Compile Include="Data\Criterion.cs" />
+    <Compile Include="Data\Exam.cs" />
+    <Compile Include="Data\Mark.cs" />
+    <Compile Include="Data\Observation.cs" />
+    <Compile Include="Data\Student.cs" />
+    <Compile Include="Models\TransferModels\AssessmentTransfer.cs" />
+    <Compile Include="Models\TransferModels\StudentTransfer.cs" />
+    <Compile Include="Models\TransferModels\ExamTransfer.cs" />
+    <Compile Include="Models\TransferModels\CategoryTransfer.cs" />
+    <Compile Include="Models\TransferModels\CriterionTransfer.cs" />
+    <Compile Include="Models\TransferModels\AssessorTransfer.cs" />
+    <Compile Include="Models\TransferModels\ObservationTransfer.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\HomePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\ExamPage.xaml">
+    <EmbeddedResource Include="Views\AssessmentPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <CustomToolNamespace>Lisa.Excelsis.Mobile</CustomToolNamespace>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Lisa.Common, Version=1.0.4.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\packages\Lisa.Common.1.0.4\lib\portable-net45+sl5+wp8+win8\Lisa.Common.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <HintPath>..\..\packages\Microsoft.Bcl.Async.1.0.168\lib\portable-net45+win8+wp8+wpa81\Microsoft.Threading.Tasks.dll</HintPath>
     </Reference>
@@ -88,6 +94,7 @@
     <Reference Include="SQLiteNetExtensions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\packages\SQLiteNetExtensions.1.3.0\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\SQLiteNetExtensions.dll</HintPath>
     </Reference>
+    <Reference Include="System" />
     <Reference Include="System.Net.Http, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.dll</HintPath>
     </Reference>
@@ -114,6 +121,7 @@
     <EmbeddedResource Include="Views\CreateExamPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
+      <CustomToolNamespace>Lisa.Excelsis.Mobile</CustomToolNamespace>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
@@ -136,4 +144,8 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="Models\TransferModels\" />
+  </ItemGroup>
 </Project>

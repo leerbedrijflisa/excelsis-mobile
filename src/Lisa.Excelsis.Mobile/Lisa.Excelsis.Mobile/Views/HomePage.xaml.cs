@@ -1,10 +1,14 @@
 ﻿using Lisa.Common.Access;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using SQLite.Net;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using Xamarin.Forms;
+using System.Threading.Tasks;
+using System.Collections;
 
 namespace Lisa.Excelsis.Mobile
 {
@@ -13,19 +17,6 @@ namespace Lisa.Excelsis.Mobile
         public HomePage()
         {
             InitializeComponent();
-
-            var serializerSettings = new JsonSerializerSettings
-            {
-                ContractResolver = new CamelCasePropertyNamesContractResolver(),
-                NullValueHandling = NullValueHandling.Ignore
-            };
-
-            _db = new Database();
-
-            var resourceUrl = "http://excelsis-develop-webapi.azurewebsites.net/";
-
-            _examProxy = new Proxy<Exam>(resourceUrl + "exams", serializerSettings);
-            _assessorProxy = new Proxy<Assessor>(resourceUrl + "assessors", serializerSettings);
 
             var properties = Application.Current.Properties;
 
@@ -46,14 +37,9 @@ namespace Lisa.Excelsis.Mobile
                 OfflineButton.Text = "Ga Offline";
             }
 
-            var exams = new List<ExamListItem>();
+            _db.CreateTable<Exam>();
 
-            foreach (var exam in _db.Exams.Get())
-            {
-                exams.Add(new ExamListItem(exam));
-            }
-
-            ExamList.ItemsSource = exams;
+            ExamList.ItemsSource = _db.Table<Exam>().Select(s => new ExamListItem(s));
             ExamList.IsPullToRefreshEnabled = true;
         }
 
@@ -117,72 +103,83 @@ namespace Lisa.Excelsis.Mobile
                 }
             }
 
-            var exams = new List<Exam>();
-            var assessors = new List<Assessor>();
-
-            try
-            {
-                exams = (List<Exam>)await _examProxy.GetAsync();
-                assessors = (List<Assessor>)await _assessorProxy.GetAsync();
-            }
-            catch (WebException)
-            {
-                ExamList.EndRefresh();
-
-                await DisplayAlert("Error", "Kan niet verbinden met de Web API, controleer de internetverbinding", "Sluiten");
-
-                return;
-            }
-            catch (Exception ex)
-            {
-                ExamList.EndRefresh();
-
-                await DisplayAlert("Error", String.Join("|", ex.Message, ex.GetType()), "Sluiten");
-
-                return;
-            }
-
-            foreach (var exam in exams)
-            {
-                if (_db.Exams.Get(exam.Id) == null)
-                {
-                    _db.Exams.Insert(exam);
-                }
-                else
-                {
-                    _db.Exams.Replace(exam);
-                }
-            }
-
-            foreach(var assessor in assessors)
-            {
-                if(_db.Assessors.Get(assessor.Id) == null)
-                {
-                    _db.Assessors.Insert(assessor);
-                }
-                else
-                {
-                    _db.Assessors.Replace(assessor);
-                }
-            }
-
-            var examsFromDb = new List<ExamListItem>();
-
-            foreach (var exam in _db.Exams.Get())
-            {
-                examsFromDb.Add(new ExamListItem(exam));
-            }
-
-            ExamList.ItemsSource = examsFromDb;
+            ExamList.ItemsSource = _db.Table<Exam>().Select(s => new ExamListItem(s));
 
             ExamList.EndRefresh();
 
             await DisplayAlert("Gerefreshed", "success", "sluiten");
         }
 
-        private readonly Database _db;
-        private readonly Proxy<Exam> _examProxy;
-        private readonly Proxy<Assessor> _assessorProxy;
+		private async Task Update()
+		{
+			var assessors = new IEnumerable<AssessorTransfer>();
+			var assessments = new IEnumerable<AssessmentTransfer>();
+
+			var serializerSettings = new JsonSerializerSettings
+			{
+				ContractResolver = new CamelCasePropertyNamesContractResolver(),
+				NullValueHandling = NullValueHandling.Ignore
+			};
+
+			var proxy = new Proxy("http://excelsis-develop-webapi.azurewebsites.net/", serializerSettings);
+
+			try
+			{
+				assessors = await proxy.GetAsync<AssessorTransfer>("assessors");
+				_db.InsertOrReplaceAll(assessors.Select(s => new Assessor
+				{
+					Id = s.Id,
+					UserName = s.UserName
+				}));
+
+
+				foreach(var exam in await proxy.GetAsync<ExamTransfer>("exams"))
+				{
+					var examDetail = await proxy.GetSingleAsync<ExamTransfer>( String.Format("exams/{0}/{1}/{2}", exam.Subject, exam.Cohort, exam.Name));
+
+					_db.InsertOrReplace(new Exam
+					{
+						Id = examDetail.Id,
+						Name = examDetail.Name,
+						Cohort = examDetail.Cohort,
+						Crebo = examDetail.Crebo,
+						Subject = examDetail.Subject,
+						Status = examDetail.Status
+					});
+
+					foreach(var categoryTransfer in examDetail.Categories)
+					{
+						var category = new Category
+						{
+								
+						};
+					}
+				}
+
+			}
+			catch (WebException)
+			{
+				ExamList.EndRefresh();
+
+				await DisplayAlert("Error", "Kan niet verbinden met de Web API, controleer de internetverbinding", "Sluiten");
+
+				return;
+			}
+			catch (Exception ex)
+			{
+				ExamList.EndRefresh();
+
+				await DisplayAlert("Error", String.Join("|", ex.Message, ex.GetType()), "Sluiten");
+
+				return;
+			}
+
+				_db.InsertOrReplaceAll(exams);
+
+			_db.InsertOrReplaceAll(assessors);
+		}
+
+        private readonly SQLiteConnection _db = DependencyService.Get<ISQLite>().GetConnection();
         private bool _isOffline;
     }
 }
