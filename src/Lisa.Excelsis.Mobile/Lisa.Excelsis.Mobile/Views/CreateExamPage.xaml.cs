@@ -39,5 +39,17 @@ namespace Lisa.Excelsis.Mobile
             yesBtn.BackgroundColor = Color.Default;
             noBtn.BackgroundColor = Color.Default;
         }
+
+        private void ToggleInfo(object sender, EventArgs e)
+        {
+            if (info.Text == null)
+            {
+                info.Text = "test tekst!";
+            } else
+            {
+                info.Text = null;
+            }
+            
+        }
     }
 }

@@ -34,6 +34,15 @@
               Text="No"
               Clicked="ToggleSwitch"
               Grid.Row="2" Grid.Column="2"/>
+  
+      <Button x:Name="infoBtn"
+              Text="Meer informatie"
+              Clicked="ToggleInfo"
+              Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"/>
+  
+      <Label x:Name="info"
+             Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" />  
+  
     </Grid>
   </StackLayout>
 </ContentPage>
