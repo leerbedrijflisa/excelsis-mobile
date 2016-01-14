@@ -9,7 +9,7 @@
   </ContentPage.Padding>
   <StackLayout>
     <Button x:Name="OfflineButton" Text="Ga Offline" Clicked="OfflineButtonClick"/>
-    <ListView x:Name="ExamList" Refreshing="UpdateExams" ItemTapped="CreateExam">
+    <ListView x:Name="ExamList" Refreshing="Update" ItemTapped="CreateExam">
       <ListView.ItemTemplate>
         <DataTemplate>
           <TextCell Text="{Binding Text}" />

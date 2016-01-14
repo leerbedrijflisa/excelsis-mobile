@@ -1,47 +1,28 @@
-﻿using System;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using SQLite.Net;
+using System.Collections.Generic;
 
 namespace Lisa.Excelsis.Mobile
 {
     public partial class AssessmentPage : CarouselPage
     {
-        public AssessmentPage(Assessment assessment)
+        public AssessmentPage(Exam exam)
         {
-			foreach(var category in _db.Table<Category>().Where(s => s.e))
-			{
+            Children.Add(new CreateAssessmentPage(exam));
 
-			}
+            foreach (var category in _db.Table<Category>().Where(s => s.ExamId == exam.Id))
+            {
+                foreach (var criterion in _db.Table<Criterion>().Where(x => x.CategoryId == category.Id))
+                {
+                    _pages.Add(new CriterionPage(criterion));
+                }
+            }
+
             InitializeComponent();
         }
 
-        private void ToggleSwitch(object sender, EventArgs e)
-        {
-            var button = (Button)sender;
-            bool t = false;
 
-            if (button.Text == "Ja")
-            {
-                YesButton.BackgroundColor = Color.Green;
-                NoButton.BackgroundColor = Color.Default;
-                t = !t;
-            }
-            else if (button.Text == "Nee")
-            {
-                YesButton.BackgroundColor = Color.Default;
-                NoButton.BackgroundColor = Color.Red;
-            }
-
-            _toggle = t;
-        }
-
-        private void DisableSwitch(object sender, EventArgs e)
-        {
-            YesButton.BackgroundColor = Color.Default;
-            NoButton.BackgroundColor = Color.Default;
-        }
-
-        private bool _toggle = false;
-		private readonly SQLiteConnection _db = DependencyService.Get<ISQLite>().GetConnection();
+        private List<ContentPage> _pages = new List<ContentPage>();
+        private readonly SQLiteConnection _db = DependencyService.Get<ISQLite>().GetConnection();
     }
 }

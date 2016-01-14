@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Lisa.Excelsis.Mobile.CreateExamPage"
+             x:Class="Lisa.Excelsis.Mobile.CreateAssessmentPage"
              xmlns:local="clr-namespace:Lisa.Excelsis.Mobile;assembly=Lisa.Excelsis.Mobile"
              xmlns:sys="clr-namespace:System;assembly=mscorlib">
   <StackLayout>
@@ -18,6 +18,6 @@
     <Picker x:Name="SecondAssessorPicker" Title="Eventuele tweede examinator kiezen"/>
     <Label Text="Datum"/>
     <DatePicker x:Name="ExamDate" Format="dd-MM-yyyy" Date="{x:Static sys:DateTime.Now}"/>
-    <Button Text="Examen starten" Clicked="StartExam" />
+    <Button Text="Examen starten" Clicked="StartAssessment" />
   </StackLayout>
 </ContentPage>

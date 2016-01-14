@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace Lisa.Excelsis.Mobile
 {
-    public partial class CreateExamPage : ContentPage
+    public partial class CreateAssessmentPage : ContentPage
     {
-        public CreateExamPage(Exam exam)
+        public CreateAssessmentPage(Exam exam)
         {
             InitializeComponent();
 
@@ -20,7 +20,7 @@ namespace Lisa.Excelsis.Mobile
             }
         }
 
-        public void StartExam(object sender, EventArgs e)
+        public void StartAssessment(object sender, EventArgs e)
         {
             var isValid = true;
 
@@ -68,7 +68,6 @@ namespace Lisa.Excelsis.Mobile
                 
                 var assessment = new Assessment
                 {
-                    StudentId = student.Id,
                     Assessed = ExamDate.Date,
                     ExamId = _exam.Id
                 };
@@ -102,7 +101,7 @@ namespace Lisa.Excelsis.Mobile
                     _db.Insert(assessmentAssessor);
                 }
 
-                Navigation.PushAsync(new ExamPage(_exam));
+                Navigation.PushAsync(new AssessmentPage(_exam));
             }
         }
 
