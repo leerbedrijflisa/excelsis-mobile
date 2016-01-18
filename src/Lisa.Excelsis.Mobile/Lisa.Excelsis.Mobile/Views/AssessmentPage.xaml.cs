@@ -14,15 +14,13 @@ namespace Lisa.Excelsis.Mobile
             {
                 foreach (var criterion in _db.Table<Criterion>().Where(x => x.CategoryId == category.Id))
                 {
-                    _pages.Add(new CriterionPage(criterion));
+                    Children.Add(new CriterionPage(criterion));
                 }
             }
 
             InitializeComponent();
         }
 
-
-        private List<ContentPage> _pages = new List<ContentPage>();
         private readonly SQLiteConnection _db = DependencyService.Get<ISQLite>().GetConnection();
     }
 }
