@@ -14,7 +14,7 @@ namespace Lisa.Excelsis.Mobile.iOS
         {
             var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             var libraryPath = Path.Combine(documentsPath, "..", "Library");
-            var path = Path.Combine(libraryPath, "CardDatabase.db3");
+            var path = Path.Combine(libraryPath, "ExcelsisDb.db3");
             var platform = new SQLite.Net.Platform.XamarinIOS.SQLitePlatformIOS();
 
             return new SQLiteConnection(platform, path);
