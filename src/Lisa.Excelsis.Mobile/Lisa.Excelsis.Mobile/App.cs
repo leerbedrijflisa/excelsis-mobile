@@ -8,5 +8,14 @@ namespace Lisa.Excelsis.Mobile
         {
             MainPage = new NavigationPage(new HomePage());
         }
+
+        protected override void OnStart()
+        {
+            var db = DependencyService.Get<ISQLite>().GetConnection();
+
+            db.CreateTable<Exam>();
+
+            base.OnStart();
+        }
     }
 }
