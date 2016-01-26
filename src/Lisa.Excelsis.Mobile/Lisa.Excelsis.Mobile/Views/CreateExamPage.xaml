@@ -26,12 +26,12 @@
               Grid.Row="1" Grid.Column="3"/>
       
       <Button x:Name="yesBtn"
-              Text="Yes"
+              Text="Ja"
               Clicked="ToggleSwitch"
               Grid.Row="2" Grid.Column="1"/>
       
       <Button x:Name="noBtn"
-              Text="No"
+              Text="Nee"
               Clicked="ToggleSwitch"
               Grid.Row="2" Grid.Column="2"/>
   

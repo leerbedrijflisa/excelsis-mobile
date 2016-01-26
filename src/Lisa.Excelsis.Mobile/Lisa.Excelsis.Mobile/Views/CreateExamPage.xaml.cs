@@ -19,13 +19,13 @@ namespace Lisa.Excelsis.Mobile
             Button btn = (Button)sender;
             bool t = false;
 
-            if (btn.Text == "Yes")
+            if (btn.Text == "Ja")
             {
                 yesBtn.BackgroundColor = Color.Green;
                 noBtn.BackgroundColor = Color.Default;
                 t = !t;
             }
-            else if (btn.Text == "No")
+            else if (btn.Text == "Nee")
             {
                 yesBtn.BackgroundColor = Color.Default;
                 noBtn.BackgroundColor = Color.Red;
