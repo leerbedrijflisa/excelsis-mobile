@@ -1,6 +1,7 @@
 ﻿using Lisa.Common.Access;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using SQLite.Net;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -41,7 +42,7 @@ namespace Lisa.Excelsis.Mobile
 
             var exams = new List<Exam>();
 
-            foreach (var exam in _db.Get())
+            foreach (var exam in _db.Table<Exam>())
             {
                 exam.Name = String.Format("{0}: {1}, {2}", exam.Subject, exam.Name, exam.Cohort);
 
@@ -144,19 +145,12 @@ namespace Lisa.Excelsis.Mobile
 
             foreach (var exam in exams)
             {
-                if (_db.Get(exam.Id) == null)
-                {
-                    _db.Create(exam);
-                }
-                else
-                {
-                    _db.Replace(exam);
-                }
+                _db.InsertOrReplace(exam);
             }
 
             var examsFromDb = new List<Exam>();
 
-            foreach (var exam in _db.Get())
+            foreach (var exam in _db.Table<Exam>())
             {
                 exam.Name = String.Format("{0}: {1}, {2}", exam.Subject, exam.Name, exam.Cohort);
 
@@ -170,7 +164,7 @@ namespace Lisa.Excelsis.Mobile
             await DisplayAlert("Gerefreshed", "success", "sluiten");
         }
 
-        private readonly Database<Exam> _db = new Database<Exam>();
+        private readonly SQLiteConnection _db = DependencyService.Get<ISQLite>().GetConnection();
         private readonly Proxy<Exam> _examProxy;
         private bool _isOffline;
     }

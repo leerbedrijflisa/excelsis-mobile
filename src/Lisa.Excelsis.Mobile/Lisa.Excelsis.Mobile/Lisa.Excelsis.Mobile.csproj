@@ -36,7 +36,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
-    <Compile Include="Data\Database.cs" />
     <Compile Include="Interfaces\IConnectionChecker.cs" />
     <Compile Include="Interfaces\ISQLite.cs" />
     <Compile Include="Models\Exam.cs" />
