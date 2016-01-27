@@ -16,33 +16,12 @@
         <ColumnDefinition Width="10*" />
       </Grid.ColumnDefinitions>
 
-      <Label x:Name="question"
-             Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" />
-      
-      <Button x:Name="noneBtn"
-              Text="&#10006;"
-              Clicked="DisableSwitch"
-              HeightRequest="30" WidthRequest="30"
-              Grid.Row="1" Grid.Column="3"/>
-      
-      <Button x:Name="yesBtn"
-              Text="Ja"
-              Clicked="ToggleSwitch"
-              Grid.Row="2" Grid.Column="1"/>
-      
-      <Button x:Name="noBtn"
-              Text="Nee"
-              Clicked="ToggleSwitch"
-              Grid.Row="2" Grid.Column="2"/>
-  
-      <Button x:Name="infoBtn"
-              Text="Meer informatie"
-              Clicked="ToggleInfo"
-              Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"/>
-  
-      <Label x:Name="info"
-             Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" />  
-  
+      <Label x:Name="QuestionLabel" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" />
+      <Button x:Name="NoneButton" Text="&#10006;" Clicked="DisableSwitch" HeightRequest="30" WidthRequest="30" Grid.Row="1" Grid.Column="3"/>
+      <Button x:Name="YesButton" Text="Ja" Clicked="ToggleSwitch" Grid.Row="2" Grid.Column="1"/>
+      <Button x:Name="NoButton" Text="Nee" Clicked="ToggleSwitch" Grid.Row="2" Grid.Column="2"/>
+      <Button x:Name="InfoButton" Text="Meer informatie" Clicked="ToggleInfo" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"/>
+      <Label x:Name="InfoLabel" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" />
     </Grid>
   </StackLayout>
 </ContentPage>

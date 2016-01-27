@@ -11,6 +11,7 @@ namespace Lisa.Excelsis.Mobile
 
         protected override void OnStart()
         {
+            // make sure the tables are created before doing any database logic
             var db = DependencyService.Get<ISQLite>().GetConnection();
 
             db.CreateTable<Exam>();

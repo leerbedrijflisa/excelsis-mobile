@@ -5,30 +5,28 @@ namespace Lisa.Excelsis.Mobile
 {
     public partial class CreateExamPage : ContentPage
     {
-        public bool toggle = false;
-
         public CreateExamPage(Exam exam)
         {
             InitializeComponent();
 
-            question.Text = "De kandidaat heeft Bla gedaan en ook BlaBla en een deel van Blablabla maar niet blablablabla.";
+            QuestionLabel.Text = "De kandidaat heeft Bla gedaan en ook BlaBla en een deel van Blablabla maar niet blablablabla.";
         }
 
         private void ToggleSwitch(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
+            var clickedButton = (Button)sender;
             bool t = false;
 
-            if (btn.Text == "Ja")
+            if (clickedButton.Text == "Ja")
             {
-                yesBtn.BackgroundColor = Color.Green;
-                noBtn.BackgroundColor = Color.Default;
+                YesButton.BackgroundColor = Color.Green;
+                NoButton.BackgroundColor = Color.Default;
                 t = !t;
             }
-            else if (btn.Text == "Nee")
+            else if (clickedButton.Text == "Nee")
             {
-                yesBtn.BackgroundColor = Color.Default;
-                noBtn.BackgroundColor = Color.Red;
+                YesButton.BackgroundColor = Color.Default;
+                NoButton.BackgroundColor = Color.Red;
             }
 
             toggle = t;
@@ -36,20 +34,22 @@ namespace Lisa.Excelsis.Mobile
 
         private void DisableSwitch(object sender, EventArgs e)
         {
-            yesBtn.BackgroundColor = Color.Default;
-            noBtn.BackgroundColor = Color.Default;
+            YesButton.BackgroundColor = Color.Default;
+            NoButton.BackgroundColor = Color.Default;
         }
 
         private void ToggleInfo(object sender, EventArgs e)
         {
-            if (info.Text == null)
+            if (InfoLabel.Text == null)
             {
-                info.Text = "test tekst!";
-            } else
-            {
-                info.Text = null;
+                InfoLabel.Text = "test tekst!";
             }
-            
+            else
+            {
+                InfoLabel.Text = null;
+            }
         }
+
+        private bool toggle = false;
     }
 }
