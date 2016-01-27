@@ -14,13 +14,13 @@ namespace Lisa.Excelsis.Mobile
     {
         public HomePage()
         {
-            var serializerSettings = new JsonSerializerSettings
+            InitializeComponent();
+
+            _proxy = new Proxy("http://excelsis-develop-webapi.azurewebsites.net/", new JsonSerializerSettings
             {
                 ContractResolver = new CamelCasePropertyNamesContractResolver(),
                 NullValueHandling = NullValueHandling.Ignore
             };
-
-            _proxy = new Proxy("http://excelsis-develop-webapi.azurewebsites.net/", serializerSettings);
 
             var properties = Application.Current.Properties;
 
@@ -44,7 +44,7 @@ namespace Lisa.Excelsis.Mobile
             }
 
             _db.CreateTable<Exam>();
-
+            
             ExamList.ItemsSource = _db.Table<Exam>().Select(s => new ExamListItem(s));
             ExamList.IsPullToRefreshEnabled = true;
         }
@@ -167,7 +167,6 @@ namespace Lisa.Excelsis.Mobile
 
                     _db.InsertOrReplace(newExam);
                 }
-
             }
             catch (WebException)
             {
@@ -185,7 +184,7 @@ namespace Lisa.Excelsis.Mobile
 
                 return;
             }
-
+            
             _db.InsertOrReplaceAll(assessors.Select(s => new Assessor
             {
                 Id = s.Id,
@@ -198,7 +197,7 @@ namespace Lisa.Excelsis.Mobile
 
             await DisplayAlert("Gerefreshed", "success", "sluiten");
         }
-
+        
         private string escapeCharacters(string text)
         {
             List<string> nameParts = new List<string>();

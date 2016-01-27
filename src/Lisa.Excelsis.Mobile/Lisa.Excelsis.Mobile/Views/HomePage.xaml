@@ -3,9 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Lisa.Excelsis.Mobile.HomePage">
   <ContentPage.Padding>
-    <OnPlatform x:TypeArguments="Thickness" 
-                iOS="0, 15, 0, 0" 
-                Android="0, 0, 0, 0"/>
+    <OnPlatform x:TypeArguments="Thickness"  iOS="0, 15, 0, 0" Android="0, 0, 0, 0"/>
   </ContentPage.Padding>
   <StackLayout>
     <Button x:Name="OfflineButton" Text="Ga Offline" Clicked="OfflineButtonClick"/>

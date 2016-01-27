@@ -12,9 +12,9 @@ namespace Lisa.Excelsis.Mobile.Droid
 
         public bool IsOnline()
         {
-            ConnectivityManager cm = (ConnectivityManager) Android.App.Application.Context.GetSystemService(Context.ConnectivityService);
+            var connectivityManager = (ConnectivityManager) Android.App.Application.Context.GetSystemService(Context.ConnectivityService);
 
-            var netInfo = cm.ActiveNetworkInfo;
+            var netInfo = connectivityManager.ActiveNetworkInfo;
 
             return netInfo != null && netInfo.IsConnected;
         }

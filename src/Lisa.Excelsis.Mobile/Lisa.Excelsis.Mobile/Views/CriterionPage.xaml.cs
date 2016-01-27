@@ -9,7 +9,7 @@ namespace Lisa.Excelsis.Mobile
         {
             InitializeComponent();
 
-            Question.Text = criterion.Title;
+            QuestionLabel.Text = criterion.Title;
         }
 
         private void ToggleSwitch(object sender, EventArgs e)

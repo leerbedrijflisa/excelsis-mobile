@@ -2,29 +2,28 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Lisa.Excelsis.Mobile.CriterionPage">
-  <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-    <Grid>
-      <Grid.RowDefinitions>
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-      </Grid.RowDefinitions>
+   <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+     <Grid>
+       <Grid.RowDefinitions>
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="Auto" />
+       </Grid.RowDefinitions>
 
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="10*" />
-        <ColumnDefinition Width="35*" />
-        <ColumnDefinition Width="35*" />
-        <ColumnDefinition Width="10*" />
-        <ColumnDefinition Width="10*" />
-      </Grid.ColumnDefinitions>
+       <Grid.ColumnDefinitions>
+         <ColumnDefinition Width="10*" />
+         <ColumnDefinition Width="35*" />
+         <ColumnDefinition Width="35*" />
+         <ColumnDefinition Width="10*" />
+         <ColumnDefinition Width="10*" />
+       </Grid.ColumnDefinitions>
 
-      <Label x:Name="Question" Text="Hier komt de vraag" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" />
-
-      <Button x:Name="NoneButton" Text="&#10006;" Clicked="DisableSwitch" HeightRequest="30" WidthRequest="30" Grid.Row="1" Grid.Column="3"/>
-
-      <Button x:Name="YesButton" Text="Ja" Clicked="ToggleSwitch" Grid.Row="2" Grid.Column="1"/>
-
-      <Button x:Name="NoButton" Text="Nee" Clicked="ToggleSwitch" Grid.Row="2" Grid.Column="2"/>
-    </Grid>
-  </StackLayout>
+       <Label x:Name="QuestionLabel" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" />
+       <Button x:Name="NoneButton" Text="&#10006;" Clicked="DisableSwitch" HeightRequest="30" WidthRequest="30" Grid.Row="1" Grid.Column="3"/>
+       <Button x:Name="YesButton" Text="Ja" Clicked="ToggleSwitch" Grid.Row="2" Grid.Column="1"/>
+       <Button x:Name="NoButton" Text="Nee" Clicked="ToggleSwitch" Grid.Row="2" Grid.Column="2"/>
+       <Button x:Name="InfoButton" Text="Meer informatie" Clicked="ToggleInfo" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"/>
+       <Label x:Name="InfoLabel" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" />
+     </Grid>
+   </StackLayout>
 </ContentPage>
