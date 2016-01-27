@@ -1,5 +1,4 @@
-﻿using Lisa.Common.Access;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using SQLite.Net;
 using System;
@@ -15,7 +14,7 @@ namespace Lisa.Excelsis.Mobile
         {
             InitializeComponent();
 
-            _examProxy = new Proxy<Exam>("http://excelsis-develop-webapi.azurewebsites.net/exams", new JsonSerializerSettings
+            _proxy = new Proxy("http://excelsis-develop-webapi.azurewebsites.net/", new JsonSerializerSettings
             {
                 ContractResolver = new CamelCasePropertyNamesContractResolver(),
                 NullValueHandling = NullValueHandling.Ignore
@@ -124,7 +123,7 @@ namespace Lisa.Excelsis.Mobile
 
             try
             {
-                exams = (List<Exam>)await _examProxy.GetAsync();
+                exams = (List<Exam>)await _proxy.GetAsync<Exam>("exams");
             }
             catch (WebException)
             {
@@ -165,7 +164,7 @@ namespace Lisa.Excelsis.Mobile
         }
 
         private readonly SQLiteConnection _db = DependencyService.Get<ISQLite>().GetConnection();
-        private readonly Proxy<Exam> _examProxy;
+        private readonly Proxy _proxy;
         private bool _isOffline;
     }
 }
