@@ -6,7 +6,7 @@ namespace Lisa.Excelsis.Mobile
     {
         public App()
         {
-            MainPage = new NavigationPage(new HomePage());
+            
         }
 
         protected override void OnStart()
@@ -17,6 +17,8 @@ namespace Lisa.Excelsis.Mobile
             db.CreateTable<Exam>();
 
             base.OnStart();
+
+            MainPage = new NavigationPage(new HomePage());
         }
     }
 }
