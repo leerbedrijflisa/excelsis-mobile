@@ -40,18 +40,37 @@ namespace Lisa.Excelsis.Mobile
                 OfflineButton.Text = "Ga Offline";
             }
 
-            var exams = new List<Exam>();
-
-            foreach (var exam in _db.Table<Exam>())
+            if (_db.Table<Exam>().Count() == 0)
             {
-                exam.Name = String.Format("{0}: {1}, {2}", exam.Subject, exam.Name, exam.Cohort);
+                ExamList.ItemsSource = new List<Exam>()
+                {
+                    new Exam
+                    {
+                        Name = "Geen examens gevonden, pull to refresh."
+                    }
+                   
+                };
 
-                exams.Add(exam);
+                ExamList.IsPullToRefreshEnabled = true;
+
             }
+            else
+            {
+                var exams = new List<Exam>();
 
-            ExamList.ItemsSource = exams;
-            ExamList.IsPullToRefreshEnabled = true;
+                foreach (var exam in _db.Table<Exam>())
+                {
+                    exam.Name = String.Format("{0}: {1}, {2}", exam.Subject, exam.Name, exam.Cohort);
+
+                    exams.Add(exam);
+                }
+
+                ExamList.ItemsSource = exams;
+                ExamList.IsPullToRefreshEnabled = true;
+            }
         }
+
+
 
         private async void OfflineButtonClick(object sender, EventArgs e)
         {
