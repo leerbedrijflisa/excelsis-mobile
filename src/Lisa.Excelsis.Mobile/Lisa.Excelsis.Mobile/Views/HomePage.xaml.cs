@@ -20,7 +20,7 @@ namespace Lisa.Excelsis.Mobile
             {
                 ContractResolver = new CamelCasePropertyNamesContractResolver(),
                 NullValueHandling = NullValueHandling.Ignore
-            };
+            });
 
             var properties = Application.Current.Properties;
 

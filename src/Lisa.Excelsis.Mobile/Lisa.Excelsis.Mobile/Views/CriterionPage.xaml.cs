@@ -38,6 +38,18 @@ namespace Lisa.Excelsis.Mobile
             NoButton.BackgroundColor = Color.Default;
         }
 
+        private void ToggleInfo(object sender, EventArgs e)
+        {
+            if (InfoLabel.Text == null)
+            {
+                InfoLabel.Text = "test tekst!";
+            }
+            else
+            {
+                InfoLabel.Text = null;
+            }
+        }
+
         private bool _toggle = false;
     }
 }
