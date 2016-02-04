@@ -103,7 +103,7 @@ namespace Lisa.Excelsis.Mobile
 
             try
             {
-                await Navigation.PushAsync(new CreateExamPage(exam));
+                await Navigation.PushAsync(new CreateAssessmentPage(exam));
             }
             catch
             {
@@ -145,10 +145,12 @@ namespace Lisa.Excelsis.Mobile
             }
 
             var exams = new List<Exam>();
+            var assessors = new List<Assessor>();
 
             try
             {
                 exams = (List<Exam>)await _proxy.GetAsync<Exam>("exams");
+                assessors = (List<Assessor>)await _proxy.GetAsync<Assessor>("assessors");
             }
             catch (WebException)
             {
@@ -169,10 +171,8 @@ namespace Lisa.Excelsis.Mobile
                 return;
             }
 
-            foreach (var exam in exams)
-            {
-                _db.InsertOrReplace(exam);
-            }
+            _db.InsertOrReplaceAll(exams);
+            _db.InsertOrReplaceAll(assessors);
 
             var examsFromDb = new List<Exam>();
 

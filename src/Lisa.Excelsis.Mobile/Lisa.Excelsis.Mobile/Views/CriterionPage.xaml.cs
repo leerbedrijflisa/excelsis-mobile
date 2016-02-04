@@ -3,12 +3,11 @@ using Xamarin.Forms;
 
 namespace Lisa.Excelsis.Mobile
 {
-    public partial class CreateExamPage : ContentPage
+    public partial class CriterionPage : ContentPage
     {
-        public CreateExamPage(Exam exam)
+        public CriterionPage()
         {
             InitializeComponent();
-
             QuestionLabel.Text = "De kandidaat heeft Bla gedaan en ook BlaBla en een deel van Blablabla maar niet blablablabla.";
         }
 

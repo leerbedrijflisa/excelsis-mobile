@@ -15,6 +15,10 @@ namespace Lisa.Excelsis.Mobile
             var db = DependencyService.Get<ISQLite>().GetConnection();
 
             db.CreateTable<Exam>();
+            db.CreateTable<Assessor>();
+            db.CreateTable<AssessmentAssessor>();
+            db.CreateTable<Assessment>();
+            db.CreateTable<Student>();
 
             base.OnStart();
 
