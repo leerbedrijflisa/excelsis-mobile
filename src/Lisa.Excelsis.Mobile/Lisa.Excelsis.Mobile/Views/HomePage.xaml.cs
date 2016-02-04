@@ -41,20 +41,24 @@ namespace Lisa.Excelsis.Mobile
 
             if (_db.Table<Exam>().Count() == 0)
             {
-                ExamList.ItemsSource = new List<Exam>()
+
+                ErrorList.ItemsSource = new List<string>()
                 {
-                    new Exam
-                    {
-                        Name = "Geen examens gevonden, pull to refresh."
-                    }
+                    "Error boys"
                    
                 };
 
-                ExamList.IsPullToRefreshEnabled = true;
+                ErrorList.IsPullToRefreshEnabled = true;
+
+                ErrorList.ItemSelected += (sender, e) => {
+                    ((ListView)sender).SelectedItem = null;
+                };
 
             }
             else
             {
+                ErrorList.IsVisible = false;
+
                 var exams = new List<Exam>();
 
                 foreach (var exam in _db.Table<Exam>())
@@ -124,6 +128,7 @@ namespace Lisa.Excelsis.Mobile
                     else
                     {
                         ExamList.EndRefresh();
+                        ErrorList.EndRefresh();
 
                         return;
                     }
@@ -131,6 +136,7 @@ namespace Lisa.Excelsis.Mobile
                 else
                 {
                     ExamList.EndRefresh();
+                    ErrorList.EndRefresh();
 
                     await DisplayAlert("App is Offline", "App staat in offline, en er is geen verbinding met het netwerk", "Sluiten");
 
@@ -147,6 +153,7 @@ namespace Lisa.Excelsis.Mobile
             catch (WebException)
             {
                 ExamList.EndRefresh();
+                ErrorList.EndRefresh();
 
                 await DisplayAlert("Error", "Kan niet verbinden met de Web API, controleer de internetverbinding", "Sluiten");
 
@@ -155,6 +162,7 @@ namespace Lisa.Excelsis.Mobile
             catch (Exception ex)
             {
                 ExamList.EndRefresh();
+                ErrorList.EndRefresh();
 
                 await DisplayAlert("Error", String.Join("|", ex.Message, ex.GetType()), "Sluiten");
 
@@ -177,7 +185,9 @@ namespace Lisa.Excelsis.Mobile
 
             ExamList.ItemsSource = examsFromDb;
 
+            ErrorList.IsVisible = false;
             ExamList.EndRefresh();
+            ErrorList.EndRefresh();
 
             await DisplayAlert("Gerefreshed", "success", "sluiten");
         }
