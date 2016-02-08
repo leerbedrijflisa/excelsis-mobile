@@ -3,9 +3,9 @@ using Xamarin.Forms;
 
 namespace Lisa.Excelsis.Mobile
 {
-    public partial class CriterionPage : ContentPage
+    public partial class ObservationPage : ContentPage
     {
-        public CriterionPage()
+		public ObservationPage()
         {
             InitializeComponent();
             QuestionLabel.Text = "De kandidaat heeft Bla gedaan en ook BlaBla en een deel van Blablabla maar niet blablablabla.";

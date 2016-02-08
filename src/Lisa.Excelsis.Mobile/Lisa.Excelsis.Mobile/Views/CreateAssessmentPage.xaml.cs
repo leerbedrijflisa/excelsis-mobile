@@ -2,6 +2,7 @@
 using System;
 using Xamarin.Forms;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Lisa.Excelsis.Mobile
 {
@@ -20,30 +21,20 @@ namespace Lisa.Excelsis.Mobile
             }
         }
 
-        public void StartAssessment(object sender, EventArgs e)
+        public async void StartAssessment(object sender, EventArgs e)
         {
             var isValid = true;
-
-            if (StudentName.Text == null || StudentName.Text.Length == 0)
-            {
-                StudentName.BackgroundColor = Color.FromRgb(255, 51, 51);
-                isValid = false;
-            }
-            else
-            {
-                StudentName.BackgroundColor = Color.Default;
-            }
-
+			StartButton.IsEnabled = false;
             int studentnumber = 0;
 
-            if (StudentNumber.Text == null || StudentNumber.Text.Length != 8 || !Int32.TryParse(StudentNumber.Text, out studentnumber))
+			if (StudentNumber != null && Regex.IsMatch(StudentNumber.ToString(), @"^\d{8}$"))
             {
                 StudentNumber.BackgroundColor = Color.FromRgb(255, 51, 51);
                 isValid = false;
             }
             else
             {
-                StudentNumber.BackgroundColor = Color.Default;
+				StudentNumber.BackgroundColor = Color.Default;
             }
 
             if (AssessorPicker.SelectedIndex == -1)
@@ -69,13 +60,14 @@ namespace Lisa.Excelsis.Mobile
                 var assessment = new Assessment
                 {
                     Assessed = ExamDate.Date,
-                    ExamId = _exam.Id
-                };
+					Subject = _exam.SubjectId,
+					Name = _exam.NameId,
+					Cohort = _exam.Cohort
+				};
 
                 _db.Insert(assessment);
 
                 var username = AssessorPicker.Items[AssessorPicker.SelectedIndex];
-
                 var assessorId = (from s in _db.Table<Assessor>() where s.UserName == username select s.Id).FirstOrDefault();
 
                 var assessmentAssessor = new AssessmentAssessor
@@ -101,8 +93,9 @@ namespace Lisa.Excelsis.Mobile
                     _db.Insert(assessmentAssessor);
                 }
                 
-                Navigation.PushAsync(new CriterionPage());
+				await Navigation.PushAsync(new ObservationPage());
             }
+			StartButton.IsEnabled = true;
         }
 
         public void EntryChanged(object sender, EventArgs e)

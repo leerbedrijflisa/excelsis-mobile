@@ -19,6 +19,6 @@
     <Label Text="Datum"/>
     <DatePicker x:Name="ExamDate" Format="dd-MM-yyyy" Date="{x:Static sys:DateTime.Now}"/>
     <TimePicker x:Name="ExamTime"/>
-    <Button Text="Examen starten" Clicked="StartAssessment" />
+    <Button x:Name="StartButton" Text="Examen starten" Clicked="StartAssessment" />
   </StackLayout>
 </ContentPage>

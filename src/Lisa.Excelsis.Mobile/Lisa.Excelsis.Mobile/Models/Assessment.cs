@@ -8,7 +8,8 @@ namespace Lisa.Excelsis.Mobile
     {
         public int Id { get; set; }
         public DateTime Assessed { get; set; }
-
-        public int ExamId { get; set; }
+        public string Name { get; set; }
+		public string Subject { get; set; }
+		public int Cohort { get; set; }
     }
 }
