@@ -44,7 +44,7 @@ namespace Lisa.Excelsis.Mobile
 
                 ErrorList.ItemsSource = new List<string>()
                 {
-                    "Error boys"
+                    "Geen examens beschikbaar..."
                    
                 };
 

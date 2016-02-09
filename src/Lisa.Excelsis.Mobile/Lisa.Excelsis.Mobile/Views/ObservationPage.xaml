@@ -2,8 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Lisa.Excelsis.Mobile.ObservationPage">
-  <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-    <Grid>
+  <StackLayout >
+
+    <Grid HorizontalOptions="Center" VerticalOptions = "StartAndExpand">
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto" />
         <RowDefinition Height="Auto" />
@@ -11,19 +12,30 @@
       </Grid.RowDefinitions>
 
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="10*" />
+        <ColumnDefinition Width="5*" />
         <ColumnDefinition Width="35*" />
         <ColumnDefinition Width="35*" />
         <ColumnDefinition Width="10*" />
-        <ColumnDefinition Width="10*" />
+        <ColumnDefinition Width="5*" />
       </Grid.ColumnDefinitions>
+      <Label x:Name="QuestionLabel" Style="{DynamicResource TitleStyle}"  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" VerticalOptions =  "StartAndExpand" />
 
-      <Label x:Name="QuestionLabel" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" />
-      <Button x:Name="NoneButton" Text="&#10006;" Clicked="DisableSwitch" HeightRequest="30" WidthRequest="30" Grid.Row="1" Grid.Column="3"/>
+      <Button x:Name="NoneButton" Text="&#10006;" Clicked="DisableSwitch" HeightRequest="30" WidthRequest="30" Grid.Row="1" Grid.Column="3" />
       <Button x:Name="YesButton" Text="Ja" Clicked="ToggleSwitch" Grid.Row="2" Grid.Column="1"/>
       <Button x:Name="NoButton" Text="Nee" Clicked="ToggleSwitch" Grid.Row="2" Grid.Column="2"/>
       <Button x:Name="InfoButton" Text="Meer informatie" Clicked="ToggleInfo" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"/>
-      <Label x:Name="InfoLabel" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" />
+      <Label x:Name="InfoLabel" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3"/>
     </Grid>
+    <Grid HorizontalOptions="Center" VerticalOptions = "LayoutOptions.End">
+     	<Grid.RowDefinitions>
+        	<RowDefinition Height="Auto" />
+      	</Grid.RowDefinitions>
+    	<Grid.ColumnDefinitions>
+        	<ColumnDefinition Width="50*" />
+        	<ColumnDefinition Width="50*" />
+      	</Grid.ColumnDefinitions>
+	    <Button x:Name="PreviousButton" Text="Terug" Clicked="ChangeTab" Grid.Row="0" Grid.Column="0"/>
+	    <Button x:Name="NextButton" Text="Volgende" Clicked="ChangeTab" Grid.Row="0" Grid.Column="1"/>
+	</Grid>
   </StackLayout>
 </ContentPage>

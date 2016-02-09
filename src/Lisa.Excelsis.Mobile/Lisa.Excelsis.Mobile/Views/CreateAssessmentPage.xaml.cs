@@ -93,7 +93,7 @@ namespace Lisa.Excelsis.Mobile
                     _db.Insert(assessmentAssessor);
                 }
                 
-				await Navigation.PushAsync(new ObservationPage());
+				await Navigation.PushAsync(new ObservationsPage());
             }
 			StartButton.IsEnabled = true;
         }
