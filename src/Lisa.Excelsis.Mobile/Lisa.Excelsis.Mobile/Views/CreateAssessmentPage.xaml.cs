@@ -62,7 +62,7 @@ namespace Lisa.Excelsis.Mobile
                     Assessed = ExamDate.Date,
 					Subject = _exam.SubjectId,
 					Name = _exam.NameId,
-					Cohort = _exam.Cohort
+                        Cohort = _exam.Cohort.ToString()
 				};
 
                 _db.Insert(assessment);

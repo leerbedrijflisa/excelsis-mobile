@@ -101,6 +101,15 @@
     <ITunesArtwork Include="iTunesArtwork" />
     <None Include="packages.config" />
     <ITunesArtwork Include="iTunesArtwork%402x" />
+    <None Include="Resources\account.png" />
+    <None Include="Resources\contacts.png" />
+    <None Include="Resources\contacts%402x.png" />
+    <None Include="Resources\contacts%403x.png" />
+    <None Include="Resources\leads.png" />
+    <None Include="Resources\leads%402x.png" />
+    <None Include="Resources\leads%403x.png" />
+    <None Include="Resources\settings.png" />
+    <None Include="Resources\settings%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lisa.Excelsis.Mobile\Lisa.Excelsis.Mobile.csproj">

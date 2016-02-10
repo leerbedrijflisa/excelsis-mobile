@@ -10,6 +10,9 @@ namespace Lisa.Excelsis.Mobile
         public DateTime Assessed { get; set; }
         public string Name { get; set; }
 		public string Subject { get; set; }
-		public int Cohort { get; set; }
+		public string Cohort { get; set; }
+        public string StudentName { get; set; }
+        public string StudentNumber { get; set; }
+
     }
 }

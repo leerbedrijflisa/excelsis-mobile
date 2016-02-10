@@ -22,7 +22,7 @@ namespace Lisa.Excelsis.Mobile
 
             base.OnStart();
 
-            MainPage = new NavigationPage(new HomePage());
+            MainPage = new RootPage();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using System.Collections.Generic;
+using XLabs.Forms.Controls;
 
 namespace Lisa.Excelsis.Mobile
 {
@@ -83,10 +84,11 @@ namespace Lisa.Excelsis.Mobile
 		private bool toggle = false;
 	}
 
-	class ObservationsPage : TabbedPage
+	class ObservationsPage : CarouselPage
 	{
 		public ObservationsPage ()
 		{
+			
 			var categories = new List<Category> () {
 				new Category {
 					Order = 1,
