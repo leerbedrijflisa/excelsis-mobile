@@ -14,11 +14,13 @@ namespace Lisa.Excelsis.Mobile
             // make sure the tables are created before doing any database logic
             var db = DependencyService.Get<ISQLite>().GetConnection();
 
-            db.CreateTable<Exam>();
-            db.CreateTable<Assessor>();
-            db.CreateTable<AssessmentAssessor>();
-            db.CreateTable<Assessment>();
-            db.CreateTable<Student>();
+            db.CreateTable<Examdb>();
+            db.CreateTable<Assessordb>();
+            db.CreateTable<AssessmentAssessordb>();
+            db.CreateTable<Assessmentdb>();
+            db.CreateTable<Categorydb>();
+            db.CreateTable<Observationdb>();
+            db.CreateTable<Criteriondb>();
 
             base.OnStart();
 

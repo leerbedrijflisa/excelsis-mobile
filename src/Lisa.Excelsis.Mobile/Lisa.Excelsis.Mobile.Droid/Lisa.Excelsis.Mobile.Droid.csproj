@@ -121,6 +121,7 @@
     <AndroidResource Include="Resources\drawable\contacts.png" />
     <AndroidResource Include="Resources\drawable\leads.png" />
     <AndroidResource Include="Resources\drawable\settings.png" />
+    <AndroidResource Include="Resources\drawable\yesNoButton.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />

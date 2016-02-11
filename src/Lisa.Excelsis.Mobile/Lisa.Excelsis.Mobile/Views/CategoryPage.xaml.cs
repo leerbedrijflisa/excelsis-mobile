@@ -15,22 +15,22 @@ namespace Lisa.Excelsis.Mobile
 			Name.Text = category.Name;
 		}
 
-		private void ChangeTab(object sender, EventArgs e)
-		{
-			var clickedButton = (Button)sender;
-			var page = this.Parent as TabbedPage;
-
-			if (clickedButton.Text == "Volgende") 
-			{				
-				int index = page.Children.IndexOf (this) + 1;
-				page.CurrentPage = page.Children [(index < page.Children.Count )? index : page.Children.Count-1];
-			} 
-			else 
-			{
-				int index = page.Children.IndexOf (this) - 1;
-				page.CurrentPage = page.Children [(index > 0 )? index : 0];
-			}
-		}
+//		private void ChangeTab(object sender, EventArgs e)
+//		{
+//			var clickedButton = (Button)sender;
+//			var page = this.Parent as TabbedPage;
+//
+//			if (clickedButton.Text == "Volgende") 
+//			{				
+//				int index = page.Children.IndexOf (this) + 1;
+//				page.CurrentPage = page.Children [(index < page.Children.Count )? index : page.Children.Count-1];
+//			} 
+//			else 
+//			{
+//				int index = page.Children.IndexOf (this) - 1;
+//				page.CurrentPage = page.Children [(index > 0 )? index : 0];
+//			}
+//		}
 	}
 }
 

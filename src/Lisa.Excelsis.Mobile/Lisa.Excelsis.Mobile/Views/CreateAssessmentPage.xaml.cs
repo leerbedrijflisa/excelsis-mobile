@@ -3,18 +3,25 @@ using System;
 using Xamarin.Forms;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace Lisa.Excelsis.Mobile
 {
     public partial class CreateAssessmentPage : ContentPage
     {
-        public CreateAssessmentPage(Exam exam)
+        public CreateAssessmentPage(Examdb exam)
         {
             InitializeComponent();
 
+            _proxy = new Proxy("http://excelsis-develop-webapi.azurewebsites.net/", new JsonSerializerSettings
+                {
+                    ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                    NullValueHandling = NullValueHandling.Ignore
+                });
+            
             _exam = exam;
-
-            foreach (var assessor in _db.Table<Assessor>())
+            foreach (var assessor in _db.Table<Assessordb>())
             {
                 AssessorPicker.Items.Add(String.Join(" ", assessor.FirstName, assessor.LastName));
                 SecondAssessorPicker.Items.Add(String.Join(" ", assessor.FirstName, assessor.LastName));
@@ -25,7 +32,6 @@ namespace Lisa.Excelsis.Mobile
         {
             var isValid = true;
 			StartButton.IsEnabled = false;
-            int studentnumber = 0;
 
 			if (StudentNumber != null && Regex.IsMatch(StudentNumber.ToString(), @"^\d{8}$"))
             {
@@ -49,30 +55,25 @@ namespace Lisa.Excelsis.Mobile
 
             if (isValid)
             {
-                var student = new Student
-                {
-                    Name = StudentName.Text,
-                    Number = studentnumber
-                };
-
-                _db.Insert(student);
-
-                var assessment = new Assessment
+                var assessmentMetaData = new Assessmentdb
                 {
                     Assessed = ExamDate.Date,
+                    StudentName = StudentName?.Text,
+                    StudentNumber = StudentNumber?.Text,
 					Subject = _exam.SubjectId,
+                    Crebo = _exam.Crebo.ToString(),
 					Name = _exam.NameId,
-                        Cohort = _exam.Cohort.ToString()
+                    Cohort = _exam.Cohort.ToString()
 				};
 
-                _db.Insert(assessment);
+                _db.Insert(assessmentMetaData);
 
                 var username = AssessorPicker.Items[AssessorPicker.SelectedIndex];
-                var assessorId = (from s in _db.Table<Assessor>() where s.UserName == username select s.Id).FirstOrDefault();
+                var assessorId = (from s in _db.Table<Assessordb>() where s.UserName == username select s.Id).FirstOrDefault();
 
-                var assessmentAssessor = new AssessmentAssessor
+                var assessmentAssessor = new AssessmentAssessordb
                 {
-                    AssessmentId = assessment.Id,
+                    AssessmentId = assessmentMetaData.Id,
                     AssessorId = assessorId
                 };
 
@@ -82,18 +83,32 @@ namespace Lisa.Excelsis.Mobile
                 {
                     var secondUserName = SecondAssessorPicker.Items[SecondAssessorPicker.SelectedIndex];
 
-                    assessorId = _db.Table<Assessor>().Where(s => s.UserName == secondUserName).Select(s => s.Id).FirstOrDefault();
+                    assessorId = _db.Table<Assessordb>().Where(s => s.UserName == secondUserName).Select(s => s.Id).FirstOrDefault();
 
-                    assessmentAssessor = new AssessmentAssessor
+                    assessmentAssessor = new AssessmentAssessordb
                     {
-                        AssessmentId = assessment.Id,
+                        AssessmentId = assessmentMetaData.Id,
                         AssessorId = assessorId
                     };
 
                     _db.Insert(assessmentAssessor);
                 }
-                
-				await Navigation.PushAsync(new ObservationsPage());
+                var data = new 
+                {
+                    Student = new 
+                    {
+                            Name = StudentName.Text?? string.Empty,
+                            Number = StudentNumber.Text?? string.Empty
+                    },
+                    Assessed = "2015-11-29T12:00:00Z",
+                    Assessors = new string[]
+                    {
+                        "joostronkesagerbeek",
+                        "petersnoek"
+                    }
+                };
+                var assessment = await _proxy.PostAsync<dynamic>(data, "assessments/" + _exam.SubjectId + "/" + _exam.Cohort + "/" + _exam.NameId);
+                await Navigation.PushAsync(new ObservationsPage(assessment.ToObject<Assessment>()));
             }
 			StartButton.IsEnabled = true;
         }
@@ -126,7 +141,8 @@ namespace Lisa.Excelsis.Mobile
             }
         }
 
-        private readonly Exam _exam;
+        private readonly Examdb _exam;
+        private readonly Proxy _proxy;
         private readonly SQLiteConnection _db = DependencyService.Get<ISQLite>().GetConnection();
     }
 }

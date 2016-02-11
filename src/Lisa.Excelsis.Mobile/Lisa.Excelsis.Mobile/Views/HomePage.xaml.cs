@@ -39,7 +39,7 @@ namespace Lisa.Excelsis.Mobile
                 OfflineButton.Text = "Ga Offline";
             }
 
-            if (_db.Table<Exam>().Count() == 0)
+            if (_db.Table<Examdb>().Count() == 0)
             {
 
                 ErrorList.ItemsSource = new List<string>()
@@ -59,9 +59,9 @@ namespace Lisa.Excelsis.Mobile
             {
                 ErrorList.IsVisible = false;
 
-                var exams = new List<Exam>();
+                var exams = new List<Examdb>();
 
-                foreach (var exam in _db.Table<Exam>())
+                foreach (var exam in _db.Table<Examdb>())
                 {
                     exam.Name = String.Format("{0}: {1}, {2}", exam.Subject, exam.Name, exam.Cohort);
 
@@ -99,7 +99,7 @@ namespace Lisa.Excelsis.Mobile
 
         private async void CreateExam(object sender, EventArgs e)
         {
-            var exam = (Exam)((ListView)sender).SelectedItem;
+            var exam = (Examdb)((ListView)sender).SelectedItem;
 
             try
             {
@@ -144,13 +144,13 @@ namespace Lisa.Excelsis.Mobile
                 }
             }
 
-            var exams = new List<Exam>();
-            var assessors = new List<Assessor>();
+            var exams = new List<Examdb>();
+            var assessors = new List<Assessordb>();
 
             try
             {
-                exams = (List<Exam>)await _proxy.GetAsync<Exam>("exams");
-                assessors = (List<Assessor>)await _proxy.GetAsync<Assessor>("assessors");
+                exams = (List<Examdb>)await _proxy.GetAsync<Examdb>("exams");
+                assessors = (List<Assessordb>)await _proxy.GetAsync<Assessordb>("assessors");
             }
             catch (WebException)
             {
@@ -174,9 +174,9 @@ namespace Lisa.Excelsis.Mobile
             _db.InsertOrReplaceAll(exams);
             _db.InsertOrReplaceAll(assessors);
 
-            var examsFromDb = new List<Exam>();
+            var examsFromDb = new List<Examdb>();
 
-            foreach (var exam in _db.Table<Exam>())
+            foreach (var exam in _db.Table<Examdb>())
             {
                 exam.Name = String.Format("{0}: {1}, {2}", exam.Subject, exam.Name, exam.Cohort);
 

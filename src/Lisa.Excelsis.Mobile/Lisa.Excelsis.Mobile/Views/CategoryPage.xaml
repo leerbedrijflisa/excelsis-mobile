@@ -10,8 +10,8 @@
 	        	<ColumnDefinition Width="50*" />
 	        	<ColumnDefinition Width="50*" />
 	      	</Grid.ColumnDefinitions>
-		    <Button x:Name="PreviousButton" Text="Terug" Clicked="ChangeTab" Grid.Row="0" Grid.Column="0"/>
-		    <Button x:Name="NextButton" Text="Volgende" Clicked="ChangeTab" Grid.Row="0" Grid.Column="1"/>
+<!--		    <Button x:Name="PreviousButton" Text="Terug" Clicked="ChangeTab" Grid.Row="0" Grid.Column="0"/>
+		    <Button x:Name="NextButton" Text="Volgende" Clicked="ChangeTab" Grid.Row="0" Grid.Column="1"/>-->
 		</Grid>
 	</StackLayout>
 </ContentPage>

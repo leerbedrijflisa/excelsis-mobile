@@ -1,6 +1,9 @@
-﻿namespace Lisa.Excelsis.Mobile
+﻿using SQLite.Net.Attributes;
+
+namespace Lisa.Excelsis.Mobile
 {
-    public class Assessor
+    [Table("Assessors")]
+    public class Assessordb
     {
         public int Id { get; set; }
         public string UserName { get; set; }

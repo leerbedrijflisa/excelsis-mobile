@@ -5,27 +5,14 @@ using XLabs.Forms.Controls;
 
 namespace Lisa.Excelsis.Mobile
 {
-	public class Observation
-	{
-		public int Order {get;set;}
-		public string Title { get; set;}
-	}
-
-	public class Category
-	{
-		public int Order {get;set;}
-		public string Name { get; set;}
-		public List<Observation> Observations { get; set; }
-	}
-
 	public partial class ObservationPage : ContentPage
 	{
 		public ObservationPage (Observation observation)
 		{
 			InitializeComponent();
-			Title = observation.Order.ToString ();
+            Title = observation.Criterion.Title;
 			BackgroundColor = Color.White;
-			QuestionLabel.Text = observation.Order.ToString() + ". - " + observation.Title;
+            QuestionLabel.Text = observation.Criterion.Title;
 		}
 		private void ToggleSwitch(object sender, EventArgs e)
 		{
@@ -86,92 +73,10 @@ namespace Lisa.Excelsis.Mobile
 
 	class ObservationsPage : CarouselPage
 	{
-		public ObservationsPage ()
+        public ObservationsPage (Assessment assessment)
 		{
-			
-			var categories = new List<Category> () {
-				new Category {
-					Order = 1,
-					Name = "Dit is de eerste categorie.",
-					Observations = new List<Observation>(){
-						new Observation {
-							Order = 1,
-							Title = "De kandidaat heeft Bla gedaan en ook BlaBla en een deel van Blablabla maar niet blablablabla."
-						},
-						new Observation {
-							Order = 2,
-							Title = "De kandidaat heeft Bla gedaan en ook blablablabla."
-						},
-						new Observation {
-							Order = 3,
-							Title = "De kandidaat heeft Bla gedaan en ook BlaBla en een deel "
-						},
-						new Observation {
-							Order = 4,
-							Title = "De kandidaat  BlaBla en een deel van Blablabla maar niet blablablabla."
-						},
-						new Observation {
-							Order = 5,
-							Title = "De kandidaat heeft Bla la en een deel van Blablabla maar niet blablablabla."
-						}
-					}
-				},
-				new Category {
-					Order = 2,
-					Name = "Dit is de tweede categorie.",
-					Observations = new List<Observation>(){
-						new Observation {
-							Order = 1,
-							Title = "De kandidaat heeft Bla gedaan en ook BlaBla en een deel van Blablabla maar niet blablablabla."
-						},
-						new Observation {
-							Order = 2,
-							Title = "De kandidaat heeft Bla gedaan en ook blablablabla."
-						},
-						new Observation {
-							Order = 3,
-							Title = "De kandidaat heeft Bla gedaan en ook BlaBla en een deel "
-						},
-						new Observation {
-							Order = 4,
-							Title = "De kandidaat  BlaBla en een deel van Blablabla maar niet blablablabla."
-						},
-						new Observation {
-							Order = 5,
-							Title = "De kandidaat heeft Bla la en een deel van Blablabla maar niet blablablabla."
-						}
-					}
-				},
-				new Category {
-					Order = 3,
-					Name = "Dit is de derde categorie.",
-					Observations = new List<Observation>(){
-						new Observation {
-							Order = 1,
-							Title = "De kandidaat heeft Bla gedaan en ook BlaBla en een deel van Blablabla maar niet blablablabla."
-						},
-						new Observation {
-							Order = 2,
-							Title = "De kandidaat heeft Bla gedaan en ook blablablabla."
-						},
-						new Observation {
-							Order = 3,
-							Title = "De kandidaat heeft Bla gedaan en ook BlaBla en een deel "
-						},
-						new Observation {
-							Order = 4,
-							Title = "De kandidaat  BlaBla en een deel van Blablabla maar niet blablablabla."
-						},
-						new Observation {
-							Order = 5,
-							Title = "De kandidaat heeft Bla la en een deel van Blablabla maar niet blablablabla."
-						}
-					}
-				}
-			};
-
-			this.Title = "Observations";
-			foreach (var category in categories) {
+			this.Title = "Beoordeling";
+            foreach (var category in assessment.Categories) {
 				this.Children.Add (new CategoryPage(category));
 				foreach (var observation in category.Observations) {
 					this.Children.Add (new ObservationPage(observation));

@@ -1,12 +1,16 @@
-﻿namespace Lisa.Excelsis.Mobile
+﻿using SQLite.Net.Attributes;
+
+namespace Lisa.Excelsis.Mobile
 {
-    public class Exam
+    [Table("Exams")]
+    public class Examdb
     {
+        [PrimaryKey]
         public int Id { get; set; }
         public string Name { get; set; }
 		public string NameId { get; set; }
-        public string Cohort { get; set; }
-        public string Crebo { get; set; }
+        public int Cohort { get; set; }
+        public int Crebo { get; set; }
         public string Subject { get; set; }
 		public string SubjectId { get; set; }
     }

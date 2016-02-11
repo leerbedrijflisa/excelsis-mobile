@@ -3,7 +3,7 @@
 namespace Lisa.Excelsis.Mobile
 {
     [Table("AssessmentAssessors")]
-    public class AssessmentAssessor
+    public class AssessmentAssessordb
     {
         public int Id { get; set; }
         public int AssessmentId { get; set; }
