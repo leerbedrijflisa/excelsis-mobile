@@ -71,17 +71,5 @@ namespace Lisa.Excelsis.Mobile
 		private bool toggle = false;
 	}
 
-	class ObservationsPage : CarouselPage
-	{
-        public ObservationsPage (Assessment assessment)
-		{
-			this.Title = "Beoordeling";
-            foreach (var category in assessment.Categories) {
-				this.Children.Add (new CategoryPage(category));
-				foreach (var observation in category.Observations) {
-					this.Children.Add (new ObservationPage(observation));
-				}
-			}
-		}
-	}
+	
 }

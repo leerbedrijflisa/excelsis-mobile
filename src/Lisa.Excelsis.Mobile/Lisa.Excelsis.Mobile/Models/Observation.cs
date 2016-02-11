@@ -8,6 +8,7 @@ namespace Lisa.Excelsis.Mobile
         public string Result { get; set; }
         public Criterion Criterion { get; set; }
         public List<string> Marks { get; set; }
+        public string DisplayTitle { get; set; }
     }
 }
 

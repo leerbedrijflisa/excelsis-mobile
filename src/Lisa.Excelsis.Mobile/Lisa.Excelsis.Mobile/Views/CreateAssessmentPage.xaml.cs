@@ -108,7 +108,7 @@ namespace Lisa.Excelsis.Mobile
                     }
                 };
                 var assessment = await _proxy.PostAsync<dynamic>(data, "assessments/" + _exam.SubjectId + "/" + _exam.Cohort + "/" + _exam.NameId);
-                await Navigation.PushAsync(new ObservationsPage(assessment.ToObject<Assessment>()));
+                await Navigation.PushAsync(new AssessmentPage(assessment.ToObject<Assessment>()));
             }
 			StartButton.IsEnabled = true;
         }
