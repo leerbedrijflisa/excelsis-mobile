@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using Xamarin.Forms;
+using System.Collections.ObjectModel;
 
 namespace Lisa.Excelsis.Mobile
 {
@@ -11,16 +12,26 @@ namespace Lisa.Excelsis.Mobile
         {
             InitializeComponent();
             this.Title = "Beoordeling";
-            List<Observation> observations = new List<Observation>();
+			ObservableCollection<ObserveCategory> categories = new ObservableCollection<ObserveCategory>();
             foreach (var category in assessment.Categories) 
             {
+				var categoryItem = new ObserveCategory () {
+					Id = category.Id,
+					Name = category.Name
+				};
+				categories.Add (categoryItem);
+
                 foreach (var observation in category.Observations)
                 {
-                    observation.DisplayTitle = observation.Criterion.Order + ". " + observation.Criterion.Title;
-                    observations.Add(observation);
+					var observationItem = new ObserveObservation () {
+						Id = observation.Id,
+						DisplayTitle = observation.Criterion.Order + ". " + observation.Criterion.Title
+					};
+
+					categoryItem.Add(observationItem);
                 }
             }
-            ObservationList.ItemsSource = observations;
+			CategoryList.ItemsSource = categories;
         }
     }
 }

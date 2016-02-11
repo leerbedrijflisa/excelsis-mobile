@@ -1,22 +1,23 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Lisa.Excelsis.Mobile.AssessmentPage">
 	<StackLayout>
-	<ListView x:Name="ObservationList">
+	<ListView x:Name="CategoryList" 
+				HasUnevenRows="true" 
+				RowHeight="-1" 
+				GroupDisplayBinding="{Binding Name}"
+				GroupShortNameBinding="{Binding Name}"
+		        IsGroupingEnabled="true">
       <ListView.ItemTemplate>
-      <DataTemplate>
-        <ViewCell>
-          <ViewCell.View>
-            <StackLayout Padding="50, 5, 25, 0"
+      <DataTemplate> 
+      <ViewCell>
+   		 <ViewCell.View>
+            <StackLayout Padding="25, 10, 25, 10"
                          Orientation="Horizontal"
                          Spacing="15">
-                 <StackLayout Orientation="Horizontal">
-                 	<Label Text="{Binding DisplayTitle}" />   
-                 </StackLayout>
-                
-                        
+             	<Label Text="{Binding DisplayTitle}" VerticalOptions="Center" />   
             </StackLayout>
-          </ViewCell.View>
-        </ViewCell>
+		    </ViewCell.View>
+		</ViewCell>
       </DataTemplate>
     </ListView.ItemTemplate>
     </ListView>
