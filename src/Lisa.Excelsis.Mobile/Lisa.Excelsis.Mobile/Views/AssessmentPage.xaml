@@ -1,25 +1,75 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Lisa.Excelsis.Mobile.AssessmentPage">
 	<StackLayout>
-	<ListView x:Name="CategoryList" 
-				HasUnevenRows="true" 
-				RowHeight="-1" 
-				GroupDisplayBinding="{Binding Name}"
-				GroupShortNameBinding="{Binding Name}"
-		        IsGroupingEnabled="true">
-      <ListView.ItemTemplate>
-      <DataTemplate> 
-      <ViewCell>
-   		 <ViewCell.View>
-            <StackLayout Padding="25, 10, 25, 10"
-                         Orientation="Horizontal"
-                         Spacing="15">
-             	<Label Text="{Binding DisplayTitle}" VerticalOptions="Center" />   
-            </StackLayout>
-		    </ViewCell.View>
-		</ViewCell>
-      </DataTemplate>
-    </ListView.ItemTemplate>
-    </ListView>
+		<ListView x:Name="CategoryList" 
+					HasUnevenRows="true" 
+					RowHeight="-1" 
+					GroupDisplayBinding="{Binding Name}"
+					GroupShortNameBinding="{Binding Name}"
+			        IsGroupingEnabled="true">
+	      	<ListView.ItemTemplate>
+		      	<DataTemplate> 
+			      	<ViewCell>
+			   		 	<ViewCell.View>
+			            	<StackLayout x:Name="Observation" 
+			            			 	 Orientation="Horizontal"
+			            			 	 Padding="15, 10, 10, 10">			              				  
+	             				<Grid HorizontalOptions="FillAndExpand">
+								    <Grid.RowDefinitions>
+								      	<RowDefinition Height="Auto" />		
+								      	<RowDefinition Height="Auto" />			      	
+								    </Grid.RowDefinitions>
+
+								    <Grid.ColumnDefinitions>
+								    	<ColumnDefinition Width="25" />
+								    	<ColumnDefinition Width="*" />
+								    </Grid.ColumnDefinitions>
+
+								    <Label 	Text="{Binding Order, StringFormat='{0}.'}" 
+								    		VerticalOptions="StartAndExpand" 
+								    		Grid.Column="0" Grid.Row="0"/>   
+
+			             			<Label 	Text="{Binding Title}" 
+			             					VerticalOptions="StartAndExpand" 
+			             					Grid.Column="1" Grid.Row="0" />
+
+			             			<StackLayout Grid.Column="1" Grid.Row="1">
+			             				<Grid>
+										    <Grid.RowDefinitions>
+										      	<RowDefinition Height="Auto" />			      	
+										    </Grid.RowDefinitions>
+
+										    <Grid.ColumnDefinitions>
+										    	<ColumnDefinition Width="45*" />
+										    	<ColumnDefinition Width="10*" />
+										    	<ColumnDefinition Width="45*" />
+										    </Grid.ColumnDefinitions>
+
+					             			<Image 	Source="yesnobutton0.png" 
+					             					HorizontalOptions="EndAndExpand"
+					             				   	WidthRequest="40" HeightRequest="40" 
+					             				   	Grid.Column="0" Grid.Row="0">   
+						             			<Image.GestureRecognizers>
+												    <TapGestureRecognizer Tapped="SetYesImage"/>
+												</Image.GestureRecognizers>
+											</Image>
+
+					             			<Image 	Source="yesnobutton0.png"
+					             					HorizontalOptions="StartAndExpand"
+					         					 	WidthRequest="40" HeightRequest="40" 
+					         					 	Grid.Column="2" Grid.Row="0">
+				         					 	<Image.GestureRecognizers>
+												    <TapGestureRecognizer Tapped="SetNoImage"/>
+												</Image.GestureRecognizers>
+											</Image>
+		         					 	</Grid>
+			             			</StackLayout>
+								</Grid>
+			            	</StackLayout>
+					    </ViewCell.View>
+					</ViewCell>
+		      	</DataTemplate>
+	    	</ListView.ItemTemplate>
+	    </ListView>
 	</StackLayout>
 </ContentPage>

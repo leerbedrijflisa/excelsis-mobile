@@ -12,7 +12,7 @@ namespace Lisa.Excelsis.Mobile
         {
             InitializeComponent();
             this.Title = "Beoordeling";
-			ObservableCollection<ObserveCategory> categories = new ObservableCollection<ObserveCategory>();
+			categories = new ObservableCollection<ObserveCategory>();
             foreach (var category in assessment.Categories) 
             {
 				var categoryItem = new ObserveCategory () {
@@ -25,6 +25,8 @@ namespace Lisa.Excelsis.Mobile
                 {
 					var observationItem = new ObserveObservation () {
 						Id = observation.Id,
+						Order = observation.Criterion.Order.ToString(),
+						Title = observation.Criterion.Title,
 						DisplayTitle = observation.Criterion.Order + ". " + observation.Criterion.Title
 					};
 
@@ -32,7 +34,35 @@ namespace Lisa.Excelsis.Mobile
                 }
             }
 			CategoryList.ItemsSource = categories;
+
+			CategoryList.ItemTapped += (sender, e) => {
+				// don't do anything if we just de-selected the row
+				if (e.Item == null) return; 
+				// do something with e.SelectedItem
+				((ListView)sender).SelectedItem = null; // de-select the row after ripple effect
+			};
         }
+
+		public void CollapseOut(ObserveObservation observation)
+		{
+			
+		}
+
+		public void SetYesImage(object sender, EventArgs e)
+		{
+			var source = ((Image)sender).Source as FileImageSource;
+			var parent = source.Parent;
+			((Image)sender).Source = (source.File == "yesnobutton1.png")? "yesnobutton0.png": "yesnobutton1.png";
+
+		}
+
+		public void SetNoImage(object sender, EventArgs e)
+		{
+			var source = ((Image)sender).Source as FileImageSource;
+			((Image)sender).Source = (source.File == "yesnobutton2.png")? "yesnobutton0.png": "yesnobutton2.png";
+		}
+
+		public ObservableCollection<ObserveCategory> categories;
     }
 }
 

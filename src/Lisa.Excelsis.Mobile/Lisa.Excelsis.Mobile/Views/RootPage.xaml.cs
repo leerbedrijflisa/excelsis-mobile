@@ -27,8 +27,6 @@ namespace Lisa.Excelsis.Mobile
             Page displayPage = (Page)Activator.CreateInstance (menu.TargetType);
 
             Detail = new NavigationPage (displayPage);
-
-            masterPage.Menu.SelectedItem = null;
             IsPresented = false;
         }
     }
