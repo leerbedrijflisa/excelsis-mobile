@@ -43,17 +43,14 @@ namespace Lisa.Excelsis.Mobile
 			};
         }
 
-		public void CollapseOut(ObserveObservation observation)
+		public void OpenItem(object sender, EventArgs e)
 		{
-			
 		}
 
 		public void SetYesImage(object sender, EventArgs e)
 		{
 			var source = ((Image)sender).Source as FileImageSource;
-			var parent = source.Parent;
 			((Image)sender).Source = (source.File == "yesnobutton1.png")? "yesnobutton0.png": "yesnobutton1.png";
-
 		}
 
 		public void SetNoImage(object sender, EventArgs e)

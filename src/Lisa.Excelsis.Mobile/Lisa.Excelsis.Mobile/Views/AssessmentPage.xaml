@@ -31,9 +31,13 @@
 
 			             			<Label 	Text="{Binding Title}" 
 			             					VerticalOptions="StartAndExpand" 
-			             					Grid.Column="1" Grid.Row="0" />
+			             					Grid.Column="1" Grid.Row="0">
+			             					<Label.GestureRecognizers>
+												    <TapGestureRecognizer Tapped="OpenItem"/>
+											</Label.GestureRecognizers>
+									</Label>
 
-			             			<StackLayout Grid.Column="1" Grid.Row="1">
+			             			<StackLayout Grid.Column="1" Grid.Row="1" HeightRequest="0">
 			             				<Grid>
 										    <Grid.RowDefinitions>
 										      	<RowDefinition Height="Auto" />			      	
