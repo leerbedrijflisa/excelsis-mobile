@@ -26,8 +26,7 @@ namespace Lisa.Excelsis.Mobile
 					var observationItem = new ObserveObservation () {
 						Id = observation.Id,
 						Order = observation.Criterion.Order.ToString(),
-						Title = observation.Criterion.Title,
-						DisplayTitle = observation.Criterion.Order + ". " + observation.Criterion.Title
+						Title = observation.Criterion.Title
 					};
 
 					categoryItem.Add(observationItem);
@@ -44,7 +43,23 @@ namespace Lisa.Excelsis.Mobile
         }
 
 		public void OpenItem(object sender, EventArgs e)
-		{
+        {
+            var item = ((StackLayout)sender);
+            var buttons = item.FindByName<StackLayout>("ObservationButtons");
+
+            if (item.ClassId == "opened")
+            {           
+                item.ClassId = null;
+                collapseExpandHeightAnimation("Observation", item, item.Height, item.Height - buttons.Height, 1);
+                buttons.IsVisible = false;
+            }
+            else 
+            {
+                item.ClassId = "opened";
+                buttons.IsVisible = true;
+                collapseExpandHeightAnimation("Observation", item, item.Height, item.Height + buttons.Height, 1);
+            }
+
 		}
 
 		public void SetYesImage(object sender, EventArgs e)
@@ -59,6 +74,19 @@ namespace Lisa.Excelsis.Mobile
 			((Image)sender).Source = (source.File == "yesnobutton2.png")? "yesnobutton0.png": "yesnobutton2.png";
 		}
 
+        private void collapseExpandHeightAnimation(string name, VisualElement obj, double fromHeight, double toHeight, uint length)
+        {
+            obj.Animate(
+                name: name,
+                animation: new Animation(
+                    callback: (double d) => { obj.HeightRequest = d; },
+                    start: fromHeight,
+                    end: toHeight,
+                    easing: Easing.SinInOut,
+                    finished: null),
+                rate: 1,
+                length: length);
+        }
 		public ObservableCollection<ObserveCategory> categories;
     }
 }

@@ -124,6 +124,11 @@
     <AndroidResource Include="Resources\drawable\yesnobutton0.png" />
     <AndroidResource Include="Resources\drawable\yesnobutton1.png" />
     <AndroidResource Include="Resources\drawable\yesnobutton2.png" />
+    <AndroidResource Include="Resources\drawable\change.png" />
+    <AndroidResource Include="Resources\drawable\icon.png" />
+    <AndroidResource Include="Resources\drawable\maybenot.png" />
+    <AndroidResource Include="Resources\drawable\skip.png" />
+    <AndroidResource Include="Resources\drawable\unclear.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
