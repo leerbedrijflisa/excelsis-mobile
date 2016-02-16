@@ -11,36 +11,48 @@
 		      	<DataTemplate> 
 			      	<ViewCell>
 			   		 	<ViewCell.View>
-			            	<StackLayout x:Name="Observation" 
-			            			 	 Orientation="Horizontal"
-			            			 	 Padding="15, 10, 10, 10">		
+			            	<StackLayout>	
+	            			 	<StackLayout x:Name="Observation" 
+		            			 	 		 Orientation="Horizontal"
+			            			 	     Padding="15, 10, 10, 10"
+	            			 				 BackgroundColor="White">	
+        			 				 <StackLayout.GestureRecognizers>
+									 	<TapGestureRecognizer Tapped="OpenItem"/>
+									</StackLayout.GestureRecognizers>
+		             				<Grid HorizontalOptions="FillAndExpand">
+									    <Grid.RowDefinitions>
+									      	<RowDefinition Height="Auto" />		
+									      	<RowDefinition Height="Auto" />			      	
+									    </Grid.RowDefinitions>
 
-              				  	<StackLayout.GestureRecognizers>
-						     		<TapGestureRecognizer Tapped="OpenItem"/>
-								</StackLayout.GestureRecognizers>	    
-								          				  
-	             				<Grid HorizontalOptions="FillAndExpand">
-								    <Grid.RowDefinitions>
-								      	<RowDefinition Height="Auto" />		
-								      	<RowDefinition Height="Auto" />			      	
-								    </Grid.RowDefinitions>
+									    <Grid.ColumnDefinitions>
+									    	<ColumnDefinition Width="35" />
+									    	<ColumnDefinition Width="*" />
+									    </Grid.ColumnDefinitions>
 
-								    <Grid.ColumnDefinitions>
-								    	<ColumnDefinition Width="35" />
-								    	<ColumnDefinition Width="*" />
-								    </Grid.ColumnDefinitions>
+									    <Label 	x:Name="ObservationOrder" 
+									    		Text="{Binding Order, StringFormat='{0}.'}" 
+									    		FontSize="18.5" 
+									    		VerticalOptions="StartAndExpand" 
+									    		Grid.Column="0" Grid.Row="0"/>   
 
-								    <Label 	Text="{Binding Order, StringFormat='{0}.'}" 
-								    		FontSize="18" 
-								    		VerticalOptions="StartAndExpand" 
-								    		Grid.Column="0" Grid.Row="0"/>   
+				             			<Label 	x:Name="ObservationTitle" 
+				             					Text="{Binding Title}" 
+			             						FontSize="18.5" 
+				             					VerticalOptions="StartAndExpand" 
+				             					Grid.Column="1" Grid.Row="0"/>
+			             				
+									</Grid>
+								</StackLayout>
+								<StackLayout x:Name="ObservationButtons"
+											 HorizontalOptions="FillAndExpand"
+											 VerticalOptions="StartAndExpand"
+											 BackgroundColor="White"
+	            			 				 IsVisible="false" 
+	            			 				 ClassId = "{Binding Id, StringFormat='ObservationButtons_{0}'}">
 
-			             			<Label 	Text="{Binding Title}" 
-		             						FontSize="18" 
-			             					VerticalOptions="StartAndExpand" 
-			             					Grid.Column="1" Grid.Row="0"/>
-
-		             				<Grid HorizontalOptions="Center" x:Name="ObservationButtons" Grid.Column="0" IsVisible="false" Grid.Row="1" Grid.ColumnSpan="2">
+									<Grid HorizontalOptions="Center" 										 
+										  Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
 									    <Grid.RowDefinitions>
 									      	<RowDefinition Height="Auto" />			      	
 									    </Grid.RowDefinitions>
@@ -59,7 +71,8 @@
 					             			<Image 	Source="yesnobutton0.png" 
 													HeightRequest="60" WidthRequest="60"
 					             					HorizontalOptions="Center"
-					             					VerticalOptions="Start">   
+					             					VerticalOptions="Start"
+					             					x:Name="yesImage">   
 						             			<Image.GestureRecognizers>
 												    <TapGestureRecognizer Tapped="SetYesImage"/>
 												</Image.GestureRecognizers>
@@ -72,7 +85,8 @@
 					             			<Image 	Source="yesnobutton0.png"
 													HeightRequest="60" WidthRequest="60"
 					             					HorizontalOptions="Center"
-					             					VerticalOptions="Start">
+					             					VerticalOptions="Start"
+					             					x:Name="noImage">
 				         					 	<Image.GestureRecognizers>
 												    <TapGestureRecognizer Tapped="SetNoImage"/>
 												</Image.GestureRecognizers>
@@ -86,6 +100,9 @@
 				             					HorizontalOptions="Center"
 				             					VerticalOptions="Start"
 				         					 	Grid.Column="3" Grid.Row="0">
+			         					 	<Image.GestureRecognizers>
+											    <TapGestureRecognizer Tapped="SetMark"/>
+											</Image.GestureRecognizers>
 										</Image>
 
 										<Image 	Source="skip.png"
@@ -93,6 +110,9 @@
 				             					HorizontalOptions="Center"
 				             					VerticalOptions="Start"
 				         					 	Grid.Column="4" Grid.Row="0">
+			         					 	<Image.GestureRecognizers>
+											    <TapGestureRecognizer Tapped="SetMark"/>
+											</Image.GestureRecognizers>
 										</Image>
 
 										<Image 	Source="unclear.png"
@@ -100,6 +120,9 @@
 				             					HorizontalOptions="Center"
 				             					VerticalOptions="Start"
 				         					 	Grid.Column="5" Grid.Row="0">
+			         					 	<Image.GestureRecognizers>
+											    <TapGestureRecognizer Tapped="SetMark"/>
+											</Image.GestureRecognizers>
 										</Image>
 
 										<Image 	Source="change.png"
@@ -107,9 +130,12 @@
 				             					HorizontalOptions="Center"
 				             					VerticalOptions="Start"
 				         					 	Grid.Column="6" Grid.Row="0">
+			         					 	<Image.GestureRecognizers>
+											    <TapGestureRecognizer Tapped="SetMark"/>
+											</Image.GestureRecognizers>
 										</Image>
 	         					 	</Grid>
-								</Grid>
+	         					</StackLayout>
 			            	</StackLayout>
 					    </ViewCell.View>
 					</ViewCell>

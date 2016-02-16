@@ -129,6 +129,10 @@
     <AndroidResource Include="Resources\drawable\maybenot.png" />
     <AndroidResource Include="Resources\drawable\skip.png" />
     <AndroidResource Include="Resources\drawable\unclear.png" />
+    <AndroidResource Include="Resources\drawable\change_COLOR.png" />
+    <AndroidResource Include="Resources\drawable\maybenot_COLOR.png" />
+    <AndroidResource Include="Resources\drawable\skip_COLOR.png" />
+    <AndroidResource Include="Resources\drawable\unclear_COLOR.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />

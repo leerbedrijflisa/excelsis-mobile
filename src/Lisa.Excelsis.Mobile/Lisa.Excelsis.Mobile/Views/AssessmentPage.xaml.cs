@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
+using System.Text.RegularExpressions;
 
 namespace Lisa.Excelsis.Mobile
 {
@@ -42,54 +43,78 @@ namespace Lisa.Excelsis.Mobile
 
         public void OpenItem(object sender, EventArgs e)
         {
-            var item = ((StackLayout)sender);
-           
-            AnimateObservationButtons(item);
-		}
-
-        private void AnimateObservationButtons(StackLayout item)
-        {
-            var buttons = item.FindByName<Grid>("ObservationButtons");
-            if (item.ClassId == "opened")
-            {           
-                item.ClassId = null;
-                collapseExpandHeightAnimation("Observation", item, item.Height, item.Height - 91, 1);
-                buttons.IsVisible = false;
-            }
-            else
+            var item = ((StackLayout)sender).Parent.FindByName<StackLayout>("ObservationButtons");
+            item.IsVisible = (item.IsVisible) ? false : true;
+            if (OldItem != null && OldItem.ClassId != item.ClassId)
             {
-                item.ClassId = "opened";
-                buttons.IsVisible = true;
-                collapseExpandHeightAnimation("Observation", item, item.Height, item.Height + 91, 1);
+                OldItem.IsVisible = false;
             }
-        }
+            OldItem = item;
+		}
 
 		public void SetYesImage(object sender, EventArgs e)
 		{
-			var source = ((Image)sender).Source as FileImageSource;
-			((Image)sender).Source = (source.File == "yesnobutton1.png")? "yesnobutton0.png": "yesnobutton1.png";
+            ((Image)sender).Parent.FindByName<Image>("noImage").Source = "yesnobutton0.png";
+
+            var source =  ((Image)sender).Source as FileImageSource;
+            if(source.File == "yesnobutton1.png")
+            { 
+                ((Image)sender).Source = "yesnobutton0.png";
+                ((Image)sender).Parent.FindByName<Label>("ObservationTitle").TextColor = Color.Black;
+            }
+            else
+            { 
+                ((Image)sender).Source = "yesnobutton1.png";
+                ((Image)sender).Parent.FindByName<Label>("ObservationTitle").TextColor = Color.Lime;
+            }
 		}
 
 		public void SetNoImage(object sender, EventArgs e)
 		{
-			var source = ((Image)sender).Source as FileImageSource;
-			((Image)sender).Source = (source.File == "yesnobutton2.png")? "yesnobutton0.png": "yesnobutton2.png";
+            ((Image)sender).Parent.FindByName<Image>("yesImage").Source = "yesnobutton0.png";
+
+            var source =  ((Image)sender).Source as FileImageSource;
+            if(source.File == "yesnobutton2.png")
+            { 
+                ((Image)sender).Source = "yesnobutton0.png";
+                ((Image)sender).Parent.FindByName<Label>("ObservationTitle").TextColor = Color.Black;
+            }
+            else
+            { 
+                ((Image)sender).Source = "yesnobutton2.png";
+                ((Image)sender).Parent.FindByName<Label>("ObservationTitle").TextColor = Color.Red;
+            }
 		}
 
-        private void collapseExpandHeightAnimation(string name, VisualElement obj, double fromHeight, double toHeight, uint length)
+        private void SetMark(object sender, EventArgs e)
         {
-            obj.Animate(
-                name: name,
-                animation: new Animation(
-                    callback: (double d) => { obj.HeightRequest = d; },
-                    start: fromHeight,
-                    end: toHeight,
-                    easing: Easing.SinInOut,
-                    finished: null),
-                rate: 1,
-                length: length);
+            var source = ((Image)sender).Source as FileImageSource;
+            string image;
+
+            if(Regex.IsMatch(source.File,"_COLOR.png"))
+            { 
+                MarkActiveCount--;
+                image = source.File.Split('_')[0] + ".png"; 
+            }
+            else
+            {
+                MarkActiveCount++;
+                image = source.File.Split('.')[0] + "_COLOR.png";
+                ((Image)sender).Parent.FindByName<Label>("ObservationTitle").TextColor = Color.FromRgb(255,165,0);
+            }
+
+            if (MarkActiveCount == 0)
+            {
+                ((Image)sender).Parent.FindByName<Label>("ObservationTitle").TextColor = Color.Black;
+            }
+            ((Image)sender).Source = image;
         }
-		public ObservableCollection<ObserveCategory> categories;
+       
+		private ObservableCollection<ObserveCategory> categories;
+
+        private StackLayout OldItem;
+
+        private int MarkActiveCount = 0;
     }
 }
 
