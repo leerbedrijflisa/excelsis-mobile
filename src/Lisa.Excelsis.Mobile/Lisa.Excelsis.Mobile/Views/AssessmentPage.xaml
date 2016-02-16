@@ -5,7 +5,6 @@
 					HasUnevenRows="true" 
 					RowHeight="-1" 
 					GroupDisplayBinding="{Binding Name}"
-					GroupShortNameBinding="{Binding Name}"
 			        IsGroupingEnabled="true">
 	      	<ListView.ItemTemplate>
 		      	<DataTemplate> 
