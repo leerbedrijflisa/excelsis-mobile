@@ -35,32 +35,34 @@ namespace Lisa.Excelsis.Mobile
 			CategoryList.ItemsSource = categories;
 
 			CategoryList.ItemTapped += (sender, e) => {
-				// don't do anything if we just de-selected the row
 				if (e.Item == null) return; 
-				// do something with e.SelectedItem
-				((ListView)sender).SelectedItem = null; // de-select the row after ripple effect
+				((ListView)sender).SelectedItem = null;
 			};
         }
 
-		public void OpenItem(object sender, EventArgs e)
+        public void OpenItem(object sender, EventArgs e)
         {
             var item = ((StackLayout)sender);
-            var buttons = item.FindByName<StackLayout>("ObservationButtons");
+           
+            AnimateObservationButtons(item);
+		}
 
+        private void AnimateObservationButtons(StackLayout item)
+        {
+            var buttons = item.FindByName<Grid>("ObservationButtons");
             if (item.ClassId == "opened")
             {           
                 item.ClassId = null;
-                collapseExpandHeightAnimation("Observation", item, item.Height, item.Height - buttons.Height, 1);
+                collapseExpandHeightAnimation("Observation", item, item.Height, item.Height - 91, 1);
                 buttons.IsVisible = false;
             }
-            else 
+            else
             {
                 item.ClassId = "opened";
                 buttons.IsVisible = true;
-                collapseExpandHeightAnimation("Observation", item, item.Height, item.Height + buttons.Height, 1);
+                collapseExpandHeightAnimation("Observation", item, item.Height, item.Height + 91, 1);
             }
-
-		}
+        }
 
 		public void SetYesImage(object sender, EventArgs e)
 		{

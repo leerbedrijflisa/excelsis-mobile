@@ -40,77 +40,75 @@
 			             					VerticalOptions="StartAndExpand" 
 			             					Grid.Column="1" Grid.Row="0"/>
 
-			             			<StackLayout x:Name="ObservationButtons" Grid.Column="0" IsVisible="false" Grid.Row="1" Grid.ColumnSpan="2">
-			             				<Grid HorizontalOptions="Center">
-										    <Grid.RowDefinitions>
-										      	<RowDefinition Height="Auto" />			      	
-										    </Grid.RowDefinitions>
+		             				<Grid HorizontalOptions="Center" x:Name="ObservationButtons" Grid.Column="0" IsVisible="false" Grid.Row="1" Grid.ColumnSpan="2">
+									    <Grid.RowDefinitions>
+									      	<RowDefinition Height="Auto" />			      	
+									    </Grid.RowDefinitions>
 
-										    <Grid.ColumnDefinitions>
-										    	<ColumnDefinition Width="80" />
-										    	<ColumnDefinition Width="80" />
-										    	<ColumnDefinition Width="10" />
-										    	<ColumnDefinition Width="80" />
-										    	<ColumnDefinition Width="80" />
-										    	<ColumnDefinition Width="80" />
-										    	<ColumnDefinition Width="80" />
-										    </Grid.ColumnDefinitions>
+									    <Grid.ColumnDefinitions>
+									    	<ColumnDefinition Width="80" />
+									    	<ColumnDefinition Width="80" />
+									    	<ColumnDefinition Width="10" />
+									    	<ColumnDefinition Width="80" />
+									    	<ColumnDefinition Width="80" />
+									    	<ColumnDefinition Width="80" />
+									    	<ColumnDefinition Width="80" />
+									    </Grid.ColumnDefinitions>
 
-										    <StackLayout Grid.Column="0" Grid.Row="0" >
-						             			<Image 	Source="yesnobutton0.png" 
-														HeightRequest="60" WidthRequest="60"
-						             					HorizontalOptions="Center"
-						             					VerticalOptions="Start">   
-							             			<Image.GestureRecognizers>
-													    <TapGestureRecognizer Tapped="SetYesImage"/>
-													</Image.GestureRecognizers>
-												</Image>
-
-												<Label Text="Ja" VerticalOptions="End" HorizontalOptions="Center"/>
-											</StackLayout>
-
-											<StackLayout Grid.Column="1" Grid.Row="0">
-						             			<Image 	Source="yesnobutton0.png"
-														HeightRequest="60" WidthRequest="60"
-						             					HorizontalOptions="Center"
-						             					VerticalOptions="Start">
-					         					 	<Image.GestureRecognizers>
-													    <TapGestureRecognizer Tapped="SetNoImage"/>
-													</Image.GestureRecognizers>
-												</Image>
-													
-												<Label Text="Nee" VerticalOptions="End" HorizontalOptions="Center"/>
-											</StackLayout>
-
-											<Image 	Source="maybenot.png"
+									    <StackLayout Grid.Column="0" Grid.Row="0" >
+					             			<Image 	Source="yesnobutton0.png" 
 													HeightRequest="60" WidthRequest="60"
 					             					HorizontalOptions="Center"
-					             					VerticalOptions="Start"
-					         					 	Grid.Column="3" Grid.Row="0">
+					             					VerticalOptions="Start">   
+						             			<Image.GestureRecognizers>
+												    <TapGestureRecognizer Tapped="SetYesImage"/>
+												</Image.GestureRecognizers>
 											</Image>
 
-											<Image 	Source="skip.png"
-													HeightRequest="60" WidthRequest="60"
-					             					HorizontalOptions="Center"
-					             					VerticalOptions="Start"
-					         					 	Grid.Column="4" Grid.Row="0">
-											</Image>
+											<Label Text="Ja" VerticalOptions="End" HorizontalOptions="Center"/>
+										</StackLayout>
 
-											<Image 	Source="unclear.png"
+										<StackLayout Grid.Column="1" Grid.Row="0">
+					             			<Image 	Source="yesnobutton0.png"
 													HeightRequest="60" WidthRequest="60"
 					             					HorizontalOptions="Center"
-					             					VerticalOptions="Start"
-					         					 	Grid.Column="5" Grid.Row="0">
+					             					VerticalOptions="Start">
+				         					 	<Image.GestureRecognizers>
+												    <TapGestureRecognizer Tapped="SetNoImage"/>
+												</Image.GestureRecognizers>
 											</Image>
+												
+											<Label Text="Nee" VerticalOptions="End" HorizontalOptions="Center"/>
+										</StackLayout>
 
-											<Image 	Source="change.png"
-													HeightRequest="60" WidthRequest="60"
-					             					HorizontalOptions="Center"
-					             					VerticalOptions="Start"
-					         					 	Grid.Column="6" Grid.Row="0">
-											</Image>
-		         					 	</Grid>
-			             			</StackLayout>
+										<Image 	Source="maybenot.png"
+												HeightRequest="60" WidthRequest="60"
+				             					HorizontalOptions="Center"
+				             					VerticalOptions="Start"
+				         					 	Grid.Column="3" Grid.Row="0">
+										</Image>
+
+										<Image 	Source="skip.png"
+												HeightRequest="60" WidthRequest="60"
+				             					HorizontalOptions="Center"
+				             					VerticalOptions="Start"
+				         					 	Grid.Column="4" Grid.Row="0">
+										</Image>
+
+										<Image 	Source="unclear.png"
+												HeightRequest="60" WidthRequest="60"
+				             					HorizontalOptions="Center"
+				             					VerticalOptions="Start"
+				         					 	Grid.Column="5" Grid.Row="0">
+										</Image>
+
+										<Image 	Source="change.png"
+												HeightRequest="60" WidthRequest="60"
+				             					HorizontalOptions="Center"
+				             					VerticalOptions="Start"
+				         					 	Grid.Column="6" Grid.Row="0">
+										</Image>
+	         					 	</Grid>
 								</Grid>
 			            	</StackLayout>
 					    </ViewCell.View>
