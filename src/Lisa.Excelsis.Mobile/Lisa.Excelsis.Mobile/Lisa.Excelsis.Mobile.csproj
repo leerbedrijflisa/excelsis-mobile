@@ -77,6 +77,8 @@
     <Compile Include="ApiModels\Student.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Observation.cs" />
+    <Compile Include="Properties\DummyData.cs" />
+    <Compile Include="Views\DummyPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\HomePage.xaml">

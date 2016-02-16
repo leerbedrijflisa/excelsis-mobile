@@ -110,6 +110,18 @@
     <None Include="Resources\leads%403x.png" />
     <None Include="Resources\settings.png" />
     <None Include="Resources\settings%402x.png" />
+    <None Include="Resources\change.png" />
+    <None Include="Resources\change_COLOR.png" />
+    <None Include="Resources\icon.png" />
+    <None Include="Resources\maybenot.png" />
+    <None Include="Resources\maybenot_COLOR.png" />
+    <None Include="Resources\skip.png" />
+    <None Include="Resources\skip_COLOR.png" />
+    <None Include="Resources\unclear.png" />
+    <None Include="Resources\unclear_COLOR.png" />
+    <None Include="Resources\yesnobutton0.png" />
+    <None Include="Resources\yesnobutton1.png" />
+    <None Include="Resources\yesnobutton2.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lisa.Excelsis.Mobile\Lisa.Excelsis.Mobile.csproj">

@@ -20,6 +20,12 @@ namespace Lisa.Excelsis.Mobile
                 IconSource = "contacts.png", 
                 TargetType = typeof(HomePage)
             });
+
+            this.Add (new MenuItem () { 
+                Title = "Test data", 
+                IconSource = "contacts.png", 
+                TargetType = typeof(DummyPage)
+            });
         }
     }
 }
