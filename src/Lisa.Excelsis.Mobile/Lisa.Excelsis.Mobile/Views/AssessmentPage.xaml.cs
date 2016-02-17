@@ -45,13 +45,13 @@ namespace Lisa.Excelsis.Mobile
         {
             var item = ((StackLayout)sender).Parent.FindByName<StackLayout>("ObservationButtons");
             item.IsVisible = (item.IsVisible) ? false : true;
-            item.HeightRequest = (item.IsVisible) ? 0 : -1;
+
             if (OldItem != null && OldItem.ClassId != item.ClassId)
             {
                 OldItem.IsVisible = false;
-                OldItem.HeightRequest = 0;
             }
             OldItem = item;
+            ((StackLayout)sender).Parent.FindByName<StackLayout>("ObservationContainer").HeightRequest = -1;
 		}
 
 		public void SetYesImage(object sender, EventArgs e)
