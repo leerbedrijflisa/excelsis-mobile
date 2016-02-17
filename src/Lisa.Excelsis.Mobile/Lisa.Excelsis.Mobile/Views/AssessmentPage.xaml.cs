@@ -44,14 +44,13 @@ namespace Lisa.Excelsis.Mobile
         public void OpenItem(object sender, EventArgs e)
         {
             var item = ((StackLayout)sender).Parent.FindByName<StackLayout>("ObservationButtons");
-            item.IsVisible = (item.IsVisible) ? false : true;
+            item.IsVisible = (item.IsVisible) ? true : true;
 
             if (OldItem != null && OldItem.ClassId != item.ClassId)
             {
-                OldItem.IsVisible = false;
+                OldItem.IsVisible = true;
             }
             OldItem = item;
-            ((StackLayout)sender).Parent.FindByName<ViewCell>("ObservationCell").Height += 100;
 		}
 
 		public void SetYesImage(object sender, EventArgs e)
