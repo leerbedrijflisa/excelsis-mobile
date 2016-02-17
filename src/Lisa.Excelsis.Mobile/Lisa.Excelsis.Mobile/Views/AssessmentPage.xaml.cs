@@ -51,7 +51,7 @@ namespace Lisa.Excelsis.Mobile
                 OldItem.IsVisible = false;
             }
             OldItem = item;
-            ((StackLayout)sender).Parent.FindByName<StackLayout>("ObservationContainer").HeightRequest = -1;
+            ((StackLayout)sender).Parent.FindByName<ViewCell>("ObservationCell").Height += 100;
 		}
 
 		public void SetYesImage(object sender, EventArgs e)

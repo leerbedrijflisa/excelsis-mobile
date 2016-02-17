@@ -8,7 +8,7 @@
 			        IsGroupingEnabled="true">
 	      	<ListView.ItemTemplate>
 		      	<DataTemplate> 
-			      	<ViewCell>
+			      	<ViewCell x:Name="ObservationCell">
 			   		 	<ViewCell.View>
 			            	<StackLayout x:Name="ObservationContainer"
 			            				 HorizontalOptions="FillAndExpand"
