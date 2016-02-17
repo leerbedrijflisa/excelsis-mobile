@@ -45,43 +45,45 @@ namespace Lisa.Excelsis.Mobile
         {
             var item = ((StackLayout)sender).Parent.FindByName<StackLayout>("ObservationButtons");
             item.IsVisible = (item.IsVisible) ? false : true;
+            item.HeightRequest = (item.IsVisible) ? 0 : -1;
             if (OldItem != null && OldItem.ClassId != item.ClassId)
             {
                 OldItem.IsVisible = false;
+                OldItem.HeightRequest = 0;
             }
             OldItem = item;
 		}
 
 		public void SetYesImage(object sender, EventArgs e)
 		{
-            ((Image)sender).Parent.FindByName<Image>("noImage").Source = "yesnobutton0.png";
+            ((Image)sender).Parent.FindByName<Image>("noImage").Source = ImageSource.FromFile("yesnobutton0.png");
 
             var source =  ((Image)sender).Source as FileImageSource;
             if(source.File == "yesnobutton1.png")
             { 
-                ((Image)sender).Source = "yesnobutton0.png";
+                ((Image)sender).Source = ImageSource.FromFile("yesnobutton0.png");
                 ((Image)sender).Parent.FindByName<Label>("ObservationTitle").TextColor = Color.Black;
             }
             else
             { 
-                ((Image)sender).Source = "yesnobutton1.png";
+                ((Image)sender).Source = ImageSource.FromFile("yesnobutton1.png");
                 ((Image)sender).Parent.FindByName<Label>("ObservationTitle").TextColor = Color.Lime;
             }
 		}
 
 		public void SetNoImage(object sender, EventArgs e)
 		{
-            ((Image)sender).Parent.FindByName<Image>("yesImage").Source = "yesnobutton0.png";
+            ((Image)sender).Parent.FindByName<Image>("yesImage").Source = ImageSource.FromFile("yesnobutton0.png");
 
             var source =  ((Image)sender).Source as FileImageSource;
             if(source.File == "yesnobutton2.png")
             { 
-                ((Image)sender).Source = "yesnobutton0.png";
+                ((Image)sender).Source = ImageSource.FromFile("yesnobutton0.png");
                 ((Image)sender).Parent.FindByName<Label>("ObservationTitle").TextColor = Color.Black;
             }
             else
             { 
-                ((Image)sender).Source = "yesnobutton2.png";
+                ((Image)sender).Source = ImageSource.FromFile("yesnobutton2.png");
                 ((Image)sender).Parent.FindByName<Label>("ObservationTitle").TextColor = Color.Red;
             }
 		}
@@ -107,7 +109,7 @@ namespace Lisa.Excelsis.Mobile
             {
                 ((Image)sender).Parent.FindByName<Label>("ObservationTitle").TextColor = Color.Black;
             }
-            ((Image)sender).Source = image;
+            ((Image)sender).Source = ImageSource.FromFile(image);
         }
        
 		private ObservableCollection<ObserveCategory> categories;
