@@ -11,9 +11,13 @@
 			      	<ViewCell>
 			   		 	<ViewCell.View>
 			            	<StackLayout x:Name="ObservationContainer"
+			            				 HorizontalOptions="FillAndExpand"
+			            				 Orientation="Vertical"
+										 VerticalOptions="StartAndExpand"
 			            				 BackgroundColor="White">	
-	            			 	<StackLayout x:Name="Observation" 
-		            			 	 		 Orientation="Horizontal"
+	            			 	<StackLayout x:Name="Observation" 	
+				            			 	 HorizontalOptions="FillAndExpand"
+										     VerticalOptions="StartAndExpand"	            			 	 		 
 			            			 	     Padding="15, 10, 10, 10"
 	            			 				 BackgroundColor="White">	
         			 				 <StackLayout.GestureRecognizers>
