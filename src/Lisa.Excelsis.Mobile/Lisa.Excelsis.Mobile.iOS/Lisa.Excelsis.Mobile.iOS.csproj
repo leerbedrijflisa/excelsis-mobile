@@ -101,8 +101,6 @@
     <ITunesArtwork Include="iTunesArtwork" />
     <None Include="packages.config" />
     <ITunesArtwork Include="iTunesArtwork%402x" />
-    <None Include="Resources\account.png" />
-    <None Include="Resources\contacts.png" />
     <None Include="Resources\contacts%402x.png" />
     <None Include="Resources\contacts%403x.png" />
     <None Include="Resources\leads.png" />
@@ -110,18 +108,7 @@
     <None Include="Resources\leads%403x.png" />
     <None Include="Resources\settings.png" />
     <None Include="Resources\settings%402x.png" />
-    <None Include="Resources\change.png" />
-    <None Include="Resources\change_COLOR.png" />
     <None Include="Resources\icon.png" />
-    <None Include="Resources\maybenot.png" />
-    <None Include="Resources\maybenot_COLOR.png" />
-    <None Include="Resources\skip.png" />
-    <None Include="Resources\skip_COLOR.png" />
-    <None Include="Resources\unclear.png" />
-    <None Include="Resources\unclear_COLOR.png" />
-    <None Include="Resources\yesnobutton0.png" />
-    <None Include="Resources\yesnobutton1.png" />
-    <None Include="Resources\yesnobutton2.png" />
     <Compile Include="SpecialListViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -147,6 +134,19 @@
     <BundleResource Include="Resources\Icon-Small%402x.png" />
     <BundleResource Include="Resources\Icon-Small%403x.png" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <BundleResource Include="Resources\account.png" />
+    <BundleResource Include="Resources\change.png" />
+    <BundleResource Include="Resources\change_COLOR.png" />
+    <BundleResource Include="Resources\contacts.png" />
+    <BundleResource Include="Resources\maybenot.png" />
+    <BundleResource Include="Resources\maybenot_COLOR.png" />
+    <BundleResource Include="Resources\skip.png" />
+    <BundleResource Include="Resources\skip_COLOR.png" />
+    <BundleResource Include="Resources\unclear.png" />
+    <BundleResource Include="Resources\unclear_COLOR.png" />
+    <BundleResource Include="Resources\yesnobutton0.png" />
+    <BundleResource Include="Resources\yesnobutton1.png" />
+    <BundleResource Include="Resources\yesnobutton2.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
