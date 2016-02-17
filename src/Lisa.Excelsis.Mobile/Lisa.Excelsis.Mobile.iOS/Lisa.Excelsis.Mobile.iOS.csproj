@@ -122,6 +122,7 @@
     <None Include="Resources\yesnobutton0.png" />
     <None Include="Resources\yesnobutton1.png" />
     <None Include="Resources\yesnobutton2.png" />
+    <Compile Include="SpecialListViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lisa.Excelsis.Mobile\Lisa.Excelsis.Mobile.csproj">

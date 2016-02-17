@@ -20,9 +20,10 @@
 										     VerticalOptions="StartAndExpand"	            			 	 		 
 			            			 	     Padding="15, 10, 10, 10"
 	            			 				 BackgroundColor="White">	
-        			 				 <StackLayout.GestureRecognizers>
+        			 				<StackLayout.GestureRecognizers>
 									 	<TapGestureRecognizer Tapped="OpenItem"/>
 									</StackLayout.GestureRecognizers>
+
 		             				<Grid HorizontalOptions="FillAndExpand">
 									    <Grid.RowDefinitions>
 									      	<RowDefinition Height="Auto" />		
@@ -51,6 +52,7 @@
 								<StackLayout x:Name="ObservationButtons"
 											 HorizontalOptions="FillAndExpand"
 											 VerticalOptions="StartAndExpand"
+											 BackgroundColor="White"
 	            			 				 IsVisible="false"
 	            			 				 Padding="0, 0, 0, 20"
 	            			 				 ClassId = "{Binding Id, StringFormat='ObservationButtons_{0}'}">
