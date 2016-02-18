@@ -53,7 +53,7 @@
 											 HorizontalOptions="FillAndExpand"
 											 VerticalOptions="StartAndExpand"
 											 BackgroundColor="White"
-	            			 				 IsVisible="true"
+	            			 				 IsVisible="false"
 	            			 				 Padding="0, 0, 0, 20"
 	            			 				 ClassId = "{Binding Id, StringFormat='ObservationButtons_{0}'}">
 
