@@ -18,7 +18,6 @@
     <Picker x:Name="SecondAssessorPicker" Title="Eventuele tweede examinator kiezen"/>
     <Label Text="Datum"/>
     <DatePicker x:Name="ExamDate" Format="dd-MM-yyyy" Date="{x:Static sys:DateTime.Now}"/>
-    <TimePicker x:Name="ExamTime" Format="HH:mm:ss" />
     <Button x:Name="StartButton" Text="Examen starten" Clicked="StartAssessment" />
   </StackLayout>
 </ContentPage>
