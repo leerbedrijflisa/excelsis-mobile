@@ -45,6 +45,7 @@ namespace Lisa.Excelsis.Mobile
         {
             var item = ((StackLayout)sender).Parent.FindByName<StackLayout>("ObservationButtons");
             item.IsVisible = (item.IsVisible) ? false : true;
+
             if (OldItem != null && OldItem.ClassId != item.ClassId)
             {
                 OldItem.IsVisible = false;
@@ -107,7 +108,7 @@ namespace Lisa.Excelsis.Mobile
             {
                 ((Image)sender).Parent.FindByName<Label>("ObservationTitle").TextColor = Color.Black;
             }
-            ((Image)sender).Source = image;
+            ((Image)sender).Source = ImageSource.FromFile(image);
         }
        
 		private ObservableCollection<ObserveCategory> categories;
