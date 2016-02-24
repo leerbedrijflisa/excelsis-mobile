@@ -1,6 +1,10 @@
 ﻿using Xamarin.Forms.Platform.Android;
+using Xamarin.Forms;
+using Lisa.Excelsis.Mobile;
+using Lisa.Excelsis.Mobile.Droid;
+using Android.Animation;
 
-[assembly: ExportRenderer (typeof(NativeListView), typeof(SpecialAndroidListViewRenderer))]
+[assembly: ExportRenderer (typeof(SpecialListView), typeof(SpecialAndroidListViewRenderer))]
 namespace Lisa.Excelsis.Mobile.Droid
 {
 	public class SpecialAndroidListViewRenderer : ListViewRenderer
@@ -16,14 +20,13 @@ namespace Lisa.Excelsis.Mobile.Droid
 
 			if (e.NewElement != null) {
 				// subscribe
-				Control.Adapter = new NativeAndroidListViewAdapter (Forms.Context as Android.App.Activity, e.NewElement as NativeListView);
 				Control.ItemClick += OnItemClick;
 			}
 		}
 
 		void OnItemClick (object sender, Android.Widget.AdapterView.ItemClickEventArgs e)
 		{           
-			((NativeListView)Element).NotifyItemSelected (((NativeListView)Element).Items.ToList () [e.Position - 1]);
+			//((SpecialListView)Element).NotifyItemSelected (((SpecialListView)Element).Items.ToList () [e.Position - 1]);
 		}
 	}
 }
