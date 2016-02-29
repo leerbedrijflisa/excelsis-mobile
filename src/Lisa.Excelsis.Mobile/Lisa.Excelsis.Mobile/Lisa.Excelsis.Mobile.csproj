@@ -41,16 +41,7 @@
     <Compile Include="Interfaces\ISQLite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proxy.cs" />
-    <Compile Include="Views\HomePage.xaml.cs">
-      <DependentUpon>HomePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CreateAssessmentPage.xaml.cs">
-      <DependentUpon>CreateAssessmentPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\RootPage.xaml.cs" />
-    <Compile Include="Views\Dashboard.xaml.cs">
-      <DependentUpon>Dashboard.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Menu\MenuCell.cs" />
     <Compile Include="Views\Menu\MenuListData.cs" />
     <Compile Include="Views\Menu\MenuListView.cs" />
@@ -63,9 +54,6 @@
     <Compile Include="DatabaseModels\Observation.cs" />
     <Compile Include="DatabaseModels\Criterion.cs" />
     <Compile Include="DatabaseModels\Marks.cs" />
-    <Compile Include="Views\AssessmentPage.xaml.cs">
-      <DependentUpon>AssessmentPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ApiModels\MenuItem.cs" />
     <Compile Include="ApiModels\Assessment.cs" />
     <Compile Include="ApiModels\Assessor.cs" />
@@ -80,19 +68,31 @@
     <Compile Include="Properties\DummyData.cs" />
     <Compile Include="Views\DummyPage.cs" />
     <Compile Include="Renderers\SpecialListView.cs" />
+    <Compile Include="Views\Assessment\AssessmentPage.xaml.cs">
+      <DependentUpon>AssessmentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Assessment\CreateAssessmentPage.xaml.cs">
+      <DependentUpon>CreateAssessmentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Dashboard\Dashboard.xaml.cs">
+      <DependentUpon>Dashboard.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\HomePage.xaml">
+    <EmbeddedResource Include="Views\Assessment\AssessmentPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Assessment\CreateAssessmentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Home\HomePage.xaml">
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\CreateAssessmentPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Dashboard.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\AssessmentPage.xaml">
+    <EmbeddedResource Include="Views\Dashboard\Dashboard.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -172,5 +172,8 @@
     <Folder Include="ApiModels\" />
     <Folder Include="Models\" />
     <Folder Include="Renderers\" />
+    <Folder Include="Views\Assessment\" />
+    <Folder Include="Views\Dashboard\" />
+    <Folder Include="Views\Home\" />
   </ItemGroup>
 </Project>
