@@ -71,21 +71,27 @@
     <Compile Include="Views\Assessment\AssessmentPage.xaml.cs">
       <DependentUpon>AssessmentPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Assessment\CreateAssessmentPage.xaml.cs">
-      <DependentUpon>CreateAssessmentPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Home\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Dashboard\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CreateAssessmentPage.xaml.cs">
+      <DependentUpon>CreateAssessmentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Assessment\CategoryViewModel.cs">
+      <DependentUpon>AssessmentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Assessment\ObservationViewModel.cs">
+      <DependentUpon>AssessmentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Assessment\AssessmentViewModel.cs">
+      <DependentUpon>AssessmentPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Assessment\AssessmentPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\Assessment\CreateAssessmentPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Home\HomePage.xaml">
@@ -93,6 +99,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Dashboard\Dashboard.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CreateAssessmentPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

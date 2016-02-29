@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Lisa.Excelsis.Mobile.AssessmentPage" xmlns:local="clr-namespace:Lisa.Excelsis.Mobile;assembly=Lisa.Excelsis.Mobile">
 	<StackLayout>
-		<local:SpecialListView x:Name="CategoryList" 
+		<ListView x:Name="CategoryList" 
+					ItemsSource = "{Binding Categories}" 
 					HasUnevenRows="true" 
 					RowHeight="-1" 
 					GroupDisplayBinding="{Binding Name}"
@@ -24,25 +25,25 @@
 									 	<TapGestureRecognizer Tapped="OpenItem"/>
 									</StackLayout.GestureRecognizers>
 
-		             				<Grid HorizontalOptions="FillAndExpand">
+		             				<Grid HorizontalOptions="FillAndExpand" >
 									    <Grid.RowDefinitions>
 									      	<RowDefinition Height="Auto" />		
 									      	<RowDefinition Height="Auto" />			      	
 									    </Grid.RowDefinitions>
-
+									   
 									    <Grid.ColumnDefinitions>
 									    	<ColumnDefinition Width="35" />
 									    	<ColumnDefinition Width="*" />
 									    </Grid.ColumnDefinitions>
 
 									    <Label 	x:Name="ObservationOrder" 
-									    		Text="{Binding Order, StringFormat='{0}.'}" 
+									    		Text="{Binding Criterion.Order, StringFormat='{0}.'}" 
 									    		FontSize="18" 
 									    		VerticalOptions="StartAndExpand" 
 									    		Grid.Column="0" Grid.Row="0"/>   
 
 				             			<Label 	x:Name="ObservationTitle" 
-				             					Text="{Binding Title}" 
+				             					Text="{Binding Criterion.Title}" 
 			             						FontSize="18" 
 				             					VerticalOptions="StartAndExpand" 
 				             					Grid.Column="1" Grid.Row="0"/>
@@ -147,6 +148,6 @@
 					</ViewCell>
 		      	</DataTemplate>
 	    	</ListView.ItemTemplate>
-	    </local:SpecialListView>
+	    </ListView>
 	</StackLayout>
 </ContentPage>

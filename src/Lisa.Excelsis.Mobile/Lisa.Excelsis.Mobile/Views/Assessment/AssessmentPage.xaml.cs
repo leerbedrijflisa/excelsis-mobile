@@ -13,32 +13,39 @@ namespace Lisa.Excelsis.Mobile
         {
             InitializeComponent();
             this.Title = "Beoordeling";
-			categories = new ObservableCollection<ObserveCategory>();
-            foreach (var category in assessment.Categories) 
-            {
-				var categoryItem = new ObserveCategory () {
-					Id = category.Id,
-					Name = category.Name
-				};
-				categories.Add (categoryItem);
 
-                foreach (var observation in category.Observations)
+            var _assessment = new AssessmentViewModel()
                 {
-					var observationItem = new ObserveObservation () {
-						Id = observation.Id,
-						Order = observation.Criterion.Order.ToString(),
-						Title = observation.Criterion.Title
-					};
+                    Assessed = assessment.Assessed,
+                    Assessors = assessment.Assessors,
+                    Student = assessment.Student,
+                    Exam = assessment.Exam
+                };
 
-					categoryItem.Add(observationItem);
+            _assessment.Categories = new ObservableCollection<CategoryViewModel>();
+            foreach (var categories in assessment.Categories)
+            {
+                var _category = new CategoryViewModel()
+                {
+                    Order = categories.Order.ToString(),
+                    Name = categories.Name
+                };
+
+                _assessment.Categories.Add(_category);
+                foreach (var observations in categories.Observations)
+                {
+                    var _observation = new ObservationViewModel()
+                        {
+                            Id = observations.Id.ToString(),
+                            Result = observations.Result,
+                            Criterion = observations.Criterion,
+                            Marks = observations.Marks
+                        };
+                    _category.Add(_observation);
                 }
             }
-			CategoryList.ItemsSource = categories;
 
-			CategoryList.ItemTapped += (sender, e) => {
-				if (e.Item == null) return; 
-				((ListView)sender).SelectedItem = null;
-			};
+            this.BindingContext = _assessment;
         }
 
         public void OpenItem(object sender, EventArgs e)
@@ -51,10 +58,10 @@ namespace Lisa.Excelsis.Mobile
                 OldItem.IsVisible = false;
             }
             OldItem = item;
-		}
+        }
 
-		public void SetYesImage(object sender, EventArgs e)
-		{
+        public void SetYesImage(object sender, EventArgs e)
+        {
             ((Image)sender).Parent.FindByName<Image>("noImage").Source = "yesnobutton0.png";
 
             var source =  ((Image)sender).Source as FileImageSource;
@@ -68,10 +75,10 @@ namespace Lisa.Excelsis.Mobile
                 ((Image)sender).Source = "yesnobutton1.png";
                 ((Image)sender).Parent.FindByName<Label>("ObservationTitle").TextColor = Color.Lime;
             }
-		}
+        }
 
-		public void SetNoImage(object sender, EventArgs e)
-		{
+        public void SetNoImage(object sender, EventArgs e)
+        {
             ((Image)sender).Parent.FindByName<Image>("yesImage").Source = "yesnobutton0.png";
 
             var source =  ((Image)sender).Source as FileImageSource;
@@ -85,7 +92,7 @@ namespace Lisa.Excelsis.Mobile
                 ((Image)sender).Source = "yesnobutton2.png";
                 ((Image)sender).Parent.FindByName<Label>("ObservationTitle").TextColor = Color.Red;
             }
-		}
+        }
 
         private void SetMark(object sender, EventArgs e)
         {
@@ -111,8 +118,6 @@ namespace Lisa.Excelsis.Mobile
             ((Image)sender).Source = ImageSource.FromFile(image);
         }
        
-		private ObservableCollection<ObserveCategory> categories;
-
         private StackLayout OldItem;
 
         private int MarkActiveCount = 0;
