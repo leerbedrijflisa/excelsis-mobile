@@ -4,10 +4,10 @@ using Lisa.Excelsis.Mobile;
 using Lisa.Excelsis.Mobile.Droid;
 using Android.Animation;
 
-[assembly: ExportRenderer (typeof(SpecialListView), typeof(SpecialAndroidListViewRenderer))]
+[assembly: ExportRenderer (typeof(NativeListView), typeof(NativeAndroidListViewRenderer))]
 namespace Lisa.Excelsis.Mobile.Droid
 {
-	public class SpecialAndroidListViewRenderer : ListViewRenderer
+	public class NativeAndroidListViewRenderer : ListViewRenderer
 	{
 		protected override void OnElementChanged (ElementChangedEventArgs<Xamarin.Forms.ListView> e)
 		{
