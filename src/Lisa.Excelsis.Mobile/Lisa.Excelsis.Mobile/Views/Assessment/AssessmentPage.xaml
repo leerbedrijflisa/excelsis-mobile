@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Lisa.Excelsis.Mobile.AssessmentPage" xmlns:local="clr-namespace:Lisa.Excelsis.Mobile;assembly=Lisa.Excelsis.Mobile">
 	<StackLayout>
-		<local:SpecialListView x:Name="CategoryList" 
+		<ListView x:Name="CategoryList" 
 					ItemsSource = "{Binding Categories}" 
 					HasUnevenRows="true" 
 					RowHeight="-1" 
 					GroupDisplayBinding="{Binding Name}"
 			        IsGroupingEnabled="true">
-	      	<local:SpecialListView.ItemTemplate>
+	      	<ListView.ItemTemplate>
 		      	<DataTemplate> 
 			      	<ViewCell x:Name="ObservationCell">
 			   		 	<ViewCell.View>
@@ -147,7 +147,7 @@
 					    </ViewCell.View>
 					</ViewCell>
 		      	</DataTemplate>
-	    	</local:SpecialListView.ItemTemplate>
-	    </local:SpecialListView>
+	    	</ListView.ItemTemplate>
+	    </ListView>
 	</StackLayout>
 </ContentPage>

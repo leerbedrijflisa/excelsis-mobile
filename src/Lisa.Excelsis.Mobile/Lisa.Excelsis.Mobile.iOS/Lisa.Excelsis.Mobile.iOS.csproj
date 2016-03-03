@@ -122,7 +122,8 @@
     <None Include="Resources\yesnobutton0.png" />
     <None Include="Resources\yesnobutton1.png" />
     <None Include="Resources\yesnobutton2.png" />
-    <Compile Include="Renderers\SpecialiOSListViewRenderer.cs" />
+    <None Include="Resources\Logo_excelsis_Beeld_RGB_2016.png" />
+    <None Include="Resources\Logo_excelsis_Beeld_word_2016.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lisa.Excelsis.Mobile\Lisa.Excelsis.Mobile.csproj">
@@ -197,7 +198,4 @@
     <Error Condition="!Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
   </Target>
   <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
-  <ItemGroup>
-    <Folder Include="Renderers\" />
-  </ItemGroup>
 </Project>

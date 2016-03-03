@@ -4,7 +4,7 @@ using Android.OS;
 
 namespace Lisa.Excelsis.Mobile.Droid
 {
-    [Activity(Label = "Excelsis", Theme = "@android:style/Theme.Holo.Light", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "Excelsis", Theme = "@android:style/Theme.Holo.Light", Icon = "@drawable/logo_excelsis_beeld_rgb_2016", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : Xamarin.Forms.Platform.Android.FormsApplicationActivity
     {
         protected override void OnCreate(Bundle bundle)

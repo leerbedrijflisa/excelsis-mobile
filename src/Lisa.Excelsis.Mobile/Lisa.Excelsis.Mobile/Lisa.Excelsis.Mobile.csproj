@@ -67,7 +67,6 @@
     <Compile Include="Models\Observation.cs" />
     <Compile Include="Properties\DummyData.cs" />
     <Compile Include="Views\DummyPage.cs" />
-    <Compile Include="Renderers\SpecialListView.cs" />
     <Compile Include="Views\Assessment\AssessmentPage.xaml.cs">
       <DependentUpon>AssessmentPage.xaml</DependentUpon>
     </Compile>
@@ -180,9 +179,19 @@
     <Folder Include="Views\Menu\" />
     <Folder Include="ApiModels\" />
     <Folder Include="Models\" />
-    <Folder Include="Renderers\" />
     <Folder Include="Views\Assessment\" />
     <Folder Include="Views\Dashboard\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <Policies>
+          <TextStylePolicy inheritsSet="VisualStudio" inheritsScope="text/plain" scope="text/x-csharp" />
+          <CSharpFormattingPolicy IndentSwitchBody="True" IndentBlocksInsideExpressions="True" AnonymousMethodBraceStyle="NextLine" PropertyBraceStyle="NextLine" PropertyGetBraceStyle="NextLine" PropertySetBraceStyle="NextLine" EventBraceStyle="NextLine" EventAddBraceStyle="NextLine" EventRemoveBraceStyle="NextLine" StatementBraceStyle="NextLine" ElseNewLinePlacement="NewLine" CatchNewLinePlacement="NewLine" FinallyNewLinePlacement="NewLine" WhileNewLinePlacement="DoNotCare" ArrayInitializerWrapping="DoNotChange" ArrayInitializerBraceStyle="NextLine" BeforeMethodDeclarationParentheses="False" BeforeMethodCallParentheses="False" BeforeConstructorDeclarationParentheses="False" NewLineBeforeConstructorInitializerColon="NewLine" NewLineAfterConstructorInitializerColon="SameLine" BeforeDelegateDeclarationParentheses="False" NewParentheses="False" SpacesBeforeBrackets="False" inheritsSet="Mono" inheritsScope="text/x-csharp" scope="text/x-csharp" />
+          <TextStylePolicy FileWidth="120" TabsToSpaces="False" inheritsSet="VisualStudio" inheritsScope="text/plain" scope="text/plain" />
+        </Policies>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
 </Project>
