@@ -48,18 +48,6 @@ namespace Lisa.Excelsis.Mobile
             this.BindingContext = _assessment;
         }
 
-        public void OpenItem(object sender, EventArgs e)
-        {
-            var item = ((StackLayout)sender).Parent.FindByName<StackLayout>("ObservationButtons");
-            item.IsVisible = (item.IsVisible) ? false : true;
-
-            if (OldItem != null && OldItem.ClassId != item.ClassId)
-            {
-                OldItem.IsVisible = false;
-            }
-            OldItem = item;
-        }
-
         public void SetYesImage(object sender, EventArgs e)
         {
             ((Image)sender).Parent.FindByName<Image>("noImage").Source = "yesnobutton0.png";

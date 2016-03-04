@@ -22,7 +22,8 @@
 			            			 	     Padding="15, 10, 10, 10"
 	            			 				 BackgroundColor="White">	
         			 				<StackLayout.GestureRecognizers>
-									 	<TapGestureRecognizer Tapped="OpenItem"/>
+									 	<TapGestureRecognizer 	Command="{Binding Source={x:Reference CategoryList}, Path=BindingContext.SetCellVisible}"
+									 							CommandParameter="{Binding}"/>
 									</StackLayout.GestureRecognizers>
 
 		             				<Grid HorizontalOptions="FillAndExpand" >
@@ -54,9 +55,8 @@
 											 HorizontalOptions="FillAndExpand"
 											 VerticalOptions="StartAndExpand"
 											 BackgroundColor="White"
-	            			 				 IsVisible="false"
-	            			 				 Padding="0, 0, 0, 20"
-	            			 				 ClassId = "{Binding Id, StringFormat='ObservationButtons_{0}'}">
+	            			 				 IsVisible="{Binding IsCellVisible}"
+	            			 				 Padding="0, 0, 0, 20">
 
 									<Grid HorizontalOptions="Center" 										 
 										  Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
