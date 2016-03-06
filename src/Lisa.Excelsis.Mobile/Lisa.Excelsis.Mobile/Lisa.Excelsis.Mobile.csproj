@@ -88,6 +88,8 @@
     <Compile Include="Views\Assessment\AssessmentViewModel.cs">
       <DependentUpon>AssessmentPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\ResultConverter.cs" />
+    <Compile Include="Converters\MarkConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Assessment\AssessmentPage.xaml">
@@ -182,6 +184,7 @@
     <Folder Include="Views\Assessment\" />
     <Folder Include="Views\Dashboard\" />
     <Folder Include="Views\Home\" />
+    <Folder Include="Converters\" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>

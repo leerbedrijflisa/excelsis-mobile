@@ -121,20 +121,20 @@
     <AndroidResource Include="Resources\drawable\contacts.png" />
     <AndroidResource Include="Resources\drawable\leads.png" />
     <AndroidResource Include="Resources\drawable\settings.png" />
-    <AndroidResource Include="Resources\drawable\yesnobutton0.png" />
-    <AndroidResource Include="Resources\drawable\yesnobutton1.png" />
-    <AndroidResource Include="Resources\drawable\yesnobutton2.png" />
     <AndroidResource Include="Resources\drawable\change.png" />
     <AndroidResource Include="Resources\drawable\icon.png" />
-    <AndroidResource Include="Resources\drawable\maybenot.png" />
     <AndroidResource Include="Resources\drawable\skip.png" />
     <AndroidResource Include="Resources\drawable\unclear.png" />
     <AndroidResource Include="Resources\drawable\change_COLOR.png" />
-    <AndroidResource Include="Resources\drawable\maybenot_COLOR.png" />
     <AndroidResource Include="Resources\drawable\skip_COLOR.png" />
     <AndroidResource Include="Resources\drawable\unclear_COLOR.png" />
     <AndroidResource Include="Resources\drawable\Logo_excelsis_Beeld_RGB_2016.png" />
     <AndroidResource Include="Resources\drawable\Logo_excelsis_Beeld_word_2016.png" />
+    <AndroidResource Include="Resources\drawable\notrated.png" />
+    <AndroidResource Include="Resources\drawable\seen.png" />
+    <AndroidResource Include="Resources\drawable\unseen.png" />
+    <AndroidResource Include="Resources\drawable\maybe_not.png" />
+    <AndroidResource Include="Resources\drawable\maybe_not_COLOR.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />

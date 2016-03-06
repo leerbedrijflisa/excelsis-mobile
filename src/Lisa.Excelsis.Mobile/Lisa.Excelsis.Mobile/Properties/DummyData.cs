@@ -50,7 +50,7 @@ namespace Lisa.Excelsis.Mobile
                             new Observation
                             {
                                 Id = 136,
-                                Result = "",
+                                Result = "notrated",
                                 Criterion = new Criterion
                                 {
                                     Title = "De kandidaat vertelt de opdrachtgever wat er van hem/haar verwacht wordt tijdens de oplevering.",
@@ -63,7 +63,7 @@ namespace Lisa.Excelsis.Mobile
                             new Observation
                             {
                                 Id = 137,
-                                Result = "",
+                                Result = "unseen",
                                 Criterion = new Criterion
                                 {
                                     Title = "De kandidaat laat de opdrachtgever weten welke features nieuw zijn in de huidige release.",
@@ -76,7 +76,7 @@ namespace Lisa.Excelsis.Mobile
                             new Observation
                             {
                                 Id = 138,
-                                Result = "",
+                                Result = "notrated",
                                 Criterion = new Criterion
                                 {
                                     Title = "De kandidaat laat de opdrachtgever weten welke bugs opgelost zijn in de huidige release.",
@@ -89,7 +89,7 @@ namespace Lisa.Excelsis.Mobile
                             new Observation
                             {
                                 Id = 139,
-                                Result = "",
+                                Result = "seen",
                                 Criterion = new Criterion
                                 {
                                     Title = "De kandidaat laat de opdrachtgever weten welke problemen de huidige release bevat.",
@@ -102,7 +102,7 @@ namespace Lisa.Excelsis.Mobile
                             new Observation
                             {
                                 Id = 140,
-                                Result = "",
+                                Result = "notrated",
                                 Criterion = new Criterion
                                 {
                                     Title = "De kandidaat heeft een lijst gemaakt van zaken die de opdrachtgever kan testen.",
@@ -124,7 +124,7 @@ namespace Lisa.Excelsis.Mobile
                             new Observation
                             {
                                 Id = 141,
-                                Result = "",
+                                Result = "notrated",
                                 Criterion = new Criterion
                                 {
                                     Title = "De kandidaat heeft niet gezorgd voor een omgeving waar de opdrachtgever mee kan testen.",
@@ -137,7 +137,7 @@ namespace Lisa.Excelsis.Mobile
                             new Observation
                             {
                                 Id = 142,
-                                Result = "",
+                                Result = "notrated",
                                 Criterion = new Criterion
                                 {
                                     Title = "De kandidaat heeft de database gevuld met zinvolle testgegevens.",
@@ -150,7 +150,7 @@ namespace Lisa.Excelsis.Mobile
                             new Observation
                             {
                                 Id = 143,
-                                Result = "",
+                                Result = "notrated",
                                 Criterion = new Criterion
                                 {
                                     Title = "De kandidaat maakt notities van de resultaten van de tests.",
@@ -163,7 +163,7 @@ namespace Lisa.Excelsis.Mobile
                             new Observation
                             {
                                 Id = 144,
-                                Result = "",
+                                Result = "notrated",
                                 Criterion = new Criterion
                                 {
                                     Title = "De kandidaat vraagt de opdrachtgever om van iedere geplande en afgeronde feature van de huidige iteratie aan te geven of de feature aan de wensen van de opdrachtgever voldoet.",
@@ -176,7 +176,7 @@ namespace Lisa.Excelsis.Mobile
                             new Observation
                             {
                                 Id = 145,
-                                Result = "",
+                                Result = "notrated",
                                 Criterion = new Criterion
                                 {
                                     Title = "De opdrachtgever moet testen op het systeem waar de kandidaat (of een groepsgenoot) op ontwikkelt.",
@@ -189,7 +189,7 @@ namespace Lisa.Excelsis.Mobile
                             new Observation
                             {
                                 Id = 146,
-                                Result = "",
+                                Result = "notrated",
                                 Criterion = new Criterion
                                 {
                                     Title = "De kandidaat voert tests zelf uit.",
@@ -202,7 +202,7 @@ namespace Lisa.Excelsis.Mobile
                             new Observation
                             {
                                 Id = 147,
-                                Result = "",
+                                Result = "notrated",
                                 Criterion = new Criterion
                                 {
                                     Title = "De kandidaat past de code van de software aan vlak voor of tijdens de oplevering.",
@@ -224,7 +224,7 @@ namespace Lisa.Excelsis.Mobile
                             new Observation
                             {
                                 Id = 148,
-                                Result = "",
+                                Result = "notrated",
                                 Criterion = new Criterion
                                 {
                                     Title = "De kandidaat kan aangeven hoe de oplevering in het vervolg nog beter kan.",
@@ -237,7 +237,7 @@ namespace Lisa.Excelsis.Mobile
                             new Observation
                             {
                                 Id = 149,
-                                Result = "",
+                                Result = "notrated",
                                 Criterion = new Criterion
                                 {
                                     Title = "De kandidaat kan vertellen welke feedback hij/zij van de opdrachtgever heeft gekregen.",
@@ -250,7 +250,7 @@ namespace Lisa.Excelsis.Mobile
                             new Observation
                             {
                                 Id = 150,
-                                Result = "",
+                                Result = "notrated",
                                 Criterion = new Criterion
                                 {
                                     Title = "De kandidaat kan een onderbouwde mening geven over het verloop van de oplevering.",
