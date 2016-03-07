@@ -150,6 +150,9 @@
     <BundleResource Include="Resources\change_COLOR.png" />
     <BundleResource Include="Resources\maybe_not.png" />
     <BundleResource Include="Resources\maybe_not_COLOR.png" />
+    <BundleResource Include="Resources\Logo_excelsis_Beeld_Word_240.png" />
+    <BundleResource Include="Resources\Logo_excelsis_Beeld_Word_480.png" />
+    <BundleResource Include="Resources\Logo_excelsis_Beeld_Word_800.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
