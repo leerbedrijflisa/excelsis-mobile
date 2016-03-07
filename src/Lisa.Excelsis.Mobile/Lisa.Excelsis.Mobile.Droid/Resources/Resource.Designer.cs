@@ -3291,7 +3291,7 @@ namespace Lisa.Excelsis.Mobile.Droid
 			public const int Logo_excelsis_Beeld_RGB_2016 = 2130837595;
 			
 			// aapt resource value: 0x7f02005c
-			public const int Logo_excelsis_Beeld_word_2016 = 2130837596;
+			public const int Logo_excelsis_Beeld_Word = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
 			public const int maybenot = 2130837597;
@@ -3335,8 +3335,8 @@ namespace Lisa.Excelsis.Mobile.Droid
 			// aapt resource value: 0x7f02006a
 			public const int mr_ic_settings_light = 2130837610;
 			
-			// aapt resource value: 0x7f020073
-			public const int notification_template_icon_bg = 2130837619;
+			// aapt resource value: 0x7f020074
+			public const int notification_template_icon_bg = 2130837620;
 			
 			// aapt resource value: 0x7f02006b
 			public const int settings = 2130837611;
@@ -3348,19 +3348,22 @@ namespace Lisa.Excelsis.Mobile.Droid
 			public const int skip_COLOR = 2130837613;
 			
 			// aapt resource value: 0x7f02006e
-			public const int unclear = 2130837614;
+			public const int splash_background = 2130837614;
 			
 			// aapt resource value: 0x7f02006f
-			public const int unclear_COLOR = 2130837615;
+			public const int unclear = 2130837615;
 			
 			// aapt resource value: 0x7f020070
-			public const int yesnobutton0 = 2130837616;
+			public const int unclear_COLOR = 2130837616;
 			
 			// aapt resource value: 0x7f020071
-			public const int yesnobutton1 = 2130837617;
+			public const int yesnobutton0 = 2130837617;
 			
 			// aapt resource value: 0x7f020072
-			public const int yesnobutton2 = 2130837618;
+			public const int yesnobutton1 = 2130837618;
+			
+			// aapt resource value: 0x7f020073
+			public const int yesnobutton2 = 2130837619;
 			
 			static Drawable()
 			{
@@ -4509,6 +4512,15 @@ namespace Lisa.Excelsis.Mobile.Droid
 			
 			// aapt resource value: 0x7f070006
 			public const int CardView_Light = 2131165190;
+			
+			// aapt resource value: 0x7f070145
+			public const int MyTheme = 2131165509;
+			
+			// aapt resource value: 0x7f070144
+			public const int MyTheme_Base = 2131165508;
+			
+			// aapt resource value: 0x7f070146
+			public const int MyTheme_Splash = 2131165510;
 			
 			// aapt resource value: 0x7f070016
 			public const int Platform_AppCompat = 2131165206;
