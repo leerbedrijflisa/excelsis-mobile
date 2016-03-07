@@ -1,5 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Lisa.Excelsis.Mobile.AssessmentPage" xmlns:local="clr-namespace:Lisa.Excelsis.Mobile;assembly=Lisa.Excelsis.Mobile">
+<ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ResultConverter x:Key="ResultConverter" />
+            <local:MarkConverter x:Key="MarkConverter" />
+        </ResourceDictionary>
+</ContentPage.Resources>
 	<StackLayout>
 		<ListView x:Name="CategoryList" 
 					ItemsSource = "{Binding Categories}" 
@@ -22,7 +28,8 @@
 			            			 	     Padding="15, 10, 10, 10"
 	            			 				 BackgroundColor="White">	
         			 				<StackLayout.GestureRecognizers>
-									 	<TapGestureRecognizer Tapped="OpenItem"/>
+							 			<TapGestureRecognizer Command="{Binding Source={x:Reference CategoryList}, Path=BindingContext.SetCellVisible}"
+									 						  CommandParameter="{Binding}"/>
 									</StackLayout.GestureRecognizers>
 
 		             				<Grid HorizontalOptions="FillAndExpand" >
@@ -45,6 +52,7 @@
 				             			<Label 	x:Name="ObservationTitle" 
 				             					Text="{Binding Criterion.Title}" 
 			             						FontSize="18" 
+			             						TextColor="{Binding ObserveColor}"
 				             					VerticalOptions="StartAndExpand" 
 				             					Grid.Column="1" Grid.Row="0"/>
 			             				
@@ -54,9 +62,8 @@
 											 HorizontalOptions="FillAndExpand"
 											 VerticalOptions="StartAndExpand"
 											 BackgroundColor="White"
-	            			 				 IsVisible="false"
-	            			 				 Padding="0, 0, 0, 20"
-	            			 				 ClassId = "{Binding Id, StringFormat='ObservationButtons_{0}'}">
+	            			 				 IsVisible="{Binding IsCellVisible}"
+	            			 				 Padding="0, 0, 0, 20">
 
 									<Grid HorizontalOptions="Center" 										 
 										  Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
@@ -75,13 +82,17 @@
 									    </Grid.ColumnDefinitions>
 
 									    <StackLayout Grid.Column="0" Grid.Row="0" >
-					             			<Image 	Source="yesnobutton0.png" 
+					             			<Image 	Source="{	Binding Result, 
+				             									Converter={StaticResource ResultConverter}, 
+				             									ConverterParameter='seen',
+				             									StringFormat='{0}.png'}"
 													HeightRequest="60" WidthRequest="60"
 					             					HorizontalOptions="Center"
 					             					VerticalOptions="Start"
 					             					x:Name="yesImage">   
 						             			<Image.GestureRecognizers>
-												    <TapGestureRecognizer Tapped="SetYesImage"/>
+												    <TapGestureRecognizer Command="{Binding SetSeenResult}"
+									 						  		  	  CommandParameter="{Binding}"/>
 												</Image.GestureRecognizers>
 											</Image>
 
@@ -89,56 +100,72 @@
 										</StackLayout>
 
 										<StackLayout Grid.Column="1" Grid.Row="0">
-					             			<Image 	Source="yesnobutton0.png"
+					             			<Image 	Source="{	Binding Result, 
+				             									Converter={StaticResource ResultConverter}, 
+				             									ConverterParameter='unseen',
+				             									StringFormat='{0}.png'}"
 													HeightRequest="60" WidthRequest="60"
 					             					HorizontalOptions="Center"
 					             					VerticalOptions="Start"
 					             					x:Name="noImage">
 				         					 	<Image.GestureRecognizers>
-												    <TapGestureRecognizer Tapped="SetNoImage"/>
+												    <TapGestureRecognizer Command="{Binding SetNotSeenResult}"
+									 						  		  	  CommandParameter="{Binding}"/>
 												</Image.GestureRecognizers>
 											</Image>
 												
 											<Label Text="Nee" VerticalOptions="End" HorizontalOptions="Center"/>
 										</StackLayout>
 
-										<Image 	Source="maybenot.png"
+										<Image 	Source="{	Binding Maybe_Not, 
+															Converter={StaticResource MarkConverter}, 
+															ConverterParameter='maybe_not',
+			             									StringFormat='{0}.png'}"
 												HeightRequest="60" WidthRequest="60"
 				             					HorizontalOptions="Center"
 				             					VerticalOptions="Start"
 				         					 	Grid.Column="3" Grid.Row="0">
 			         					 	<Image.GestureRecognizers>
-											    <TapGestureRecognizer Tapped="SetMark"/>
+											    <TapGestureRecognizer Command="{Binding SetMaybeNotActive}" CommandParameter="{Binding}" />
 											</Image.GestureRecognizers>
 										</Image>
 
-										<Image 	Source="skip.png"
+										<Image 	Source="{	Binding Skip, 
+															Converter={StaticResource MarkConverter}, 
+															ConverterParameter='skip',
+			             									StringFormat='{0}.png'}"
 												HeightRequest="60" WidthRequest="60"
 				             					HorizontalOptions="Center"
 				             					VerticalOptions="Start"
 				         					 	Grid.Column="4" Grid.Row="0">
 			         					 	<Image.GestureRecognizers>
-											    <TapGestureRecognizer Tapped="SetMark"/>
+											     <TapGestureRecognizer Command="{Binding SetSkipActive}" CommandParameter="{Binding}" />
 											</Image.GestureRecognizers>
 										</Image>
 
-										<Image 	Source="unclear.png"
+										<Image 	Source="{	Binding Unclear, 
+															Converter={StaticResource MarkConverter}, 
+															ConverterParameter='unclear',
+			             									StringFormat='{0}.png'}"
 												HeightRequest="60" WidthRequest="60"
 				             					HorizontalOptions="Center"
 				             					VerticalOptions="Start"
 				         					 	Grid.Column="5" Grid.Row="0">
 			         					 	<Image.GestureRecognizers>
-											    <TapGestureRecognizer Tapped="SetMark"/>
+											     <TapGestureRecognizer Command="{Binding SetUnclearActive}" CommandParameter="{Binding}" />
 											</Image.GestureRecognizers>
 										</Image>
 
-										<Image 	Source="change.png"
+										<Image 	Source="{	Binding Change, 
+															Converter={StaticResource MarkConverter}, 
+															ConverterParameter='change',
+			             									StringFormat='{0}.png'}"
 												HeightRequest="60" WidthRequest="60"
 				             					HorizontalOptions="Center"
 				             					VerticalOptions="Start"
 				         					 	Grid.Column="6" Grid.Row="0">
 			         					 	<Image.GestureRecognizers>
-											    <TapGestureRecognizer Tapped="SetMark"/>
+											     <TapGestureRecognizer Command="{Binding SetChangeActive}" CommandParameter="{Binding}" />
 											</Image.GestureRecognizers>
 										</Image>
 	         					 	</Grid>
