@@ -16,7 +16,7 @@ namespace Lisa.Excelsis.Mobile
             masterPage.Menu.ItemSelected += (sender, e) => NavigateTo (e.SelectedItem as MenuItem);
 
             Master = masterPage;
-            Detail = new NavigationPage(new HomePage());
+            Detail = new HomePage();
         }
 
         void NavigateTo (MenuItem menu)

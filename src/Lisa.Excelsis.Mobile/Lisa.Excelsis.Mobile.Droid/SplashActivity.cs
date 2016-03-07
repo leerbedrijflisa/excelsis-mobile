@@ -16,29 +16,17 @@ using Android.Content.PM;
 
 namespace Lisa.Excelsis.Mobile.Droid
 {
-    [Activity(Theme = "@style/MyTheme.Splash", MainLauncher = true, NoHistory = true , ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-    public class SplashActivity : AppCompatActivity
+    [Activity(Label="Excelsis", Theme = "@style/MyTheme.Splash", MainLauncher = true, NoHistory = true , ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    public class SplashActivity : Activity
     {
-        static readonly string TAG = "X:" + typeof(SplashActivity).Name;
-
-        public override void OnCreate(Bundle savedInstanceState, PersistableBundle persistentState)
+        protected override void OnCreate(Bundle bundle)
         {
-            base.OnCreate(savedInstanceState, persistentState);
-        }
+            base.OnCreate(bundle);
 
-        protected override void OnResume()
-        {
-            base.OnResume();
+            var intent = new Intent(this, typeof(MainActivity));
+            StartActivity(intent);
+            Finish();
 
-            Task startupWork = new Task(() => {
-                Task.Delay(5000);  // Simulate a bit of startup work.
-            });
-
-            startupWork.ContinueWith(t => {
-                StartActivity(new Intent(Application.Context, typeof(MainActivity)));
-            }, TaskScheduler.FromCurrentSynchronizationContext());
-
-            startupWork.Start();
         }
     }
 }
