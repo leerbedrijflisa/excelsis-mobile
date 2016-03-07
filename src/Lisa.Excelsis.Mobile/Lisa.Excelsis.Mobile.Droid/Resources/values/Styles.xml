@@ -8,5 +8,7 @@
   <style name="MyTheme.Splash" parent ="Theme.AppCompat.Light">
     <item name="android:windowBackground">@drawable/splash_background</item>
     <item name="android:windowNoTitle">true</item>  
+    <item name="android:actionBarSize">0dp</item>
   </style>
+
 </resources>
