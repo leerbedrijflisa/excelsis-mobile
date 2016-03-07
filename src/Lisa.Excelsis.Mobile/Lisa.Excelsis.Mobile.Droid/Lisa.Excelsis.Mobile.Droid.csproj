@@ -107,6 +107,7 @@
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLite_Android.cs" />
+    <Compile Include="SplashActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -163,6 +164,7 @@
   -->
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
+    <Folder Include="Resources\values\" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>
