@@ -1891,38 +1891,22 @@ namespace Lisa.Excelsis.Mobile.Droid
 			public const int settings = 2130837613;
 			
 			// aapt resource value: 0x7f02006e
-<<<<<<< HEAD
-			public const int splash_background = 2130837614;
-			
-			// aapt resource value: 0x7f02006f
-			public const int unclear = 2130837615;
-			
-			// aapt resource value: 0x7f020070
-			public const int unclear_COLOR = 2130837616;
-			
-			// aapt resource value: 0x7f020071
-			public const int yesnobutton0 = 2130837617;
-			
-			// aapt resource value: 0x7f020072
-			public const int yesnobutton1 = 2130837618;
-			
-			// aapt resource value: 0x7f020073
-			public const int yesnobutton2 = 2130837619;
-=======
 			public const int skip = 2130837614;
 			
 			// aapt resource value: 0x7f02006f
 			public const int skip_COLOR = 2130837615;
 			
 			// aapt resource value: 0x7f020070
-			public const int unclear = 2130837616;
+			public const int splash_background = 2130837616;
 			
 			// aapt resource value: 0x7f020071
-			public const int unclear_COLOR = 2130837617;
+			public const int unclear = 2130837617;
 			
 			// aapt resource value: 0x7f020072
-			public const int unseen = 2130837618;
->>>>>>> b2c0b08c79f6f8343ce9d53ba8484bac73129c78
+			public const int unclear_COLOR = 2130837618;
+			
+			// aapt resource value: 0x7f020073
+			public const int unseen = 2130837619;
 			
 			static Drawable()
 			{
