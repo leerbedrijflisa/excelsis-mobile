@@ -10,7 +10,6 @@
 		<ListView x:Name="CategoryList" 
 					ItemsSource = "{Binding Categories}" 
 					HasUnevenRows="true"
-					SelectedItem="{Binding SelectedItem}" 
 					RowHeight="-1" 
 					GroupDisplayBinding="{Binding Name}"
 			        IsGroupingEnabled="true">

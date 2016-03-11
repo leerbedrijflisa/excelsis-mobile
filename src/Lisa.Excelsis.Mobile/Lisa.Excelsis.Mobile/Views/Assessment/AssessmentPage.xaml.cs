@@ -50,7 +50,23 @@ namespace Lisa.Excelsis.Mobile
             }
 
             this.BindingContext = _assessment;
+            CategoryList.ItemSelected += (object sender, SelectedItemChangedEventArgs e) => {
+                var item = ((ObservationViewModel)e.SelectedItem);
+                if(oldItem != null && item.Id == oldItem.Id)
+                {
+                    item.IsSelected = !item.IsSelected;
+                }
+                else
+                {
+                    item.IsSelected = true;
+                    if(oldItem != null)
+                        oldItem.IsSelected = false;
+                    oldItem = item;
+                }
+            };
         }
+
+        private ObservationViewModel oldItem;
     }
 }
 
