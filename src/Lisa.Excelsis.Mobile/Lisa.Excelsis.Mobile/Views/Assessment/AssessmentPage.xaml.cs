@@ -22,19 +22,17 @@ namespace Lisa.Excelsis.Mobile
                 Student = assessment.Student,
                 Exam = assessment.Exam
             };
-            _assessment.Observations = new ObservableCollection<ObservationViewModel>();
-            //_assessment.Categories = new ObservableCollection<CategoryViewModel>();
+            
+            _assessment.Categories = new ObservableCollection<CategoryViewModel>();
             foreach (var categories in assessment.Categories)
             {
-           //     var _category = new CategoryViewModel()
-           //     {
-            //        Order = categories.Order.ToString(),
-            //        Name = categories.Name
-           //     };
+                var _category = new CategoryViewModel()
+                {
+                    Order = categories.Order.ToString(),
+                    Name = categories.Name
+                };
 
-           //     _assessment.Categories.Add(_category);
-          //      _category.Observations = new ObservableCollection<ObservationViewModel>();
-
+                _assessment.Categories.Add(_category);
                 foreach (var observations in categories.Observations)
                 {
                     var _observation = new ObservationViewModel()
@@ -46,11 +44,8 @@ namespace Lisa.Excelsis.Mobile
                         Skip = observations.Marks.Contains("skip"),
                         Unclear = observations.Marks.Contains("unclear"),
                         Change = observations.Marks.Contains("change")
-                    };
-                    
-                  //  _category.Observations.Add(_observation);
-                   // _category.Add(_observation);
-                    _assessment.Observations.Add(_observation);
+                    };                    
+                   _category.Add(_observation);
                 }
             }
 

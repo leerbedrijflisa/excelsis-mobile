@@ -5,43 +5,35 @@ using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 using System.ComponentModel;
 using System.Windows.Input;
+using System.Runtime.CompilerServices;
 
 namespace Lisa.Excelsis.Mobile
 {
     public class AssessmentViewModel : INotifyPropertyChanged
     {
-
-        public AssessmentViewModel()
-        {
-            this.SetCellVisible = new Command<ObservationViewModel>(SelectObservation);
-        }
-
         public ICommand SetCellVisible { get; set; }
 
         public DateTime Assessed { get; set; }
         public Student Student { get; set; }
         public List<Assessor> Assessors { get; set; }
         public Exam Exam { get; set; }
-        public ObservableCollection<CategoryViewModel> Categories { get; set; }
-
-        private ObservableCollection<ObservationViewModel> _observations;
-        public ObservableCollection<ObservationViewModel> Observations
-        {
-            get { return _observations; }
+        public ObservableCollection<CategoryViewModel> Categories 
+        { 
+            get { return _categories; }
             set
             {
-                _observations = value;
-                OnPropertyChanged("Observations");
-            }
-        } 
-
+                _categories = value;
+                OnPropertyChanged();
+            } 
+        }
         public ObservationViewModel SelectedItem
         {
             get { return _selectedItem; }
             set
             {
-                if(_selectedItem == value)
+                if (_selectedItem == value)
                     return;
+                
                 if(_selectedItem != null)
                 {
                     _selectedItem.IsSelected = false;
@@ -55,35 +47,14 @@ namespace Lisa.Excelsis.Mobile
             }
         }
 
-        private ObservationViewModel _selectedItem;
-
-
-        public void SelectObservation(ObservationViewModel observation)
-        {
-            foreach (var category in Categories)
-            {
-                foreach (var item in category)
-                {
-                    if (item.Id != observation.Id)
-                    {
-                        item.IsSelected = false;
-                    }
-                    else
-                    {
-                        observation.IsSelected = !observation.IsSelected;
-                    }
-                }
-            }
-        }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged(string propertyName)
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            if (PropertyChanged == null)
-                return;
-
-            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        private ObservableCollection<CategoryViewModel> _categories;
+        private ObservationViewModel _selectedItem;
     }
 }
