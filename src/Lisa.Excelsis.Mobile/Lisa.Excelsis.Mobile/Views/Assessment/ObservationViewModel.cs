@@ -125,6 +125,7 @@ namespace Lisa.Excelsis.Mobile
             }
         }
 
+
         private bool _IsSelected;
         private Color _ObserveColor;
         private string _Result;

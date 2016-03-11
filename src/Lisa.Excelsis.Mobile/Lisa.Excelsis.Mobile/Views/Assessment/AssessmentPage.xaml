@@ -8,12 +8,10 @@
 </ContentPage.Resources>
 	<StackLayout>
 		<local:SpecialListView x:Name="CategoryList" 
-					ItemsSource = "{Binding Categories}" 
+					ItemsSource = "{Binding Observations}" 
 					HasUnevenRows="true"
 					SelectedItem="{Binding SelectedItem}" 
-					RowHeight="-1" 
-					GroupDisplayBinding="{Binding Name}"
-			        IsGroupingEnabled="true">
+					RowHeight="-1" >
 	      	<local:SpecialListView.ItemTemplate>
 		      	<DataTemplate> 
 			      	<ViewCell x:Name="ObservationCell">
@@ -28,10 +26,7 @@
 										     VerticalOptions="StartAndExpand"	            			 	 		 
 			            			 	     Padding="15, 10, 10, 10"
 	            			 				 BackgroundColor="White">	
-        			 				<StackLayout.GestureRecognizers>
-							 			<TapGestureRecognizer Command="{Binding Source={x:Reference CategoryList}, Path=BindingContext.SetCellVisible}"
-									 						  CommandParameter="{Binding}"/>
-									</StackLayout.GestureRecognizers>
+        			 				
 
 		             				<Grid HorizontalOptions="FillAndExpand" >
 									    <Grid.RowDefinitions>
