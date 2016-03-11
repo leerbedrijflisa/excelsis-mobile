@@ -26,7 +26,7 @@ namespace Lisa.Excelsis.Mobile
 
             base.OnStart();
 
-            MainPage = new RootPage();
+            MainPage = new NavigationPage(new AssessmentPage());
         }
     }
 }

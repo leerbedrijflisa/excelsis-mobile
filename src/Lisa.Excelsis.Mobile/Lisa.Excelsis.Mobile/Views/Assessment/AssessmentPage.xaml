@@ -7,13 +7,14 @@
         </ResourceDictionary>
 </ContentPage.Resources>
 	<StackLayout>
-		<ListView x:Name="CategoryList" 
+		<local:SpecialListView x:Name="CategoryList" 
 					ItemsSource = "{Binding Categories}" 
-					HasUnevenRows="true" 
+					HasUnevenRows="true"
+					SelectedItem="{Binding SelectedItem}" 
 					RowHeight="-1" 
 					GroupDisplayBinding="{Binding Name}"
 			        IsGroupingEnabled="true">
-	      	<ListView.ItemTemplate>
+	      	<local:SpecialListView.ItemTemplate>
 		      	<DataTemplate> 
 			      	<ViewCell x:Name="ObservationCell">
 			   		 	<ViewCell.View>
@@ -62,7 +63,7 @@
 											 HorizontalOptions="FillAndExpand"
 											 VerticalOptions="StartAndExpand"
 											 BackgroundColor="White"
-	            			 				 IsVisible="{Binding IsCellVisible}"
+	            			 				 IsVisible="{Binding IsSelected}"
 	            			 				 Padding="0, 0, 0, 20">
 
 									<Grid HorizontalOptions="Center" 										 
@@ -174,7 +175,7 @@
 					    </ViewCell.View>
 					</ViewCell>
 		      	</DataTemplate>
-	    	</ListView.ItemTemplate>
-	    </ListView>
+	    	</local:SpecialListView.ItemTemplate>
+	    </local:SpecialListView>
 	</StackLayout>
 </ContentPage>

@@ -90,6 +90,7 @@
     </Compile>
     <Compile Include="Converters\ResultConverter.cs" />
     <Compile Include="Converters\MarkConverter.cs" />
+    <Compile Include="Renderers\SpecialListView.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Assessment\AssessmentPage.xaml">

@@ -23,10 +23,10 @@ namespace Lisa.Excelsis.Mobile
                 OnChangeResult(item, "unseen"); 
                 ChangeObserveColor();
             });
-            this.SetMaybeNotActive = new Command<ObservationViewModel>(ToggleMark(() => Maybe_Not = !Maybe_Not));
-            this.SetSkipActive = new Command<ObservationViewModel>(ToggleMark(() => Skip = !Skip));
-            this.SetUnclearActive = new Command<ObservationViewModel>(ToggleMark(() => Unclear = !Unclear));           
-            this.SetChangeActive = new Command<ObservationViewModel>(ToggleMark(() => Change = !Change));    
+            this.SetMaybeNotActive = new Command<ObservationViewModel>(ToggleMark(() => Maybe_Not = !Maybe_Not, "maybenot"));
+            this.SetSkipActive = new Command<ObservationViewModel>(ToggleMark(() => Skip = !Skip, "skip"));
+            this.SetUnclearActive = new Command<ObservationViewModel>(ToggleMark(() => Unclear = !Unclear, "unclear"));           
+            this.SetChangeActive = new Command<ObservationViewModel>(ToggleMark(() => Change = !Change, "change"));    
         }
             
         public ICommand SetSeenResult { get; set; }
@@ -99,15 +99,15 @@ namespace Lisa.Excelsis.Mobile
             }
         }
 
-        public bool IsCellVisible
+        public bool IsSelected
         { 
-            get { return _IsCellVisible; } 
+            get { return _IsSelected; } 
             set
             {
-                if (_IsCellVisible != value)
+                if (_IsSelected != value)
                 {
-                    _IsCellVisible = value;
-                    OnPropertyChanged("IsCellVisible");
+                    _IsSelected = value;
+                    OnPropertyChanged("IsSelected");
                 }
             }
         }
@@ -125,7 +125,7 @@ namespace Lisa.Excelsis.Mobile
             }
         }
 
-        private bool _IsCellVisible;
+        private bool _IsSelected;
         private Color _ObserveColor;
         private string _Result;
         private bool _Maybe_Not;
@@ -166,7 +166,7 @@ namespace Lisa.Excelsis.Mobile
             }
         }
 
-        private Action<ObservationViewModel> ToggleMark(Func<bool> toggle)
+        private Action<ObservationViewModel> ToggleMark(Func<bool> toggle, string mark)
         {
             return (item) =>
             {
@@ -179,7 +179,7 @@ namespace Lisa.Excelsis.Mobile
                     ActiveMarks--;
                 }
 
-                ChangeObserveColor(); 
+                ChangeObserveColor();
             };
         }
     }

@@ -32,11 +32,11 @@ namespace Lisa.Excelsis.Mobile
                 {
                     if (item.Id != observation.Id)
                     {
-                        item.IsCellVisible = false;
+                        item.IsSelected = false;
                     }
                     else
                     {
-                        observation.IsCellVisible = !observation.IsCellVisible;
+                        observation.IsSelected = !observation.IsSelected;
                     }
                 }
             }

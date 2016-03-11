@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace Lisa.Excelsis.Mobile
 {
-	public class NativeListView : ListView
+	public class SpecialListView : ListView
 	{
 		public event EventHandler<SelectedItemChangedEventArgs> ItemSelected;
 

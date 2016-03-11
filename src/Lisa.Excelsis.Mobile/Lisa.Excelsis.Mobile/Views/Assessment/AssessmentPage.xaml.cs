@@ -9,8 +9,9 @@ namespace Lisa.Excelsis.Mobile
 {
     public partial class AssessmentPage : ContentPage
     {
-        public AssessmentPage (Assessment assessment)
+        public AssessmentPage ()
         {
+            Assessment assessment = DummyData.Fetch();
             InitializeComponent();
             this.Title = "Beoordeling";
 
@@ -32,6 +33,7 @@ namespace Lisa.Excelsis.Mobile
                 };
 
                 _assessment.Categories.Add(_category);
+                _category.Observations = new ObservableCollection<ObservationViewModel>();
                 foreach (var observations in categories.Observations)
                 {
                     var _observation = new ObservationViewModel()
@@ -45,6 +47,7 @@ namespace Lisa.Excelsis.Mobile
                         Change = observations.Marks.Contains("change")
                     };
                     
+                    _category.Observations.Add(_observation);
                     _category.Add(_observation);
                 }
             }

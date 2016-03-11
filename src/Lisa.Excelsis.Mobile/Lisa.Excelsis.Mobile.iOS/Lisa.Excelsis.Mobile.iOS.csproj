@@ -113,6 +113,7 @@
     <None Include="Resources\settings.png" />
     <None Include="Resources\settings%402x.png" />
     <None Include="Resources\icon.png" />
+    <None Include="Renderers\SpecialOSListViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lisa.Excelsis.Mobile\Lisa.Excelsis.Mobile.csproj">
