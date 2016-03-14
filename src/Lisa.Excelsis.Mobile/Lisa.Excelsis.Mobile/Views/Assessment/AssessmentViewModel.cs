@@ -27,6 +27,27 @@ namespace Lisa.Excelsis.Mobile
             } 
         }
 
+        public ObservationViewModel SelectedItem
+        {
+            get { return _selectedItem; }
+            set
+            {
+                if (_selectedItem == value)
+                    return;
+
+                if (_selectedItem != null)
+                {
+                    _selectedItem.IsSelected = false;
+                }
+
+                _selectedItem = value;
+                if (_selectedItem != null)
+                {
+                    _selectedItem.IsSelected = true;
+                }
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -35,5 +56,7 @@ namespace Lisa.Excelsis.Mobile
         }
 
         private ObservableCollection<CategoryViewModel> _categories;
+
+        private ObservationViewModel _selectedItem;
     }
 }
