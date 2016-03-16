@@ -64,10 +64,12 @@ namespace Lisa.Excelsis.Mobile
                 if( oldItem != null && item.Id == oldItem.Id && item.IsSelected)
                 {
                     item.IsSelected = false;
+                    ObservationCell.ForceUpdateSize();
                     CategoryList.SelectedItem = null;
                 }   
                 else if( oldItem != null && item.Id == oldItem.Id && !item.IsSelected)
                 {
+                    ObservationCell.ForceUpdateSize();
                     item.IsSelected = true;
                 }
                 else if (oldItem != null && item.Id != oldItem.Id)
@@ -75,12 +77,14 @@ namespace Lisa.Excelsis.Mobile
                     oldItem.IsSelected = false;
                     item.IsSelected = true;
                     oldItem = item;
+                    ObservationCell.ForceUpdateSize();
                     CategoryList.SelectedItem = item;
                 }    
                 else
                 {
                     item.IsSelected = true;
                     oldItem = item;
+                    ObservationCell.ForceUpdateSize();
                     CategoryList.SelectedItem = item;
                 }
             };           
