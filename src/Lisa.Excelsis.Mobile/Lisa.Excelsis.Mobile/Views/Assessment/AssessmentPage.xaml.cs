@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
+using SQLite.Net;
 
 namespace Lisa.Excelsis.Mobile
 {
@@ -11,7 +12,12 @@ namespace Lisa.Excelsis.Mobile
     {
         public AssessmentPage ()
         {
-            Assessment assessment = DummyData.Fetch();
+            Assessment assessment = _db.FetchAssessment();
+            if( assessment == null)
+            {
+                assessment = DummyData.Fetch();
+                _db.SaveAssessment(assessment);
+            }
             InitializeComponent();
             this.Title = "Beoordeling";
 
@@ -40,11 +46,12 @@ namespace Lisa.Excelsis.Mobile
                         Id = observations.Id.ToString(),
                         Result = observations.Result,
                         Criterion = observations.Criterion,
-                        Maybe_Not = observations.Marks.Contains("maybe_not"),
+                        Maybe_Not = observations.Marks.Contains("maybenot"),
                         Skip = observations.Marks.Contains("skip"),
                         Unclear = observations.Marks.Contains("unclear"),
                         Change = observations.Marks.Contains("change")
-                    };                    
+                    };           
+                    _observation.ChangeObserveColor();
                    _category.Add(_observation);
                 }
             }
@@ -79,6 +86,8 @@ namespace Lisa.Excelsis.Mobile
         }
 
         private ObservationViewModel oldItem;
+
+        private readonly Database _db = new Database();
     }
 }
 

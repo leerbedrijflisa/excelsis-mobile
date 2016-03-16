@@ -52,7 +52,6 @@
     <Compile Include="DatabaseModels\Exam.cs" />
     <Compile Include="DatabaseModels\Category.cs" />
     <Compile Include="DatabaseModels\Observation.cs" />
-    <Compile Include="DatabaseModels\Criterion.cs" />
     <Compile Include="DatabaseModels\Marks.cs" />
     <Compile Include="ApiModels\MenuItem.cs" />
     <Compile Include="ApiModels\Assessment.cs" />
@@ -90,6 +89,8 @@
     </Compile>
     <Compile Include="Converters\ResultConverter.cs" />
     <Compile Include="Converters\MarkConverter.cs" />
+    <Compile Include="Converters\ObserveColorConverter.cs" />
+    <Compile Include="Database\Database.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Assessment\AssessmentPage.xaml">
@@ -185,6 +186,7 @@
     <Folder Include="Views\Dashboard\" />
     <Folder Include="Views\Home\" />
     <Folder Include="Converters\" />
+    <Folder Include="Database\" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>

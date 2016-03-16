@@ -8,8 +8,12 @@ namespace Lisa.Excelsis.Mobile
     {
         [PrimaryKey]
         public int Id { get; set; }
-        public int Result { get; set; }
+        public string Result { get; set; }
         public int CategoryId { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public int Order { get; set; }
+        public string Weight { get; set; }
     }
 }
 

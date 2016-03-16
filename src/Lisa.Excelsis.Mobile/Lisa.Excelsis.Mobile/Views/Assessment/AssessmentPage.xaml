@@ -1,11 +1,16 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Lisa.Excelsis.Mobile.AssessmentPage" xmlns:local="clr-namespace:Lisa.Excelsis.Mobile;assembly=Lisa.Excelsis.Mobile">
 <ContentPage.Resources>
-        <ResourceDictionary>
-            <local:ResultConverter x:Key="ResultConverter" />
-            <local:MarkConverter x:Key="MarkConverter" />
-        </ResourceDictionary>
+    <ResourceDictionary>
+        <local:ResultConverter x:Key="ResultConverter" />
+        <local:MarkConverter x:Key="MarkConverter" />
+        <local:ObserveColorConverter x:Key="ObserveColorConverter" />
+    </ResourceDictionary>
 </ContentPage.Resources>
+<ContentPage.ToolbarItems>
+ 	<ToolbarItem Order="Primary" Name="Clear" Icon="recyclebin.png" />
+    <ToolbarItem Order="Primary" Name="Edit" Icon="edit.png" />       
+</ContentPage.ToolbarItems>
 	<StackLayout>
 		<ListView x:Name="CategoryList" 
 					ItemsSource = "{Binding Categories}" 
@@ -49,7 +54,7 @@
 				             			<Label 	x:Name="ObservationTitle" 
 				             					Text="{Binding Criterion.Title}" 
 			             						FontSize="18" 
-			             						TextColor="{Binding ObserveColor}"
+		             							TextColor="{Binding ObserveColor}"
 				             					VerticalOptions="StartAndExpand" 
 				             					Grid.Column="1" Grid.Row="0"/>
 			             				

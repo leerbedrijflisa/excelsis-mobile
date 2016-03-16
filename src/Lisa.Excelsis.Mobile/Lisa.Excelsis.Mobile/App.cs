@@ -22,7 +22,7 @@ namespace Lisa.Excelsis.Mobile
             db.CreateTable<Assessmentdb>();
             db.CreateTable<Categorydb>();
             db.CreateTable<Observationdb>();
-            db.CreateTable<Criteriondb>();
+            db.CreateTable<Markdb>();
 
             base.OnStart();
 

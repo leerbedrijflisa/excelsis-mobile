@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Graphics.Drawables;
 
 namespace Lisa.Excelsis.Mobile.Droid
 {
@@ -14,6 +15,8 @@ namespace Lisa.Excelsis.Mobile.Droid
             Xamarin.Forms.Forms.Init(this, bundle);
 
             LoadApplication(new App());
+
+            ActionBar.SetIcon ( new ColorDrawable (Resources.GetColor (Android.Resource.Color.Transparent)));
         }
     }
 }

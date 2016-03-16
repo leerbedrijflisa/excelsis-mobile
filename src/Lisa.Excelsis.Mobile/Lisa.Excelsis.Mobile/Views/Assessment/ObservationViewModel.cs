@@ -149,17 +149,18 @@ namespace Lisa.Excelsis.Mobile
             {
                 item.Result = "notrated";
             }
+            _db.UpdateResult(item.Id, item.Result);
         }
 
-        private void ChangeObserveColor()
+        public void ChangeObserveColor()
         {
-            if (ActiveMarks > 0)
+            if (Skip || Change || Unclear || Maybe_Not)
             {
-                ObserveColor = Color.Maroon;
+                ObserveColor = Color.FromRgb(255, 165, 0);
             }
             else if (Result == "notrated")
             {
-                ObserveColor = Color.Gray;
+                ObserveColor = Color.Black;
             }
             else
             {
@@ -174,15 +175,19 @@ namespace Lisa.Excelsis.Mobile
                 if (toggle())
                 {
                     ActiveMarks++;
+                    _db.AddMark(item.Id, mark);
                 }
                 else
                 {
                     ActiveMarks--;
+                    _db.RemoveMark(item.Id, mark);
                 }
 
                 ChangeObserveColor();
             };
         }
+
+        private readonly Database _db = new Database();
     }
 }
 

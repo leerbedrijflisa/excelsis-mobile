@@ -63,7 +63,7 @@ namespace Lisa.Excelsis.Mobile
                             new Observation
                             {
                                 Id = 137,
-                                Result = "unseen",
+                                        Result = "notrated",
                                 Criterion = new Criterion
                                 {
                                     Title = "De kandidaat laat de opdrachtgever weten welke features nieuw zijn in de huidige release.",
@@ -89,7 +89,7 @@ namespace Lisa.Excelsis.Mobile
                             new Observation
                             {
                                 Id = 139,
-                                Result = "seen",
+                                Result = "notrated",
                                 Criterion = new Criterion
                                 {
                                     Title = "De kandidaat laat de opdrachtgever weten welke problemen de huidige release bevat.",
