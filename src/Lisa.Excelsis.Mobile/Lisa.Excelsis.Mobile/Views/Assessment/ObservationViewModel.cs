@@ -133,7 +133,6 @@ namespace Lisa.Excelsis.Mobile
         private bool _Skip;
         private bool _Unclear;
         private bool _Change;
-        private int ActiveMarks = 0;
 
         private void OnChangeResult(ObservationViewModel item, string result)
         {
@@ -174,12 +173,10 @@ namespace Lisa.Excelsis.Mobile
             {
                 if (toggle())
                 {
-                    ActiveMarks++;
                     _db.AddMark(item.Id, mark);
                 }
                 else
                 {
-                    ActiveMarks--;
                     _db.RemoveMark(item.Id, mark);
                 }
 
