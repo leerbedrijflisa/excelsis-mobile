@@ -8,7 +8,7 @@
     </ResourceDictionary>
 </ContentPage.Resources>
 <ContentPage.ToolbarItems>
- 	<ToolbarItem Order="Primary" Name="Clear" Icon="recyclebin.png" />
+ 	<ToolbarItem Order="Primary" Name="Clear" Icon="recyclebin.png" Command="{Binding ClearAssessment}" CommandParameter="{Binding}" />
     <ToolbarItem Order="Primary" Name="Edit" Icon="edit.png" />       
 </ContentPage.ToolbarItems>
 	<StackLayout>

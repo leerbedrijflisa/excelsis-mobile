@@ -14,6 +14,7 @@ namespace Lisa.Excelsis.Mobile
         public string Description { get; set; }
         public int Order { get; set; }
         public string Weight { get; set; }
+        public int AssessmentId { get; set; }
     }
 }
 

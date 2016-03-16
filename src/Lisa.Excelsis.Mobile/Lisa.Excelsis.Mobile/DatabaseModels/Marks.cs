@@ -9,5 +9,6 @@ namespace Lisa.Excelsis.Mobile
         public int Id { get; set; }
         public string Name { get; set; }
         public int ObservationId { get; set; }
+        public int AssessmentId { get; set; }
     }
 }

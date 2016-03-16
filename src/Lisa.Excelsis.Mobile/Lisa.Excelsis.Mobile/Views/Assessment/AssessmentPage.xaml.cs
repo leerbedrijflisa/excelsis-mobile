@@ -21,8 +21,9 @@ namespace Lisa.Excelsis.Mobile
             InitializeComponent();
             this.Title = "Beoordeling";
 
-            var _assessment = new AssessmentViewModel()
+            var _assessment = new AssessmentViewModel(this.Navigation, this)
             {
+                Id = assessment.Id,
                 Assessed = assessment.Assessed,
                 Assessors = assessment.Assessors,
                 Student = assessment.Student,

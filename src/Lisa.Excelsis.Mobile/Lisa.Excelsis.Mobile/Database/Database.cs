@@ -116,7 +116,8 @@ namespace Lisa.Excelsis.Mobile
                         Title = observation.Criterion.Title,
                         Description = observation.Criterion.Description,
                         Weight = observation.Criterion.Weight,
-                        CategoryId = category.Id
+                        CategoryId = category.Id,
+                        AssessmentId = assessment.Id
                     };
                     observationList.Add(odb);
 
@@ -126,7 +127,8 @@ namespace Lisa.Excelsis.Mobile
                         var mdb = new Markdb()
                         {
                             Name = mark,
-                            ObservationId = observation.Id
+                            ObservationId = observation.Id,
+                            AssessmentId = assessment.Id
                         };
                         markList.Add(mdb);
                     }
@@ -139,7 +141,7 @@ namespace Lisa.Excelsis.Mobile
 
         public void UpdateResult(object id, string result)
         {
-            _db.Query<Observationdb>("UPDATE Observations SET Result = ? WHERE Observations.Id == ?", result, id);
+            _db.Execute("UPDATE Observations SET Result = ? WHERE Observations.Id == ?", result, id);
         }
 
         public void AddMark(object id, string mark)
@@ -149,9 +151,16 @@ namespace Lisa.Excelsis.Mobile
 
         public void RemoveMark(object id, string mark)
         {
-            _db.Query<Markdb>("DELETE FROM Marks WHERE Name = ? AND ObservationId = ? ", mark, id);
+            _db.Execute("DELETE FROM Marks WHERE Name = ? AND ObservationId = ? ", mark, id);
         }
 
+        public void RemoveAssessment(object id)
+        {
+            _db.Execute("DELETE FROM Assessments WHERE Id = ?", id);
+            _db.Execute("DELETE FROM Categories WHERE AssessmentId = ?", id);
+            _db.Execute("DELETE FROM Observations WHERE AssessmentId = ?", id);
+            _db.Execute("DELETE FROM Marks WHERE AssessmentId = ?", id);
+        }
 
         private readonly SQLiteConnection _db = DependencyService.Get<ISQLite>().GetConnection();
     }
