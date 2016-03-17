@@ -58,39 +58,57 @@ namespace Lisa.Excelsis.Mobile
             }
 
             this.BindingContext = _assessment;
-            CategoryList.ItemTapped += (object sender, ItemTappedEventArgs e) => {
-                var item = (ObservationViewModel)e.Item;
+//            CategoryList.ItemTapped += (object sender, ItemTappedEventArgs e) => {
+//                var item = (ObservationViewModel)e.Item;
+//
+//                if( oldItem != null && item.Id == oldItem.Id && item.IsSelected)
+//                {
+//                    item.IsSelected = false;
+//                    CategoryList.SelectedItem = null;
+//                }   
+//                else if( oldItem != null && item.Id == oldItem.Id && !item.IsSelected)
+//                {
+//                    item.IsSelected = true;
+//                }
+//                else if (oldItem != null && item.Id != oldItem.Id)
+//                {
+//                    oldItem.IsSelected = false;
+//                    item.IsSelected = true;
+//                    oldItem = item;
+//                    CategoryList.SelectedItem = item;
+//                }    
+//                else
+//                {
+//                    item.IsSelected = true;
+//                    oldItem = item;
+//                    CategoryList.SelectedItem = item;
+//                }
+//
+//                ((ListView)sender).FindByName<ViewCell>("ObservationCell").ForceUpdateSize();
+//
+//            };           
+        }
 
-                if( oldItem != null && item.Id == oldItem.Id && item.IsSelected)
-                {
-                    item.IsSelected = false;
-                    ObservationCell.ForceUpdateSize();
-                    CategoryList.SelectedItem = null;
-                }   
-                else if( oldItem != null && item.Id == oldItem.Id && !item.IsSelected)
-                {
-                    ObservationCell.ForceUpdateSize();
-                    item.IsSelected = true;
-                }
-                else if (oldItem != null && item.Id != oldItem.Id)
-                {
-                    oldItem.IsSelected = false;
-                    item.IsSelected = true;
-                    oldItem = item;
-                    ObservationCell.ForceUpdateSize();
-                    CategoryList.SelectedItem = item;
-                }    
-                else
-                {
-                    item.IsSelected = true;
-                    oldItem = item;
-                    ObservationCell.ForceUpdateSize();
-                    CategoryList.SelectedItem = item;
-                }
-            };           
+        void OpenItem(object sender, EventArgs e)
+        {
+            var stacklayout = sender as StackLayout;
+            var cell = stacklayout.Parent.Parent as ViewCell;
+            var item = cell.BindingContext as ObservationViewModel;
+
+            if (oldCell != null && oldItem != null && oldItem != item)
+            {
+                oldItem.IsSelected = false;
+            }
+
+            item.IsSelected = !item.IsSelected;
+            cell.ForceUpdateSize();
+
+            oldCell = cell;
+            oldItem = item;
         }
 
         private ObservationViewModel oldItem;
+        private ViewCell oldCell;
 
         private readonly Database _db = new Database();
     }
