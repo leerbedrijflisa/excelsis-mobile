@@ -20,7 +20,7 @@
 			        IsGroupingEnabled="true">
 	      	<ListView.ItemTemplate>
 		      	<DataTemplate> 
-			      	<ViewCell x:Name="ObservationCell">
+			      	<ViewCell x:Name="ObservationCell" BindingContext="{Binding}">
 			   		 	<ViewCell.View>
 			            	<StackLayout x:Name="ObservationContainer"
 			            				 HorizontalOptions="FillAndExpand"
@@ -32,7 +32,7 @@
 										     VerticalOptions="StartAndExpand"	            			 	 		 
 			            			 	     Padding="15, 10, 10, 10"
 	            			 				 BackgroundColor="White">	
-        			 				
+        			 						
 
 		             				<Grid HorizontalOptions="FillAndExpand" >
 									    <Grid.RowDefinitions>
@@ -59,6 +59,10 @@
 				             					Grid.Column="1" Grid.Row="0"/>
 			             				
 									</Grid>
+
+									<StackLayout.GestureRecognizers>
+									    <TapGestureRecognizer Tapped="OpenItem"/>
+									</StackLayout.GestureRecognizers>
 								</StackLayout>
 								<StackLayout x:Name="ObservationButtons"
 											 HorizontalOptions="FillAndExpand"
