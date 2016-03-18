@@ -67,50 +67,51 @@ namespace Lisa.Excelsis.Mobile
             var cell = stacklayout.Parent.FindByName<ViewCell>("ObservationCell");
             var item = cell.BindingContext as ObservationViewModel;
 
-            if (oldCell != null && oldItem != null && oldItem != item)
+            if (_oldItem != null && _oldItem != item)
             {
-                AnimateRow(oldPage, oldRow, oldItem);
-                oldCell.ForceUpdateSize();
+                _oldAnimation.Commit(_oldPage, "the old animation", length: 100);
+                _oldItem.IsSelected = false;
             }
 
             _detailsRow = cell.FindByName<RowDefinition>("ShowButtons");
 
             if (item.IsSelected)
             {
-                AnimateRow(this,_detailsRow, item);
+                _currentAnimation = CollapseAnimation(cell, _detailsRow);
+                _currentAnimation.Commit(this, "the animation", length: 100);
+                item.IsSelected = false;
             }
             else
             {
                 item.IsSelected = true;
-                AnimateRow(this,_detailsRow, item);
+                _currentAnimation = ExpandAnimation(cell, _detailsRow);
+                _currentAnimation.Commit(this, "the animation", length: 100);
             }           
 
-            cell.ForceUpdateSize();
-
-            oldCell = cell;
-            oldRow = _detailsRow;
-            oldItem = item;
-            oldPage = this;
+            _oldItem = item;
+            _oldPage = this;
+            _oldAnimation = CollapseAnimation(cell, _detailsRow);
         }
 
-        private void AnimateRow(Page page,RowDefinition row, ObservationViewModel item = null)
+        private Animation ExpandAnimation(ViewCell cell, RowDefinition row)
         {
-            if(row.Height.Value < _detailsRowHeight)
-            {
-                // Move back to original height
-                _animation = new Animation(
-                    (d) => row.Height = Anim(d, 0, double.MaxValue),
-                    row.Height.Value, _detailsRowHeight, Easing.Linear, () => _animation = null);
-            }
-            else
-            {
-                // Hide the row
-                _animation = new Animation(
-                    (d) => row.Height = new GridLength(Anim(d, 0, double.MaxValue)),
-                    _detailsRowHeight, 0, Easing.Linear, () => {_animation = null; item.IsSelected = false;});
-            }
+            return new Animation(
+                (d) => {
+                    row.Height = Anim(d, 0, double.MaxValue);
+                    cell.ForceUpdateSize();
+                },
+                row.Height.Value, _detailsRowHeight, Easing.Linear, () => _currentAnimation = null);
+        }
 
-            _animation.Commit(page.ParentView, "the animation");
+        private Animation CollapseAnimation(ViewCell cell, RowDefinition row)
+        {
+            return new Animation(
+                (d) => 
+                {
+                    row.Height = new GridLength(Anim(d, 0, double.MaxValue));
+                    cell.ForceUpdateSize();
+                },
+                _detailsRowHeight, 0, Easing.Linear, () =>  _currentAnimation = null);
         }
 
 
@@ -131,13 +132,11 @@ namespace Lisa.Excelsis.Mobile
         }
 
         public double _detailsRowHeight= 90;
-        private Animation _animation;
+        private Animation _currentAnimation;
+        private Animation _oldAnimation;
         private RowDefinition _detailsRow;
-        private RowDefinition oldRow;
-        private Page oldPage;
-
-        private ObservationViewModel oldItem;
-        private ViewCell oldCell;
+        private Page _oldPage;
+        private ObservationViewModel _oldItem;
 
         private readonly Database _db = new Database();
     }
