@@ -16,7 +16,7 @@ namespace Lisa.Excelsis.Mobile.Droid
 
             LoadApplication(new App());
 
-            ActionBar.SetIcon ( new ColorDrawable (Resources.GetColor (Android.Resource.Color.Transparent)));
+            ActionBar.SetIcon ( new ColorDrawable (Android.Graphics.Color.Transparent));
         }
     }
 }

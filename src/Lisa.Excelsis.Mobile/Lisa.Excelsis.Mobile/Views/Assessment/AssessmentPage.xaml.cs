@@ -66,57 +66,57 @@ namespace Lisa.Excelsis.Mobile
             var stacklayout = sender as StackLayout;
             var cell = stacklayout.Parent.FindByName<ViewCell>("ObservationCell");
             var item = cell.BindingContext as ObservationViewModel;
+            var row = cell.FindByName<RowDefinition>("ShowButtons");
 
             if (_oldItem != null && _oldItem != item)
             {
-                _oldAnimation.Commit(_oldPage, "the old animation", length: 100);
-                _oldItem.IsSelected = false;
-            }
+                if (Device.OS == TargetPlatform.Android)
+                {
+                    _oldAnimation.Commit(_oldPage, "the old animation", length: 100);                   
+                }
 
-            _detailsRow = cell.FindByName<RowDefinition>("ShowButtons");
+                _oldItem.IsSelected = false;
+                _oldCell.ForceUpdateSize();
+            }
 
             if (item.IsSelected)
             {
-                _currentAnimation = CollapseAnimation(cell, _detailsRow);
-                _currentAnimation.Commit(this, "the animation", length: 100);
+                if (Device.OS == TargetPlatform.Android)
+                {
+                    CollapseAnimation(cell, row).Commit(this, "the animation", length: 100);
+                }
+
                 item.IsSelected = false;
+                cell.ForceUpdateSize();
             }
             else
             {
                 item.IsSelected = true;
-                _currentAnimation = ExpandAnimation(cell, _detailsRow);
-                _currentAnimation.Commit(this, "the animation", length: 100);
+
+                if (Device.OS == TargetPlatform.Android)
+                {
+                    ExpandAnimation(cell, row).Commit(this, "the animation", length: 100);
+                }
+
+                cell.ForceUpdateSize();
             }           
 
+            _oldCell = cell;
             _oldItem = item;
             _oldPage = this;
-            _oldAnimation = CollapseAnimation(cell, _detailsRow);
+            _oldAnimation = CollapseAnimation(cell, row);
         }
 
         private Animation ExpandAnimation(ViewCell cell, RowDefinition row)
         {
             return new Animation(
-                (d) => {
-                    row.Height = Anim(d, 0, double.MaxValue);
-                    if(d == _detailsRowHeight)
-                    {
-                        cell.ForceUpdateSize();
-                    }
-                },
-                row.Height.Value, _detailsRowHeight, Easing.Linear, () => _currentAnimation = null);
+                (d) => row.Height = Anim(d, 0, double.MaxValue), row.Height.Value, _rowHeight, Easing.Linear);
         }
 
         private Animation CollapseAnimation(ViewCell cell, RowDefinition row)
         {
             return new Animation(
-                (d) =>  {
-                    row.Height = new GridLength(Anim(d, 0, double.MaxValue));
-                    if(d == 0)
-                    {
-                        cell.ForceUpdateSize();
-                    }
-                },
-                _detailsRowHeight, 0, Easing.Linear, () =>  _currentAnimation = null);
+                (d) =>   row.Height = new GridLength(Anim(d, 0, double.MaxValue)), _rowHeight, 0, Easing.Linear);
         }
 
 
@@ -136,12 +136,11 @@ namespace Lisa.Excelsis.Mobile
             return value;
         }
 
-        public double _detailsRowHeight= 90;
-        private Animation _currentAnimation;
         private Animation _oldAnimation;
-        private RowDefinition _detailsRow;
+        public double _rowHeight= 90;
         private Page _oldPage;
         private ObservationViewModel _oldItem;
+        private ViewCell _oldCell;
 
         private readonly Database _db = new Database();
     }
