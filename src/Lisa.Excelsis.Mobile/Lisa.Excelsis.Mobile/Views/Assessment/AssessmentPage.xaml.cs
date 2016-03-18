@@ -76,7 +76,12 @@ namespace Lisa.Excelsis.Mobile
                 }
 
                 _oldItem.IsSelected = false;
-                _oldCell.ForceUpdateSize();
+
+                if (Device.OS == TargetPlatform.iOS)
+                {
+                    _oldRow.Height = 0;
+                    cell.ForceUpdateSize();
+                }
             }
 
             if (item.IsSelected)
@@ -87,7 +92,12 @@ namespace Lisa.Excelsis.Mobile
                 }
 
                 item.IsSelected = false;
-                cell.ForceUpdateSize();
+
+                if (Device.OS == TargetPlatform.iOS)
+                {
+                    row.Height = 0;
+                    cell.ForceUpdateSize();
+                }
             }
             else
             {
@@ -98,9 +108,14 @@ namespace Lisa.Excelsis.Mobile
                     ExpandAnimation(cell, row).Commit(this, "the animation", length: 100);
                 }
 
-                cell.ForceUpdateSize();
+                if (Device.OS == TargetPlatform.iOS)
+                {
+                    row.Height = _rowHeight;
+                    cell.ForceUpdateSize();
+                }
             }           
 
+            _oldRow = row;
             _oldCell = cell;
             _oldItem = item;
             _oldPage = this;
@@ -137,10 +152,11 @@ namespace Lisa.Excelsis.Mobile
         }
 
         private Animation _oldAnimation;
-        public double _rowHeight= 90;
+        public double _rowHeight= 110;
         private Page _oldPage;
         private ObservationViewModel _oldItem;
         private ViewCell _oldCell;
+        private RowDefinition _oldRow;
 
         private readonly Database _db = new Database();
     }
