@@ -58,54 +58,83 @@ namespace Lisa.Excelsis.Mobile
             }
 
             this.BindingContext = _assessment;
-//            CategoryList.ItemTapped += (object sender, ItemTappedEventArgs e) => {
-//                var item = (ObservationViewModel)e.Item;
-//
-//                if( oldItem != null && item.Id == oldItem.Id && item.IsSelected)
-//                {
-//                    item.IsSelected = false;
-//                    CategoryList.SelectedItem = null;
-//                }   
-//                else if( oldItem != null && item.Id == oldItem.Id && !item.IsSelected)
-//                {
-//                    item.IsSelected = true;
-//                }
-//                else if (oldItem != null && item.Id != oldItem.Id)
-//                {
-//                    oldItem.IsSelected = false;
-//                    item.IsSelected = true;
-//                    oldItem = item;
-//                    CategoryList.SelectedItem = item;
-//                }    
-//                else
-//                {
-//                    item.IsSelected = true;
-//                    oldItem = item;
-//                    CategoryList.SelectedItem = item;
-//                }
-//
-//                ((ListView)sender).FindByName<ViewCell>("ObservationCell").ForceUpdateSize();
-//
-//            };           
+
         }
 
         void OpenItem(object sender, EventArgs e)
         {
             var stacklayout = sender as StackLayout;
-            var cell = stacklayout.Parent.Parent as ViewCell;
+            var cell = stacklayout.Parent.FindByName<ViewCell>("ObservationCell");
             var item = cell.BindingContext as ObservationViewModel;
 
             if (oldCell != null && oldItem != null && oldItem != item)
             {
-                oldItem.IsSelected = false;
+                AnimateRow(oldPage, oldRow, oldItem);
+                oldCell.ForceUpdateSize();
             }
 
-            item.IsSelected = !item.IsSelected;
+            _detailsRow = cell.FindByName<RowDefinition>("ShowButtons");
+
+            if (item.IsSelected)
+            {
+                AnimateRow(this,_detailsRow, item);
+            }
+            else
+            {
+                item.IsSelected = true;
+                AnimateRow(this,_detailsRow, item);
+            }           
+
             cell.ForceUpdateSize();
 
             oldCell = cell;
+            oldRow = _detailsRow;
             oldItem = item;
+            oldPage = this;
         }
+
+        private void AnimateRow(Page page,RowDefinition row, ObservationViewModel item = null)
+        {
+            if(row.Height.Value < _detailsRowHeight)
+            {
+                // Move back to original height
+                _animation = new Animation(
+                    (d) => row.Height = Anim(d, 0, double.MaxValue),
+                    row.Height.Value, _detailsRowHeight, Easing.Linear, () => _animation = null);
+            }
+            else
+            {
+                // Hide the row
+                _animation = new Animation(
+                    (d) => row.Height = new GridLength(Anim(d, 0, double.MaxValue)),
+                    _detailsRowHeight, 0, Easing.Linear, () => {_animation = null; item.IsSelected = false;});
+            }
+
+            _animation.Commit(page.ParentView, "the animation");
+        }
+
+
+        // Make sure we don't go below zero
+        private double Anim(double value, double minValue, double maxValue)
+        {
+            if (value < minValue)
+            {
+                return minValue;
+            }
+
+            if (value > maxValue)
+            {
+                return maxValue;
+            }
+
+            return value;
+        }
+
+        public double _detailsRowHeight= 90;
+        private Animation _animation;
+        private RowDefinition _detailsRow;
+        private RowDefinition oldRow;
+        private Page oldPage;
 
         private ObservationViewModel oldItem;
         private ViewCell oldCell;

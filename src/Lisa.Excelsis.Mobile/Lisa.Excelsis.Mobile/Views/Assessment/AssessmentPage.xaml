@@ -27,155 +27,166 @@
 			            				 Orientation="Vertical"
 										 VerticalOptions="StartAndExpand"
 			            				 BackgroundColor="White">	
-	            			 	<StackLayout x:Name="Observation" 	
-				            			 	 HorizontalOptions="FillAndExpand"
-										     VerticalOptions="StartAndExpand"	            			 	 		 
-			            			 	     Padding="15, 10, 10, 10"
-	            			 				 BackgroundColor="White">	
-        			 						
+	            				 <Grid HorizontalOptions="FillAndExpand" >
+								    <Grid.RowDefinitions>
+								      	<RowDefinition Height="Auto" />		
+								      	<RowDefinition Height="0"  x:Name="ShowButtons"  />			      	
+								    </Grid.RowDefinitions>
+								   
+								    <Grid.ColumnDefinitions>
+								    	<ColumnDefinition Width="*" />
+								    </Grid.ColumnDefinitions>
 
-		             				<Grid HorizontalOptions="FillAndExpand" >
-									    <Grid.RowDefinitions>
-									      	<RowDefinition Height="Auto" />		
-									      	<RowDefinition Height="Auto" />			      	
-									    </Grid.RowDefinitions>
-									   
-									    <Grid.ColumnDefinitions>
-									    	<ColumnDefinition Width="35" />
-									    	<ColumnDefinition Width="*" />
-									    </Grid.ColumnDefinitions>
+		            			 	<StackLayout x:Name="Observation" 	
+					            			 	 HorizontalOptions="FillAndExpand"
+											     VerticalOptions="StartAndExpand"	            			 	 		 
+				            			 	     Padding="15, 10, 10, 10"
+		            			 				 BackgroundColor="White"
+		            			 				 Grid.Column="0" Grid.Row="0" >	
+	        			 						
 
-									    <Label 	x:Name="ObservationOrder" 
-									    		Text="{Binding Criterion.Order, StringFormat='{0}.'}" 
-									    		FontSize="18" 
-									    		VerticalOptions="StartAndExpand" 
-									    		Grid.Column="0" Grid.Row="0"/>   
+			             				<Grid HorizontalOptions="FillAndExpand">
+										    <Grid.RowDefinitions>
+										      	<RowDefinition Height="Auto" />		
+										      	<RowDefinition Height="Auto" />			      	
+										    </Grid.RowDefinitions>
+										   
+										    <Grid.ColumnDefinitions>
+										    	<ColumnDefinition Width="35" />
+										    	<ColumnDefinition Width="*" />
+										    </Grid.ColumnDefinitions>
 
-				             			<Label 	x:Name="ObservationTitle" 
-				             					Text="{Binding Criterion.Title}" 
-			             						FontSize="18" 
-		             							TextColor="{Binding ObserveColor}"
-				             					VerticalOptions="StartAndExpand" 
-				             					Grid.Column="1" Grid.Row="0"/>
-			             				
-									</Grid>
+										    <Label 	x:Name="ObservationOrder" 
+										    		Text="{Binding Criterion.Order, StringFormat='{0}.'}" 
+										    		FontSize="18" 
+										    		VerticalOptions="StartAndExpand" 
+										    		Grid.Column="0" Grid.Row="0"/>   
 
-									<StackLayout.GestureRecognizers>
-									    <TapGestureRecognizer Tapped="OpenItem"/>
-									</StackLayout.GestureRecognizers>
-								</StackLayout>
-								<StackLayout x:Name="ObservationButtons"
-											 HorizontalOptions="FillAndExpand"
-											 VerticalOptions="StartAndExpand"
-											 BackgroundColor="White"
-	            			 				 IsVisible="{Binding IsSelected}"
-	            			 				 Padding="0, 0, 0, 20">
+					             			<Label 	x:Name="ObservationTitle" 
+					             					Text="{Binding Criterion.Title}" 
+				             						FontSize="18" 
+			             							TextColor="{Binding ObserveColor}"
+					             					VerticalOptions="StartAndExpand" 
+					             					Grid.Column="1" Grid.Row="0"/>			             				
+										</Grid>
 
-									<Grid HorizontalOptions="Center" 										 
-										  Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
-									    <Grid.RowDefinitions>
-									      	<RowDefinition Height="Auto" />			      	
-									    </Grid.RowDefinitions>
+										<StackLayout.GestureRecognizers>
+										    <TapGestureRecognizer Tapped="OpenItem"/>
+										</StackLayout.GestureRecognizers>
+									</StackLayout>
+									<StackLayout x:Name="ObservationButtons"
+												 HorizontalOptions="FillAndExpand"
+												 VerticalOptions="StartAndExpand"
+												 BackgroundColor="White"
+		            			 				 IsVisible="{Binding IsSelected}"
+		            			 				 Grid.Column="0" Grid.Row="1" >
 
-									    <Grid.ColumnDefinitions>
-									    	<ColumnDefinition Width="80" />
-									    	<ColumnDefinition Width="80" />
-									    	<ColumnDefinition Width="10" />
-									    	<ColumnDefinition Width="80" />
-									    	<ColumnDefinition Width="80" />
-									    	<ColumnDefinition Width="80" />
-									    	<ColumnDefinition Width="80" />
-									    </Grid.ColumnDefinitions>
+										<Grid HorizontalOptions="Center"  
+											  Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+										    <Grid.RowDefinitions>
+										      	<RowDefinition Height="Auto"/>			      	
+										    </Grid.RowDefinitions>
 
-									    <StackLayout Grid.Column="0" Grid.Row="0" >
-					             			<Image 	Source="{	Binding Result, 
-				             									Converter={StaticResource ResultConverter}, 
-				             									ConverterParameter='seen',
+										    <Grid.ColumnDefinitions>
+										    	<ColumnDefinition Width="80" />
+										    	<ColumnDefinition Width="80" />
+										    	<ColumnDefinition Width="10" />
+										    	<ColumnDefinition Width="80" />
+										    	<ColumnDefinition Width="80" />
+										    	<ColumnDefinition Width="80" />
+										    	<ColumnDefinition Width="80" />
+										    </Grid.ColumnDefinitions>
+
+										    <StackLayout Grid.Column="0" Grid.Row="0" >
+						             			<Image 	Source="{	Binding Result, 
+					             									Converter={StaticResource ResultConverter}, 
+					             									ConverterParameter='seen',
+					             									StringFormat='{0}.png'}"
+														HeightRequest="60" WidthRequest="60"
+						             					HorizontalOptions="Center"
+						             					VerticalOptions="Start"
+						             					x:Name="yesImage">   
+							             			<Image.GestureRecognizers>
+													    <TapGestureRecognizer Command="{Binding SetSeenResult}"
+										 						  		  	  CommandParameter="{Binding}"/>
+													</Image.GestureRecognizers>
+												</Image>
+
+												<Label Text="Ja" VerticalOptions="End" HorizontalOptions="Center"/>
+											</StackLayout>
+
+											<StackLayout Grid.Column="1" Grid.Row="0">
+						             			<Image 	Source="{	Binding Result, 
+					             									Converter={StaticResource ResultConverter}, 
+					             									ConverterParameter='unseen',
+					             									StringFormat='{0}.png'}"
+														HeightRequest="60" WidthRequest="60"
+						             					HorizontalOptions="Center"
+						             					VerticalOptions="Start"
+						             					x:Name="noImage">
+					         					 	<Image.GestureRecognizers>
+													    <TapGestureRecognizer Command="{Binding SetNotSeenResult}"
+										 						  		  	  CommandParameter="{Binding}"/>
+													</Image.GestureRecognizers>
+												</Image>
+													
+												<Label Text="Nee" VerticalOptions="End" HorizontalOptions="Center"/>
+											</StackLayout>
+
+											<Image 	Source="{	Binding Maybe_Not, 
+																Converter={StaticResource MarkConverter}, 
+																ConverterParameter='maybe_not',
 				             									StringFormat='{0}.png'}"
 													HeightRequest="60" WidthRequest="60"
 					             					HorizontalOptions="Center"
 					             					VerticalOptions="Start"
-					             					x:Name="yesImage">   
-						             			<Image.GestureRecognizers>
-												    <TapGestureRecognizer Command="{Binding SetSeenResult}"
-									 						  		  	  CommandParameter="{Binding}"/>
-												</Image.GestureRecognizers>
-											</Image>
-
-											<Label Text="Ja" VerticalOptions="End" HorizontalOptions="Center"/>
-										</StackLayout>
-
-										<StackLayout Grid.Column="1" Grid.Row="0">
-					             			<Image 	Source="{	Binding Result, 
-				             									Converter={StaticResource ResultConverter}, 
-				             									ConverterParameter='unseen',
-				             									StringFormat='{0}.png'}"
-													HeightRequest="60" WidthRequest="60"
-					             					HorizontalOptions="Center"
-					             					VerticalOptions="Start"
-					             					x:Name="noImage">
+					         					 	Grid.Column="3" Grid.Row="0">
 				         					 	<Image.GestureRecognizers>
-												    <TapGestureRecognizer Command="{Binding SetNotSeenResult}"
-									 						  		  	  CommandParameter="{Binding}"/>
+												    <TapGestureRecognizer Command="{Binding SetMaybeNotActive}" CommandParameter="{Binding}" />
 												</Image.GestureRecognizers>
 											</Image>
-												
-											<Label Text="Nee" VerticalOptions="End" HorizontalOptions="Center"/>
-										</StackLayout>
 
-										<Image 	Source="{	Binding Maybe_Not, 
-															Converter={StaticResource MarkConverter}, 
-															ConverterParameter='maybe_not',
-			             									StringFormat='{0}.png'}"
-												HeightRequest="60" WidthRequest="60"
-				             					HorizontalOptions="Center"
-				             					VerticalOptions="Start"
-				         					 	Grid.Column="3" Grid.Row="0">
-			         					 	<Image.GestureRecognizers>
-											    <TapGestureRecognizer Command="{Binding SetMaybeNotActive}" CommandParameter="{Binding}" />
-											</Image.GestureRecognizers>
-										</Image>
+											<Image 	Source="{	Binding Skip, 
+																Converter={StaticResource MarkConverter}, 
+																ConverterParameter='skip',
+				             									StringFormat='{0}.png'}"
+													HeightRequest="60" WidthRequest="60"
+					             					HorizontalOptions="Center"
+					             					VerticalOptions="Start"
+					         					 	Grid.Column="4" Grid.Row="0">
+				         					 	<Image.GestureRecognizers>
+												     <TapGestureRecognizer Command="{Binding SetSkipActive}" CommandParameter="{Binding}" />
+												</Image.GestureRecognizers>
+											</Image>
 
-										<Image 	Source="{	Binding Skip, 
-															Converter={StaticResource MarkConverter}, 
-															ConverterParameter='skip',
-			             									StringFormat='{0}.png'}"
-												HeightRequest="60" WidthRequest="60"
-				             					HorizontalOptions="Center"
-				             					VerticalOptions="Start"
-				         					 	Grid.Column="4" Grid.Row="0">
-			         					 	<Image.GestureRecognizers>
-											     <TapGestureRecognizer Command="{Binding SetSkipActive}" CommandParameter="{Binding}" />
-											</Image.GestureRecognizers>
-										</Image>
+											<Image 	Source="{	Binding Unclear, 
+																Converter={StaticResource MarkConverter}, 
+																ConverterParameter='unclear',
+				             									StringFormat='{0}.png'}"
+													HeightRequest="60" WidthRequest="60"
+					             					HorizontalOptions="Center"
+					             					VerticalOptions="Start"
+					         					 	Grid.Column="5" Grid.Row="0">
+				         					 	<Image.GestureRecognizers>
+												     <TapGestureRecognizer Command="{Binding SetUnclearActive}" CommandParameter="{Binding}" />
+												</Image.GestureRecognizers>
+											</Image>
 
-										<Image 	Source="{	Binding Unclear, 
-															Converter={StaticResource MarkConverter}, 
-															ConverterParameter='unclear',
-			             									StringFormat='{0}.png'}"
-												HeightRequest="60" WidthRequest="60"
-				             					HorizontalOptions="Center"
-				             					VerticalOptions="Start"
-				         					 	Grid.Column="5" Grid.Row="0">
-			         					 	<Image.GestureRecognizers>
-											     <TapGestureRecognizer Command="{Binding SetUnclearActive}" CommandParameter="{Binding}" />
-											</Image.GestureRecognizers>
-										</Image>
-
-										<Image 	Source="{	Binding Change, 
-															Converter={StaticResource MarkConverter}, 
-															ConverterParameter='change',
-			             									StringFormat='{0}.png'}"
-												HeightRequest="60" WidthRequest="60"
-				             					HorizontalOptions="Center"
-				             					VerticalOptions="Start"
-				         					 	Grid.Column="6" Grid.Row="0">
-			         					 	<Image.GestureRecognizers>
-											     <TapGestureRecognizer Command="{Binding SetChangeActive}" CommandParameter="{Binding}" />
-											</Image.GestureRecognizers>
-										</Image>
-	         					 	</Grid>
-	         					</StackLayout>
+											<Image 	Source="{	Binding Change, 
+																Converter={StaticResource MarkConverter}, 
+																ConverterParameter='change',
+				             									StringFormat='{0}.png'}"
+													HeightRequest="60" WidthRequest="60"
+					             					HorizontalOptions="Center"
+					             					VerticalOptions="Start"
+					         					 	Grid.Column="6" Grid.Row="0">
+				         					 	<Image.GestureRecognizers>
+												     <TapGestureRecognizer Command="{Binding SetChangeActive}" CommandParameter="{Binding}" />
+												</Image.GestureRecognizers>
+											</Image>
+		         					 	</Grid>
+		         					</StackLayout>
+	         					</Grid>
 			            	</StackLayout>
 					    </ViewCell.View>
 					</ViewCell>
