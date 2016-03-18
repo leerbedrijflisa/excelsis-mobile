@@ -113,29 +113,16 @@
     <None Include="Resources\settings.png" />
     <None Include="Resources\settings%402x.png" />
     <None Include="Resources\icon.png" />
-    <None Include="Resources\change.png" />
-    <None Include="Resources\change_COLOR.png" />
     <None Include="Resources\maybenot.png" />
     <None Include="Resources\maybenot_COLOR.png" />
-    <None Include="Resources\skip.png" />
-    <None Include="Resources\skip_COLOR.png" />
-    <None Include="Resources\unclear.png" />
-    <None Include="Resources\unclear_COLOR.png" />
     <None Include="Resources\yesnobutton0.png" />
     <None Include="Resources\yesnobutton1.png" />
     <None Include="Resources\yesnobutton2.png" />
     <None Include="Resources\Logo_excelsis_Beeld_RGB_2016.png" />
     <None Include="Resources\Logo_excelsis_Beeld_word_2016.png" />
-    <None Include="Resources\edit.png" />
     <None Include="Resources\Logo_excelsis_Beeld_Word_240.png" />
     <None Include="Resources\Logo_excelsis_Beeld_Word_480.png" />
     <None Include="Resources\Logo_excelsis_Beeld_Word_800.png" />
-    <None Include="Resources\maybe_not.png" />
-    <None Include="Resources\maybe_not_COLOR.png" />
-    <None Include="Resources\notrated.png" />
-    <None Include="Resources\recyclebin.png" />
-    <None Include="Resources\seen.png" />
-    <None Include="Resources\unseen.png" />
     <None Include="Resources\yesnobutton1-old.png" />
     <None Include="Resources\yesnobutton2-old.png" />
   </ItemGroup>
@@ -162,6 +149,19 @@
     <BundleResource Include="Resources\Icon-Small%402x.png" />
     <BundleResource Include="Resources\Icon-Small%403x.png" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <BundleResource Include="Resources\edit.png" />
+    <BundleResource Include="Resources\change_COLOR.png" />
+    <BundleResource Include="Resources\change.png" />
+    <BundleResource Include="Resources\maybe_not.png" />
+    <BundleResource Include="Resources\maybe_not_COLOR.png" />
+    <BundleResource Include="Resources\recyclebin.png" />
+    <BundleResource Include="Resources\notrated.png" />
+    <BundleResource Include="Resources\seen.png" />
+    <BundleResource Include="Resources\skip.png" />
+    <BundleResource Include="Resources\skip_COLOR.png" />
+    <BundleResource Include="Resources\unclear.png" />
+    <BundleResource Include="Resources\unclear_COLOR.png" />
+    <BundleResource Include="Resources\unseen.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
