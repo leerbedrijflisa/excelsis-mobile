@@ -98,7 +98,10 @@ namespace Lisa.Excelsis.Mobile
             return new Animation(
                 (d) => {
                     row.Height = Anim(d, 0, double.MaxValue);
-                    cell.ForceUpdateSize();
+                    if(d == _detailsRowHeight)
+                    {
+                        cell.ForceUpdateSize();
+                    }
                 },
                 row.Height.Value, _detailsRowHeight, Easing.Linear, () => _currentAnimation = null);
         }
@@ -106,10 +109,12 @@ namespace Lisa.Excelsis.Mobile
         private Animation CollapseAnimation(ViewCell cell, RowDefinition row)
         {
             return new Animation(
-                (d) => 
-                {
+                (d) =>  {
                     row.Height = new GridLength(Anim(d, 0, double.MaxValue));
-                    cell.ForceUpdateSize();
+                    if(d == 0)
+                    {
+                        cell.ForceUpdateSize();
+                    }
                 },
                 _detailsRowHeight, 0, Easing.Linear, () =>  _currentAnimation = null);
         }
