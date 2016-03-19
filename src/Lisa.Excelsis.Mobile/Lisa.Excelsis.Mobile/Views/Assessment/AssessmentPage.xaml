@@ -8,8 +8,8 @@
     </ResourceDictionary>
 </ContentPage.Resources>
 <ContentPage.ToolbarItems>
- 	<ToolbarItem Order="Primary" Name="Clear" Icon="recyclebin.png" Command="{Binding ClearAssessment}" CommandParameter="{Binding}" />
-    <ToolbarItem Order="Primary" Name="Edit" Icon="edit.png" />       
+ 	<ToolbarItem Order="Primary" Name="Clear" Icon="recyclebinWhite.png" Command="{Binding ClearAssessment}" CommandParameter="{Binding}" />
+    <ToolbarItem Order="Primary" Name="Edit" Icon="editWhite.png" />       
 </ContentPage.ToolbarItems>
 	<StackLayout>
 		<ListView x:Name="CategoryList" 

@@ -66,72 +66,51 @@ namespace Lisa.Excelsis.Mobile
             var stacklayout = sender as StackLayout;
             var cell = stacklayout.Parent.FindByName<ViewCell>("ObservationCell");
             var item = cell.BindingContext as ObservationViewModel;
-            var row = cell.FindByName<RowDefinition>("ShowButtons");
 
-            if (_oldItem != null && _oldItem != item)
+            if (oldCell != null && oldItem != null && oldItem != item)
             {
-                if (Device.OS == TargetPlatform.Android)
-                {
-                    _oldAnimation.Commit(_oldPage, "the old animation", length: 100);                   
-                }
-
-                _oldItem.IsSelected = false;
-
-                if (Device.OS == TargetPlatform.iOS)
-                {
-                    _oldRow.Height = 0;
-                    cell.ForceUpdateSize();
-                }
+                AnimateRow(oldPage, oldRow, oldItem);
+                oldCell.ForceUpdateSize();
             }
+
+            _detailsRow = cell.FindByName<RowDefinition>("ShowButtons");
 
             if (item.IsSelected)
             {
-                if (Device.OS == TargetPlatform.Android)
-                {
-                    CollapseAnimation(cell, row).Commit(this, "the animation", length: 100);
-                }
-
-                item.IsSelected = false;
-
-                if (Device.OS == TargetPlatform.iOS)
-                {
-                    row.Height = 0;
-                    cell.ForceUpdateSize();
-                }
+                AnimateRow(this,_detailsRow, item);
             }
             else
             {
                 item.IsSelected = true;
-
-                if (Device.OS == TargetPlatform.Android)
-                {
-                    ExpandAnimation(cell, row).Commit(this, "the animation", length: 100);
-                }
-
-                if (Device.OS == TargetPlatform.iOS)
-                {
-                    row.Height = _rowHeight;
-                    cell.ForceUpdateSize();
-                }
+                AnimateRow(this,_detailsRow, item);
             }           
 
-            _oldRow = row;
-            _oldCell = cell;
-            _oldItem = item;
-            _oldPage = this;
-            _oldAnimation = CollapseAnimation(cell, row);
+            cell.ForceUpdateSize();
+
+            oldCell = cell;
+            oldRow = _detailsRow;
+            oldItem = item;
+            oldPage = this;
         }
 
-        private Animation ExpandAnimation(ViewCell cell, RowDefinition row)
+        private void AnimateRow(Page page,RowDefinition row, ObservationViewModel item = null)
         {
-            return new Animation(
-                (d) => row.Height = Anim(d, 0, double.MaxValue), row.Height.Value, _rowHeight, Easing.Linear);
-        }
+            if(row.Height.Value < _detailsRowHeight)
+            {
+                // Move back to original height
+                _animation = new Animation(
+                    (d) => row.Height = Anim(d, 0, double.MaxValue),
+                    row.Height.Value, _detailsRowHeight, Easing.Linear, () => _animation = null);
+            }
+            else
+            {
+                // Hide the row
+                _animation = new Animation(
+                    (d) => row.Height = new GridLength(Anim(d, 0, double.MaxValue)),
+                    _detailsRowHeight, 0, Easing.Linear, () => {_animation = null; item.IsSelected = false;});
+            }
 
-        private Animation CollapseAnimation(ViewCell cell, RowDefinition row)
-        {
-            return new Animation(
-                (d) =>   row.Height = new GridLength(Anim(d, 0, double.MaxValue)), _rowHeight, 0, Easing.Linear);
+            _animation.Commit(page.ParentView, "the animation");
         }
 
 
@@ -151,12 +130,14 @@ namespace Lisa.Excelsis.Mobile
             return value;
         }
 
-        private Animation _oldAnimation;
-        public double _rowHeight= 110;
-        private Page _oldPage;
-        private ObservationViewModel _oldItem;
-        private ViewCell _oldCell;
-        private RowDefinition _oldRow;
+        public double _detailsRowHeight= 90;
+        private Animation _animation;
+        private RowDefinition _detailsRow;
+        private RowDefinition oldRow;
+        private Page oldPage;
+
+        private ObservationViewModel oldItem;
+        private ViewCell oldCell;
 
         private readonly Database _db = new Database();
     }

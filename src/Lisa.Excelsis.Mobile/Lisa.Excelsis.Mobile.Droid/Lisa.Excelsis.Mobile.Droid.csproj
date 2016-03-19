@@ -142,6 +142,8 @@
     <AndroidResource Include="Resources\drawable\splash_background.xml" />
     <AndroidResource Include="Resources\drawable\edit.png" />
     <AndroidResource Include="Resources\drawable\recyclebin.png" />
+    <AndroidResource Include="Resources\drawable\editWhite.png" />
+    <AndroidResource Include="Resources\drawable\recyclebinWhite.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
