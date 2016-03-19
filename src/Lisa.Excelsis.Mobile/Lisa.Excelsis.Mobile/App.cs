@@ -26,7 +26,11 @@ namespace Lisa.Excelsis.Mobile
 
             base.OnStart();
 
-            MainPage = new NavigationPage(new AssessmentPage());
+            MainPage = new NavigationPage(new AssessmentPage()){
+                BarBackgroundColor = Color.FromRgb(255, 165, 0),
+                BarTextColor = Color.White
+            };
+
         }
     }
 }
