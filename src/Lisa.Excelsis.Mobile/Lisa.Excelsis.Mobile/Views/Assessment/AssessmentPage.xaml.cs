@@ -75,7 +75,6 @@ namespace Lisa.Excelsis.Mobile
                 {
                     _oldAnimation.Commit(_oldPage, "the old animation", length: 100);                   
                 }
-                //this is weird
                 _oldItem.IsSelected = false;
 
                 if (Device.OS == TargetPlatform.iOS)
@@ -91,7 +90,7 @@ namespace Lisa.Excelsis.Mobile
                 {
                     CollapseAnimation(cell, row).Commit(this, "the animation", length: 100);
                 }
-
+                // is selected
                 item.IsSelected = false;
 
                 if (Device.OS == TargetPlatform.iOS)
@@ -115,14 +114,14 @@ namespace Lisa.Excelsis.Mobile
                     cell.ForceUpdateSize();
                 }
             }           
-
+            //define the old observation
             _oldRow = row;
             _oldCell = cell;
             _oldItem = item;
             _oldPage = this;
             _oldAnimation = CollapseAnimation(cell, row);
         }
-
+       
         private Animation ExpandAnimation(ViewCell cell, RowDefinition row)
         {
             return new Animation(
@@ -135,8 +134,6 @@ namespace Lisa.Excelsis.Mobile
                 (d) =>   row.Height = new GridLength(Anim(d, 0, double.MaxValue)), _rowHeight, 0, Easing.Linear);
         }
 
-
-        // Make sure we don't go below zero
         private double Anim(double value, double minValue, double maxValue)
         {
             if (value < minValue)
