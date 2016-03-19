@@ -63,6 +63,7 @@ namespace Lisa.Excelsis.Mobile
 
         void OpenItem(object sender, EventArgs e)
         {
+           
             var stacklayout = sender as StackLayout;
             var cell = stacklayout.Parent.FindByName<ViewCell>("ObservationCell");
             var item = cell.BindingContext as ObservationViewModel;
@@ -74,7 +75,7 @@ namespace Lisa.Excelsis.Mobile
                 {
                     _oldAnimation.Commit(_oldPage, "the old animation", length: 100);                   
                 }
-
+                //this is weird
                 _oldItem.IsSelected = false;
 
                 if (Device.OS == TargetPlatform.iOS)
