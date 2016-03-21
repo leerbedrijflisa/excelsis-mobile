@@ -14,15 +14,15 @@ namespace Lisa.Excelsis.Mobile
         public ObservationViewModel()
         {
             this.SetSeenResult = new Command<ObservationViewModel>((item) =>
-            { 
-                OnChangeResult(item, "seen"); 
-                ChangeObserveColor(); 
-            });
+                { 
+                    OnChangeResult(item, "seen"); 
+                    ChangeObserveColor(); 
+                });
             this.SetNotSeenResult = new Command<ObservationViewModel>((item) =>
-            { 
-                OnChangeResult(item, "unseen"); 
-                ChangeObserveColor();
-            });
+                { 
+                    OnChangeResult(item, "unseen"); 
+                    ChangeObserveColor();
+                });
             this.SetMaybeNotActive = new Command<ObservationViewModel>(ToggleMark(() => Maybe_Not = !Maybe_Not, "maybenot"));
             this.SetSkipActive = new Command<ObservationViewModel>(ToggleMark(() => Skip = !Skip, "skip"));
             this.SetUnclearActive = new Command<ObservationViewModel>(ToggleMark(() => Unclear = !Unclear, "unclear"));           
@@ -125,7 +125,6 @@ namespace Lisa.Excelsis.Mobile
             }
         }
 
-
         private bool _IsSelected;
         private Color _ObserveColor;
         private string _Result;
@@ -183,8 +182,6 @@ namespace Lisa.Excelsis.Mobile
                 ChangeObserveColor();
             };
         }
-
-       
 
         private readonly Database _db = new Database();
     }

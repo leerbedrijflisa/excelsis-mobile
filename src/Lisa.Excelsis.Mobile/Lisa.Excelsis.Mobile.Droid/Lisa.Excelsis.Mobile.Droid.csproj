@@ -136,7 +136,6 @@
     <AndroidResource Include="Resources\drawable\skip_COLOR.png" />
     <AndroidResource Include="Resources\drawable\unclear_COLOR.png" />
     <AndroidResource Include="Resources\drawable\Logo_excelsis_Beeld_RGB_2016.png" />
-    <AndroidResource Include="Resources\drawable\notrated.png" />
     <AndroidResource Include="Resources\drawable\seen.png" />
     <AndroidResource Include="Resources\drawable\unseen.png" />
     <AndroidResource Include="Resources\drawable\maybe_not.png" />
@@ -150,6 +149,7 @@
     <AndroidResource Include="Resources\drawable\refresh.png" />
     <AndroidResource Include="Resources\drawable\seen_default.png" />
     <AndroidResource Include="Resources\drawable\unseen_default.png" />
+    <AndroidResource Include="Resources\drawable\_default.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
