@@ -44,7 +44,7 @@
 		            			 	<StackLayout x:Name="Observation" 	
 					            			 	 HorizontalOptions="FillAndExpand"
 											     VerticalOptions="StartAndExpand"	            			 	 		 
-				            			 	     Padding="10, 5, 0, 0"
+				            			 	     Padding="10, 5, 5, 0"
 		            			 				 BackgroundColor="White"
 		            			 				 Grid.Column="0" Grid.Row="0" >	
 	        			 						
