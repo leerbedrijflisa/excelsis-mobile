@@ -100,6 +100,12 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\..\packages\Xamarin.Forms.2.1.0.6529\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
+    <Reference Include="RoundedBoxView.Forms.Plugin.Abstractions">
+      <HintPath>..\..\packages\Xam.Plugins.Forms.RoundedBoxView.1.0.0.7\lib\MonoAndroid10\RoundedBoxView.Forms.Plugin.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="RoundedBoxView.Forms.Plugin.Android">
+      <HintPath>..\..\packages\Xam.Plugins.Forms.RoundedBoxView.1.0.0.7\lib\MonoAndroid10\RoundedBoxView.Forms.Plugin.Android.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionChecker_Android.cs" />

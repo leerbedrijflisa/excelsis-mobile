@@ -2,6 +2,7 @@
 using Android.Content.PM;
 using Android.OS;
 using Android.Graphics.Drawables;
+using RoundedBoxView.Forms.Plugin.Droid;
 
 namespace Lisa.Excelsis.Mobile.Droid
 {
@@ -13,6 +14,8 @@ namespace Lisa.Excelsis.Mobile.Droid
             base.OnCreate(bundle);
 
             Xamarin.Forms.Forms.Init(this, bundle);
+
+            RoundedBoxViewRenderer.Init();
 
             LoadApplication(new App());
 

@@ -159,7 +159,7 @@ namespace Lisa.Excelsis.Mobile
             }
             else if (Result == "notrated")
             {
-                ObserveColor = Color.Black;
+                ObserveColor = Color.Gray;
             }
             else
             {

@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Lisa.Excelsis.Mobile.AssessmentPage" xmlns:local="clr-namespace:Lisa.Excelsis.Mobile;assembly=Lisa.Excelsis.Mobile">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+			 x:Class="Lisa.Excelsis.Mobile.AssessmentPage" 
+			 xmlns:local="clr-namespace:Lisa.Excelsis.Mobile;assembly=Lisa.Excelsis.Mobile"
+ 			 xmlns:abstractions="clr-namespace:RoundedBoxView.Forms.Plugin.Abstractions;assembly=RoundedBoxView.Forms.Plugin.Abstractions">
 <ContentPage.Resources>
     <ResourceDictionary>
         <local:ResultConverter x:Key="ResultConverter" />
@@ -40,7 +44,7 @@
 		            			 	<StackLayout x:Name="Observation" 	
 					            			 	 HorizontalOptions="FillAndExpand"
 											     VerticalOptions="StartAndExpand"	            			 	 		 
-				            			 	     Padding="15, 10, 10, 10"
+				            			 	     Padding="10, 5, 0, 0"
 		            			 				 BackgroundColor="White"
 		            			 				 Grid.Column="0" Grid.Row="0" >	
 	        			 						
@@ -52,20 +56,31 @@
 										    </Grid.RowDefinitions>
 										   
 										    <Grid.ColumnDefinitions>
-										    	<ColumnDefinition Width="35" />
+										    	<ColumnDefinition Width="40" />
 										    	<ColumnDefinition Width="*" />
 										    </Grid.ColumnDefinitions>
-
-										    <Label 	x:Name="ObservationOrder" 
-										    		Text="{Binding Criterion.Order, StringFormat='{0}.'}" 
-										    		FontSize="18" 
-										    		VerticalOptions="StartAndExpand" 
-										    		Grid.Column="0" Grid.Row="0"/>   
+										    <AbsoluteLayout Grid.Column="0" Grid.Row="0" HeightRequest="35" WidthRequest="35" Padding="0, 5, 0, 0"  >
+											    <abstractions:RoundedBoxView HeightRequest="35" WidthRequest="35" 
+																		     BackgroundColor="{Binding ObserveColor}"
+																		     CornerRadius="50" />										    
+									     	
+											    <Label 	x:Name="ObservationOrder" 
+											    		Text="{Binding Criterion.Order}"
+											    		FontSize="18" 
+											    		TextColor= "White" 
+											    		VerticalOptions="Center"
+											    		HorizontalTextAlignment="Center"
+											    		VerticalTextAlignment="Center"
+											    		HeightRequest="35"
+											    		WidthRequest="35"
+											    		HorizontalOptions="Center"
+											    		AbsoluteLayout.LayoutBounds="0,0, -1, -1" 
+											    		AbsoluteLayout.LayoutFlags="PositionProportional" />   
+										    </AbsoluteLayout>
 
 					             			<Label 	x:Name="ObservationTitle" 
 					             					Text="{Binding Criterion.Title}" 
-				             						FontSize="18" 
-			             							TextColor="{Binding ObserveColor}"
+				             						FontSize="18" 			             							
 					             					VerticalOptions="StartAndExpand" 
 					             					Grid.Column="1" Grid.Row="0"/>			             				
 										</Grid>
