@@ -12,8 +12,8 @@
     </ResourceDictionary>
 </ContentPage.Resources>
 <ContentPage.ToolbarItems>
- 	<ToolbarItem Order="Primary" Name="Clear" Icon="recyclebinWhite.png" Command="{Binding ClearAssessment}" CommandParameter="{Binding}" />
-    <ToolbarItem Order="Primary" Name="Edit" Icon="editWhite.png" />       
+ 	<ToolbarItem Order="Primary" Name="Clear" Icon="refresh.png" Command="{Binding ClearAssessment}" CommandParameter="{Binding}" />
+    <ToolbarItem Order="Primary" Name="Edit" Icon="edit.png" />       
 </ContentPage.ToolbarItems>
 	<StackLayout>
 		<ListView x:Name="CategoryList" 

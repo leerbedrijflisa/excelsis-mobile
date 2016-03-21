@@ -147,9 +147,9 @@
     <AndroidResource Include="Resources\values\Styles.xml" />
     <AndroidResource Include="Resources\drawable\splash_background.xml" />
     <AndroidResource Include="Resources\drawable\edit.png" />
-    <AndroidResource Include="Resources\drawable\recyclebin.png" />
-    <AndroidResource Include="Resources\drawable\editWhite.png" />
-    <AndroidResource Include="Resources\drawable\recyclebinWhite.png" />
+    <AndroidResource Include="Resources\drawable\refresh.png" />
+    <AndroidResource Include="Resources\drawable\seen_default.png" />
+    <AndroidResource Include="Resources\drawable\unseen_default.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
