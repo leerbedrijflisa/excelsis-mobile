@@ -100,12 +100,6 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\..\packages\Xamarin.Forms.2.1.0.6529\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
-    <Reference Include="RoundedBoxView.Forms.Plugin.Abstractions">
-      <HintPath>..\..\packages\Xam.Plugins.Forms.RoundedBoxView.1.0.0.7\lib\MonoAndroid10\RoundedBoxView.Forms.Plugin.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="RoundedBoxView.Forms.Plugin.Android">
-      <HintPath>..\..\packages\Xam.Plugins.Forms.RoundedBoxView.1.0.0.7\lib\MonoAndroid10\RoundedBoxView.Forms.Plugin.Android.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionChecker_Android.cs" />
@@ -114,6 +108,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLite_Android.cs" />
     <Compile Include="SplashActivity.cs" />
+    <Compile Include="RoundedBoxRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -138,7 +133,6 @@
     <AndroidResource Include="Resources\drawable\Logo_excelsis_Beeld_RGB_2016.png" />
     <AndroidResource Include="Resources\drawable\seen.png" />
     <AndroidResource Include="Resources\drawable\unseen.png" />
-    <AndroidResource Include="Resources\drawable\maybe_not.png" />
     <AndroidResource Include="Resources\drawable\maybe_not_COLOR.png" />
     <AndroidResource Include="Resources\drawable-hdpi\Logo_excelsis_Beeld_Word.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\Logo_excelsis_Beeld_Word.png" />
@@ -149,7 +143,8 @@
     <AndroidResource Include="Resources\drawable\refresh.png" />
     <AndroidResource Include="Resources\drawable\seen_default.png" />
     <AndroidResource Include="Resources\drawable\unseen_default.png" />
-    <AndroidResource Include="Resources\drawable\_default.png" />
+    <AndroidResource Include="Resources\drawable\maybe_not.png" />
+    <AndroidResource Include="Resources\drawable\notrated.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />

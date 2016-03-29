@@ -2,8 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
 			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 			 x:Class="Lisa.Excelsis.Mobile.AssessmentPage" 
-			 xmlns:local="clr-namespace:Lisa.Excelsis.Mobile;assembly=Lisa.Excelsis.Mobile"
- 			 xmlns:abstractions="clr-namespace:RoundedBoxView.Forms.Plugin.Abstractions;assembly=RoundedBoxView.Forms.Plugin.Abstractions">
+			 xmlns:local="clr-namespace:Lisa.Excelsis.Mobile;assembly=Lisa.Excelsis.Mobile">
 <ContentPage.Resources>
     <ResourceDictionary>
         <local:ResultConverter x:Key="ResultConverter" />
@@ -14,14 +13,15 @@
 <ContentPage.ToolbarItems>
  	<ToolbarItem Order="Primary" Name="Clear" Icon="refresh.png" Command="{Binding ClearAssessment}" CommandParameter="{Binding}" />
     <ToolbarItem Order="Primary" Name="Edit" Icon="edit.png" />       
-</ContentPage.ToolbarItems>
-	<StackLayout>
+</ContentPage.ToolbarItems>	
+	<StackLayout>		
 		<ListView x:Name="CategoryList" 
 					ItemsSource = "{Binding Categories}" 
 					HasUnevenRows="true"
-					RowHeight="-1" 
+					RowHeight="-1"
 					GroupDisplayBinding="{Binding Name}"
-			        IsGroupingEnabled="true">
+			        IsGroupingEnabled="true"
+			        VerticalOptions="StartAndExpand">
 	      	<ListView.ItemTemplate>
 		      	<DataTemplate> 
 			      	<ViewCell x:Name="ObservationCell" BindingContext="{Binding}">
@@ -60,9 +60,11 @@
 										    	<ColumnDefinition Width="*" />
 										    </Grid.ColumnDefinitions>
 										    <AbsoluteLayout Grid.Column="0" Grid.Row="0" HeightRequest="35" WidthRequest="35" Padding="0, 5, 0, 0"  >
-											    <abstractions:RoundedBoxView HeightRequest="35" WidthRequest="35" 
-																		     BackgroundColor="{Binding ObserveColor}"
-																		     CornerRadius="50" />										    
+											    <local:RoundedBoxView HeightRequest="35" WidthRequest="35" 
+																      Color="{Binding ObserveColor}"
+																      CornerRadius="50"
+																      Stroke="{Binding ObserveColor}"
+																      StrokeThickness="2" />										    
 									     	
 											    <Label 	x:Name="ObservationOrder" 
 											    		Text="{Binding Criterion.Order}"
@@ -208,5 +210,8 @@
 		      	</DataTemplate>
 	    	</ListView.ItemTemplate>
 	    </ListView>
+
+	    <StackLayout VerticalOptions="End" BackgroundColor="#17607f"  HeightRequest="60">
+    	</StackLayout>
 	</StackLayout>
 </ContentPage>

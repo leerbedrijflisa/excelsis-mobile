@@ -11,7 +11,7 @@ namespace Lisa.Excelsis.Mobile
             var param = parameter as string;
             var result = value as string;
 
-            return (result == param)? result : "_default";
+            return (result == param)? parameter : parameter + "_default";
         }
 
         public object ConvertBack (object value, Type targetType, object parameter, CultureInfo culture)
