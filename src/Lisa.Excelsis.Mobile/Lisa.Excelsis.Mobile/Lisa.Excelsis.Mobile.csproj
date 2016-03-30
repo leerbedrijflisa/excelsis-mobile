@@ -89,7 +89,6 @@
     </Compile>
     <Compile Include="Converters\ResultConverter.cs" />
     <Compile Include="Converters\MarkConverter.cs" />
-    <Compile Include="Converters\ObserveColorConverter.cs" />
     <Compile Include="Database\Database.cs" />
     <Compile Include="RoundedBoxView.cs" />
   </ItemGroup>

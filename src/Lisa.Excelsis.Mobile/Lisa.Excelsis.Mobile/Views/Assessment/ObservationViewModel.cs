@@ -112,21 +112,49 @@ namespace Lisa.Excelsis.Mobile
             }
         }
 
-        public Color ObserveColor
+        public Color ResultFillColor
         {
-            get { return _ObserveColor; }
+            get { return _ResultFillColor; }
             set
             {
-                if (_ObserveColor != value)
+                if (_ResultFillColor != value)
                 {
-                    _ObserveColor = value;
-                    OnPropertyChanged("ObserveColor");
+                    _ResultFillColor = value;
+                    OnPropertyChanged("ResultFillColor");
+                }
+            }
+        }
+
+        public Color ResultStrokeColor
+        {
+            get { return _ResultStrokeColor; }
+            set
+            {
+                if (_ResultStrokeColor != value)
+                {
+                    _ResultStrokeColor = value;
+                    OnPropertyChanged("ResultStrokeColor");
+                }
+            }
+        }
+
+        public Color OrderColor
+        {
+            get { return _OrderColor; }
+            set
+            {
+                if (_OrderColor != value)
+                {
+                    _OrderColor = value;
+                    OnPropertyChanged("OrderColor");
                 }
             }
         }
 
         private bool _IsSelected;
-        private Color _ObserveColor;
+        private Color _ResultFillColor;
+        private Color _ResultStrokeColor;
+        private Color _OrderColor;
         private string _Result;
         private bool _Maybe_Not;
         private bool _Skip;
@@ -152,18 +180,28 @@ namespace Lisa.Excelsis.Mobile
 
         public void ChangeObserveColor()
         {
-            if (Skip || Change || Unclear || Maybe_Not)
+            if ((Skip || Change || Unclear || Maybe_Not) && Result == "notrated")
             {
-                ObserveColor = Color.FromRgb(255, 165, 0);
+                ResultStrokeColor = Color.FromRgb(255, 165, 0);
+                ResultFillColor = Color.White;
             }
-            else if (Result == "notrated")
+            else if ((Skip || Change || Unclear || Maybe_Not) && Result != "notrated")
             {
-                ObserveColor = Color.Gray;
+                ResultStrokeColor = Color.FromRgb(255, 165, 0);
+                ResultFillColor = Color.FromRgb(255, 165, 0);
+            }
+            else if (Result != "notrated")
+            {
+                ResultStrokeColor = Color.FromRgb(23, 96, 127);
+                ResultFillColor = Color.FromRgb(23, 96, 127);
             }
             else
             {
-                ObserveColor = (Result == "seen") ? Color.Green : Color.Red;
+                ResultStrokeColor = Color.FromRgb(23, 96, 127);
+                ResultFillColor = Color.White;
             }
+
+            OrderColor = (ResultFillColor == Color.White) ? ResultStrokeColor : Color.White;
         }
 
         private Action<ObservationViewModel> ToggleMark(Func<bool> toggle, string mark)
