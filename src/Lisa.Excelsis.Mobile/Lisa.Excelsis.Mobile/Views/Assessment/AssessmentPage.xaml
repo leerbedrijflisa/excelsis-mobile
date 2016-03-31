@@ -7,7 +7,6 @@
     <ResourceDictionary>
         <local:ResultConverter x:Key="ResultConverter" />
         <local:MarkConverter x:Key="MarkConverter" />
-        <local:ObserveColorConverter x:Key="ObserveColorConverter" />
     </ResourceDictionary>
 </ContentPage.Resources>
 <ContentPage.ToolbarItems>
