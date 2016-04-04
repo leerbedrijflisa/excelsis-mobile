@@ -13,10 +13,10 @@
                         <viewControllerLayoutGuide type="bottom" id="9ZL-r4-8FZ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="yd7-JS-zBw">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Logo_excelsis_Beeld_Word_480.png" translatesAutoresizingMaskIntoConstraints="NO" id="23">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Logo_excelsis_Beeld_Word_480.png" translatesAutoresizingMaskIntoConstraints="NO" id="23" misplaced="YES">
                                 <rect key="frame" x="270" y="270" width="60" height="60"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                 <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -59,6 +59,11 @@
         <image name="Logo_excelsis_Beeld_Word_240.png" width="240" height="169"/>
         <image name="Logo_excelsis_Beeld_Word_480.png" width="480" height="338"/>
         <image name="Logo_excelsis_Beeld_Word_800.png" width="800" height="564"/>
+        <image name="edit.png" width="30" height="30"/>
+        <image name="recyclebin.png" width="128" height="128"/>
+        <image name="refresh.png" width="30" height="30"/>
+        <image name="seen_default.png" width="76" height="76"/>
+        <image name="unseen_default.png" width="76" height="76"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedScreenMetrics key="destination" type="iPad"/>
