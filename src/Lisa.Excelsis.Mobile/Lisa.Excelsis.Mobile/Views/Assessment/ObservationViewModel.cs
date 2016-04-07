@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-
 using Xamarin.Forms;
-using System.Collections.ObjectModel;
-using System.Text.RegularExpressions;
-using System.ComponentModel;
 using System.Windows.Input;
 
 namespace Lisa.Excelsis.Mobile
@@ -13,20 +8,21 @@ namespace Lisa.Excelsis.Mobile
     {
         public ObservationViewModel()
         {
-            this.SetSeenResult = new Command<ObservationViewModel>((item) =>
-                { 
-                    OnChangeResult(item, "seen"); 
-                    ChangeObserveColor(); 
-                });
-            this.SetNotSeenResult = new Command<ObservationViewModel>((item) =>
-                { 
-                    OnChangeResult(item, "unseen"); 
-                    ChangeObserveColor();
-                });
-            this.SetMaybeNotActive = new Command<ObservationViewModel>(ToggleMark(() => Maybe_Not = !Maybe_Not, "maybenot"));
-            this.SetSkipActive = new Command<ObservationViewModel>(ToggleMark(() => Skip = !Skip, "skip"));
-            this.SetUnclearActive = new Command<ObservationViewModel>(ToggleMark(() => Unclear = !Unclear, "unclear"));           
-            this.SetChangeActive = new Command<ObservationViewModel>(ToggleMark(() => Change = !Change, "change"));  
+            SetSeenResult = new Command<ObservationViewModel>((item) =>
+            { 
+                OnChangeResult(item, "seen"); 
+                ChangeObserveColor(); 
+            });
+            SetNotSeenResult = new Command<ObservationViewModel>((item) =>
+            { 
+                OnChangeResult(item, "unseen"); 
+                ChangeObserveColor();
+            });
+            SetMaybeNotActive = new Command<ObservationViewModel>(ToggleMark(() => Maybe_Not = !Maybe_Not, "maybenot"));
+            SetSkipActive = new Command<ObservationViewModel>(ToggleMark(() => Skip = !Skip, "skip"));
+            SetUnclearActive = new Command<ObservationViewModel>(ToggleMark(() => Unclear = !Unclear, "unclear"));
+            SetChangeActive = new Command<ObservationViewModel>(ToggleMark(() => Change = !Change, "change"));
+            OpenItem = new Command<StackLayout>(ToggleObservation);
         }
             
         public ICommand SetSeenResult { get; set; }
@@ -35,6 +31,7 @@ namespace Lisa.Excelsis.Mobile
         public ICommand SetSkipActive { get; set; }
         public ICommand SetUnclearActive { get; set; }
         public ICommand SetChangeActive { get; set; }
+        public ICommand OpenItem { get; set; }
 
         public string Id { get; set; }
         public string Result
@@ -202,6 +199,12 @@ namespace Lisa.Excelsis.Mobile
             }
 
             OrderColor = (ResultFillColor == Color.White) ? ResultStrokeColor : Color.White;
+        }
+
+        public void ToggleObservation(object sender)
+        {
+            var view = new AssessmentPage();
+            view.OpenItem(sender);
         }
 
         private Action<ObservationViewModel> ToggleMark(Func<bool> toggle, string mark)

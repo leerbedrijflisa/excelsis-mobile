@@ -1,10 +1,5 @@
-﻿using System;
+﻿using Xamarin.Forms;
 using System.Collections.Generic;
-
-using Xamarin.Forms;
-using System.Collections.ObjectModel;
-using System.Text.RegularExpressions;
-using SQLite.Net;
 
 namespace Lisa.Excelsis.Mobile
 {
@@ -19,7 +14,7 @@ namespace Lisa.Excelsis.Mobile
                 _db.SaveAssessment(assessment);
             }
             InitializeComponent();
-            this.Title = "Beoordeling";
+            Title = "Beoordeling";
 
             var _assessment = new AssessmentViewModel(this.Navigation, this)
             {
@@ -30,7 +25,7 @@ namespace Lisa.Excelsis.Mobile
                 Exam = assessment.Exam
             };
             
-            _assessment.Categories = new ObservableCollection<CategoryViewModel>();
+            _assessment.Categories = new List<CategoryViewModel>();
             foreach (var categories in assessment.Categories)
             {
                 var _category = new CategoryViewModel()
@@ -39,7 +34,7 @@ namespace Lisa.Excelsis.Mobile
                     Name = categories.Name
                 };
 
-                _assessment.Categories.Add(_category);
+               _category.Observations = new List<ObservationViewModel>();
                 foreach (var observations in categories.Observations)
                 {
                     var _observation = new ObservationViewModel()
@@ -53,23 +48,21 @@ namespace Lisa.Excelsis.Mobile
                         Change = observations.Marks.Contains("change")
                     };           
                     _observation.ChangeObserveColor();
-                   _category.Add(_observation);
+                    _category.Observations.Add(_observation);
                 }
+                _assessment.Categories.Add(_category);
             }
 
-            this.BindingContext = _assessment;
-
+            BindingContext = _assessment;
         }
 
-        void OpenItem(object sender, EventArgs e)
+        public void OpenItem(object sender)
         {
-           
             var stacklayout = sender as StackLayout;
-            var cell = stacklayout.Parent.FindByName<ViewCell>("ObservationCell");
-            var item = cell.BindingContext as ObservationViewModel;
-            var row = cell.FindByName<RowDefinition>("ShowButtons");
+            var item = stacklayout.BindingContext as ObservationViewModel;
+            var row = stacklayout.FindByName<RowDefinition>("ShowButtons");
 
-            if (_oldCell != null && _oldItem != null && _oldItem != item)
+            if (_oldItem != null && _oldItem != item)
             {
                 if (Device.OS == TargetPlatform.Android)
                 {
@@ -80,14 +73,13 @@ namespace Lisa.Excelsis.Mobile
                 if (Device.OS == TargetPlatform.iOS)
                 {
                     _oldRow.Height = 0;
-                    cell.ForceUpdateSize();
                 }
             }
             if (item.IsSelected)
             {
                 if (Device.OS == TargetPlatform.Android)
                 {
-                    CollapseAnimation(cell, row).Commit(this, "the animation", length: 100);
+                    CollapseAnimation(row).Commit(this, "the animation", length: 100);
                 }
 
                 item.IsSelected = false;
@@ -95,7 +87,6 @@ namespace Lisa.Excelsis.Mobile
                 if (Device.OS == TargetPlatform.iOS)
                 {
                     row.Height = 0;
-                    cell.ForceUpdateSize();
                 }
             }
             else
@@ -104,30 +95,28 @@ namespace Lisa.Excelsis.Mobile
 
                 if (Device.OS == TargetPlatform.Android)
                 {
-                    ExpandAnimation(cell, row).Commit(this, "the animation", length: 100);
+                    ExpandAnimation(row).Commit(this, "the animation", length: 100);
                 }
 
                 if (Device.OS == TargetPlatform.iOS)
                 {
                     row.Height = _rowHeight;
-                    cell.ForceUpdateSize();
                 }
             }
 
             _oldRow = row;
-            _oldCell = cell;
             _oldItem = item;
             _oldPage = this;
-            _oldAnimation = CollapseAnimation(cell, row);
+            _oldAnimation = CollapseAnimation(row);
         }
        
-        private Animation ExpandAnimation(ViewCell cell, RowDefinition row)
+        private Animation ExpandAnimation(RowDefinition row)
         {
             return new Animation(
                 (d) => row.Height = Anim(d, 0, double.MaxValue), row.Height.Value, _rowHeight, Easing.Linear);
         }
 
-        private Animation CollapseAnimation(ViewCell cell, RowDefinition row)
+        private Animation CollapseAnimation(RowDefinition row)
         {
             return new Animation(
                 (d) => row.Height = new GridLength(Anim(d, 0, double.MaxValue)), _rowHeight, 0, Easing.Linear);
@@ -148,13 +137,11 @@ namespace Lisa.Excelsis.Mobile
             return value;
         }
 
-        public double _rowHeight= 90;
-        private Animation _oldAnimation;
-        private RowDefinition _oldRow;
-        private Page _oldPage;
-
-        private ObservationViewModel _oldItem;
-        private ViewCell _oldCell;
+        private static double _rowHeight= 90;
+        private static Animation _oldAnimation;
+        private static RowDefinition _oldRow;
+        private static Page _oldPage;
+        private static ObservationViewModel _oldItem;
 
         private readonly Database _db = new Database();
     }
