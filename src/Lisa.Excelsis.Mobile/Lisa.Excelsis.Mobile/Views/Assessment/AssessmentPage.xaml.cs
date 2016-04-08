@@ -1,5 +1,6 @@
 ﻿using Xamarin.Forms;
 using System.Collections.Generic;
+using System;
 
 namespace Lisa.Excelsis.Mobile
 {
@@ -10,7 +11,7 @@ namespace Lisa.Excelsis.Mobile
             Assessment assessment = _db.FetchAssessment();
             if( assessment == null)
             {
-                assessment = DummyData.Fetch();
+                assessment = DummyData.FetchAssessment();
                 _db.SaveAssessment(assessment);
             }
             InitializeComponent();
@@ -54,6 +55,10 @@ namespace Lisa.Excelsis.Mobile
             }
 
             BindingContext = _assessment;
+            foreach (var assessor in DummyData.FetchAssessors())
+            {
+                AssessorPicker.Items.Add(string.Join(" ", assessor.FirstName, assessor.LastName));
+            }
         }
 
         public void OpenItem(object sender)

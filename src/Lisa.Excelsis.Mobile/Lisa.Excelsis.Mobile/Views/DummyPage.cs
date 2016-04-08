@@ -12,7 +12,7 @@ namespace Lisa.Excelsis.Mobile
         }
         public void Redirect()
         {
-            var data = DummyData.Fetch();
+            var data = DummyData.FetchAssessment();
            // await Navigation.PushAsync(new AssessmentPage(data));
         }
     }

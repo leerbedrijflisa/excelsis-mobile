@@ -5,7 +5,32 @@ namespace Lisa.Excelsis.Mobile
 {
     public class DummyData
     {
-        public static Assessment Fetch()
+        public static List<Assessor> FetchAssessors()
+        {
+            return new List<Assessor>()
+            {
+                new Assessor
+                {
+                    FirstName = "Joost",
+                    LastName = "Ronkes Agerbeek",
+                    UserName = "joostronkesagerbeek",
+                },
+                new Assessor
+                {
+                    FirstName = "Maarten",
+                    LastName = "Nouwen",
+                    UserName = "maartennouwen",
+                }
+                ,
+                new Assessor
+                {
+                    FirstName = "Peter",
+                    LastName = "Snoek",
+                    UserName = "petersnoek",
+                }
+            };
+        }
+        public static Assessment FetchAssessment()
         {
             return new Assessment
             {
