@@ -64,44 +64,18 @@ namespace Lisa.Excelsis.Mobile
 
             if (_oldItem != null && _oldItem != item)
             {
-                if (Device.OS == TargetPlatform.Android)
-                {
-                    _oldAnimation.Commit(_oldPage, "the old animation", length: 100);                   
-                }
+                _oldAnimation.Commit(_oldPage, "the old animation", length: 100);
                 _oldItem.IsSelected = false;
-
-                if (Device.OS == TargetPlatform.iOS)
-                {
-                    _oldRow.Height = 0;
-                }
             }
             if (item.IsSelected)
             {
-                if (Device.OS == TargetPlatform.Android)
-                {
-                    CollapseAnimation(row).Commit(this, "the animation", length: 100);
-                }
-
+                CollapseAnimation(row).Commit(this, "the animation", length: 100);
                 item.IsSelected = false;
-
-                if (Device.OS == TargetPlatform.iOS)
-                {
-                    row.Height = 0;
-                }
             }
             else
             {
                 item.IsSelected = true;
-
-                if (Device.OS == TargetPlatform.Android)
-                {
-                    ExpandAnimation(row).Commit(this, "the animation", length: 100);
-                }
-
-                if (Device.OS == TargetPlatform.iOS)
-                {
-                    row.Height = _rowHeight;
-                }
+                ExpandAnimation(row).Commit(this, "the animation", length: 100);
             }
 
             _oldRow = row;

@@ -146,25 +146,20 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="XLabs.Core, Version=2.0.5782.16151, Culture=neutral, PublicKeyToken=d65109b36e5040e4, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\XLabs.Core.2.0.5783-pre01\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\XLabs.Core.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="XLabs.Ioc">
+      <HintPath>..\..\packages\XLabs.IoC.2.0.5782\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1+Xamarin.iOS10\XLabs.Ioc.dll</HintPath>
     </Reference>
-    <Reference Include="XLabs.Forms, Version=2.0.5782.16160, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\XLabs.Forms.2.0.5783-pre01\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\XLabs.Forms.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="XLabs.Core">
+      <HintPath>..\..\packages\XLabs.Core.2.0.5782\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Core.dll</HintPath>
     </Reference>
-    <Reference Include="XLabs.Ioc, Version=2.0.5782.16151, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\XLabs.IoC.2.0.5783-pre01\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\XLabs.Ioc.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="XLabs.Platform">
+      <HintPath>..\..\packages\XLabs.Platform.2.0.5782\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Platform.dll</HintPath>
     </Reference>
-    <Reference Include="XLabs.Platform, Version=2.0.5782.16152, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\XLabs.Platform.2.0.5783-pre01\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\XLabs.Platform.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="XLabs.Serialization">
+      <HintPath>..\..\packages\XLabs.Serialization.2.0.5782\lib\portable-net45+netcore45+wp8+MonoAndroid1+MonoTouch1\XLabs.Serialization.dll</HintPath>
     </Reference>
-    <Reference Include="XLabs.Serialization, Version=2.0.5782.16150, Culture=neutral, PublicKeyToken=d65109b36e5040e4, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\XLabs.Serialization.2.0.5783-pre01\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\XLabs.Serialization.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="XLabs.Forms">
+      <HintPath>..\..\packages\XLabs.Forms.2.0.5782\lib\portable-net45+netcore45+wpa81+wp8\XLabs.Forms.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
