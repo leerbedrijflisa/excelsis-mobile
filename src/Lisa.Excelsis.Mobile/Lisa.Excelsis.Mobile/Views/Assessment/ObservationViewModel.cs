@@ -33,6 +33,7 @@ namespace Lisa.Excelsis.Mobile
         public ICommand SetChangeActive { get; set; }
         public ICommand OpenItem { get; set; }
 
+        public AssessmentPage Owner { get; set; }
         public string Id { get; set; }
         public string Result
         { 
@@ -203,8 +204,7 @@ namespace Lisa.Excelsis.Mobile
 
         public void ToggleObservation(object sender)
         {
-            var view = new AssessmentPage();
-            view.OpenItem(sender);
+            Owner.OpenItem(sender);
         }
 
         private Action<ObservationViewModel> ToggleMark(Func<bool> toggle, string mark)

@@ -39,6 +39,7 @@ namespace Lisa.Excelsis.Mobile
                 {
                     var _observation = new ObservationViewModel()
                     {
+                        Owner = this,
                         Id = observations.Id.ToString(),
                         Result = observations.Result,
                         Criterion = observations.Criterion,
