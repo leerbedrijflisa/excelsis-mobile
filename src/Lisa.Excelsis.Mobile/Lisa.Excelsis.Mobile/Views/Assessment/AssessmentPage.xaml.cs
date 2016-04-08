@@ -37,9 +37,8 @@ namespace Lisa.Excelsis.Mobile
                _category.Observations = new List<ObservationViewModel>();
                 foreach (var observations in categories.Observations)
                 {
-                    var _observation = new ObservationViewModel()
+                    var _observation = new ObservationViewModel(this)
                     {
-                        Owner = this,
                         Id = observations.Id.ToString(),
                         Result = observations.Result,
                         Criterion = observations.Criterion,

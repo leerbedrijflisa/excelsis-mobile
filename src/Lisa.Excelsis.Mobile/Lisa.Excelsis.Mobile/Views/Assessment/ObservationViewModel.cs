@@ -6,8 +6,9 @@ namespace Lisa.Excelsis.Mobile
 {
     public class ObservationViewModel : BindableObject
     {
-        public ObservationViewModel()
+        public ObservationViewModel(AssessmentPage Owner)
         {
+            _owner = Owner;
             SetSeenResult = new Command<ObservationViewModel>((item) =>
             { 
                 OnChangeResult(item, "seen"); 
@@ -33,7 +34,6 @@ namespace Lisa.Excelsis.Mobile
         public ICommand SetChangeActive { get; set; }
         public ICommand OpenItem { get; set; }
 
-        public AssessmentPage Owner { get; set; }
         public string Id { get; set; }
         public string Result
         { 
@@ -204,7 +204,7 @@ namespace Lisa.Excelsis.Mobile
 
         public void ToggleObservation(object sender)
         {
-            Owner.OpenItem(sender);
+            _owner.OpenItem(sender);
         }
 
         private Action<ObservationViewModel> ToggleMark(Func<bool> toggle, string mark)
@@ -223,6 +223,9 @@ namespace Lisa.Excelsis.Mobile
                 ChangeObserveColor();
             };
         }
+
+
+        private static AssessmentPage _owner;
 
         private readonly Database _db = new Database();
     }
