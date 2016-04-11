@@ -8,14 +8,14 @@ namespace Lisa.Excelsis.Mobile
     {
         public AssessmentPage ()
         {
-            Assessment assessment = _db.FetchAssessment();
+            assessment = _db.FetchAssessment();
             if( assessment == null)
             {
                 assessment = DummyData.FetchAssessment();
                 _db.SaveAssessment(assessment);
             }
             InitializeComponent();
-            Title = "Beoordeling";
+            Title = assessment.Exam.Subject + " - " + assessment.Exam.Name + " " + assessment.Exam.Cohort;
 
             var _assessment = new AssessmentViewModel(this.Navigation, this)
             {
@@ -55,10 +55,52 @@ namespace Lisa.Excelsis.Mobile
             }
 
             BindingContext = _assessment;
+
             foreach (var assessor in DummyData.FetchAssessors())
             {
                 AssessorPicker.Items.Add(string.Join(" ", assessor.FirstName, assessor.LastName));
             }
+            
+            ExamDate.Date = _assessment.Assessed.Date;
+            ExamTime.Time = TimeZoneInfo.ConvertTime(_assessment.Assessed, TimeZoneInfo.Local).TimeOfDay;
+            ExamTime.PropertyChanged += DateTimeChanged;
+        }
+
+        public void EntryChanged(object sender, EventArgs e)
+        {
+            var entry = (Entry)sender;
+
+            if (entry.Text != null && entry.Text.Length != 0)
+            {
+                int iDontCare;
+                if (entry.Keyboard == Keyboard.Numeric && Int32.TryParse(entry.Text, out iDontCare))
+                {
+                    entry.BackgroundColor = Color.Default;
+                    _db.UpdateStudent(assessment.Id, "Studentnumber", entry.Text);
+                }
+                else
+                {
+                    if (entry.Keyboard == Keyboard.Default)
+                    {
+                        _db.UpdateStudent(assessment.Id, "Studentname", entry.Text);
+                    }
+                    return;
+                }
+
+                entry.BackgroundColor = Color.Default;
+            }
+        }
+
+        public void DateTimeChanged(object sender, EventArgs e)
+        {
+            DateTime date = new DateTime(ExamDate.Date.Year, ExamDate.Date.Month, ExamDate.Date.Day,
+                                         ExamTime.Time.Hours, ExamTime.Time.Minutes, ExamTime.Time.Seconds);
+            _db.UpdateAssessed(assessment.Id, date);
+        }
+
+        public void TimeChanged(object sender, EventArgs e)
+        {
+            var picker = (TimePicker)sender;
         }
 
         public void OpenItem(object sender)
@@ -121,7 +163,7 @@ namespace Lisa.Excelsis.Mobile
         private static RowDefinition _oldRow;
         private static Page _oldPage;
         private static ObservationViewModel _oldItem;
-
+        private static Assessment assessment;
         private readonly Database _db = new Database();
     }
 }

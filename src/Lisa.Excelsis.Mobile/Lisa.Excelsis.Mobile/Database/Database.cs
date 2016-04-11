@@ -139,6 +139,16 @@ namespace Lisa.Excelsis.Mobile
             _db.InsertOrReplaceAll(categoryList);
         }
 
+        public void UpdateAssessed(object id, DateTime assessed)
+        {
+            _db.Execute("UPDATE Assessments SET Assessed = ? WHERE Assessments.Id == ?", assessed, id);
+        }
+
+        public void UpdateStudent(object id, string field, string text)
+        {
+            _db.Execute("UPDATE Assessments SET " + field + " = ? WHERE Assessments.Id == ?", text, id);
+        }
+
         public void UpdateResult(object id, string result)
         {
             _db.Execute("UPDATE Observations SET Result = ? WHERE Observations.Id == ?", result, id);

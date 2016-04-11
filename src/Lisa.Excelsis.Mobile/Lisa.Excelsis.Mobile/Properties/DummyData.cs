@@ -35,7 +35,7 @@ namespace Lisa.Excelsis.Mobile
             return new Assessment
             {
                 Id = 10,
-                Assessed = new DateTime(),
+                Assessed = DateTime.Now,
                 Student = new Student
                 {
                     Name = "",
