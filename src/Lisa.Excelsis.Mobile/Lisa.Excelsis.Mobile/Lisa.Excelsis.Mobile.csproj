@@ -39,10 +39,15 @@
     <Compile Include="Behaviors\NumericValidationBehavior.cs" />
     <Compile Include="Controls\CategoryListView.cs" />
     <Compile Include="Controls\ObservationListView.cs" />
+    <Compile Include="Converters\TimeZoneConverter.cs" />
     <Compile Include="Interfaces\IConnectionChecker.cs" />
     <Compile Include="Interfaces\ISQLite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proxy.cs" />
+    <Compile Include="Views\History\HistoryPage.xaml.cs">
+      <DependentUpon>HistoryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\History\HistoryPageViewModel.cs" />
     <Compile Include="Views\RootPage.xaml.cs" />
     <Compile Include="Views\Menu\MenuCell.cs" />
     <Compile Include="Views\Menu\MenuListData.cs" />
@@ -183,6 +188,12 @@
   </Target>
   -->
   <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Views\History\HistoryPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>
       <Properties>

@@ -8,13 +8,21 @@ namespace Lisa.Excelsis.Mobile
 
     public partial class AssessmentPage : ContentPage
     {
-        public AssessmentPage ()
+        public AssessmentPage (Assessmentdb item = null)
         {
-            assessment = _db.FetchAssessment();
-            if( assessment == null)
+            if (item != null)
+            {
+                assessment = _db.FetchAssessment(item.Id);
+                if (assessment == null)
+                {
+                    Navigation.PopAsync();
+                }
+            }
+            else
             {
                 assessment = DummyData.FetchAssessment();
-                _db.SaveAssessment(assessment);
+                int id = _db.SaveAssessment(assessment);
+                assessment.Id = id;
             }
             InitializeComponent();
             Title = assessment.Exam.Subject + " - " + assessment.Exam.Name + " " + assessment.Exam.Cohort;

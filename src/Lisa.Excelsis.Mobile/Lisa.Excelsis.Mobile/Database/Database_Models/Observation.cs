@@ -6,7 +6,7 @@ namespace Lisa.Excelsis.Mobile
     [Table("Observations")]
     public class Observationdb
     {
-        [PrimaryKey]
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public string Result { get; set; }
         public int CategoryId { get; set; }

@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Lisa.Excelsis.Mobile;assembly=Lisa.Excelsis.Mobile"
+             x:Class="Lisa.Excelsis.Mobile.HistoryPage">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <local:TimeZoneConverter x:Key="TimeZoneConverter" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Order="Primary" Name="Nieuw" Icon="add.png" Command="{Binding NewCommand}" />
+  </ContentPage.ToolbarItems>
+  
+  <ListView x:Name="HistoryList"
+            ItemsSource="{Binding Assessments}"
+            ItemSelected="OpenAssessment"
+            Refreshing="UpdateAssessments">
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+          <ViewCell.View>
+            <StackLayout Padding="10,10,10,10">
+              <Grid>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto" />
+                  <ColumnDefinition Width="Auto" />
+                  <ColumnDefinition Width="Auto" />
+                  <ColumnDefinition Width="Auto" />
+                  <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Text="{Binding Id}"/>
+                <Label Grid.Row="0" Grid.Column="1" Text="{Binding Subject}"/>
+                <Label Grid.Row="0" Grid.Column="2" Text="{Binding Cohort}"/>
+                <Label Grid.Row="0" Grid.Column="3" Text="{Binding Name}"/>
+                <Label Grid.Row="0" Grid.Column="4" Text="{Binding Assessed,Converter={StaticResource TimeZoneConverter}}" HorizontalOptions="End"/>
+              </Grid>
+            </StackLayout>
+          </ViewCell.View>
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+  </ListView>
+</ContentPage>

@@ -78,7 +78,7 @@ namespace Lisa.Excelsis.Mobile
             {
                 if (await _Page.DisplayAlert("Alles resetten", "Weet u het heel zeker? ", "Ja", "Nee"))
                 {
-                    _db.RemoveAssessment(item.Id);
+                   // _db.RemoveAssessment(item.Id);
 
                     _Navigation.InsertPageBefore(new AssessmentPage(), _Page);
                     await _Navigation.PopAsync();

@@ -171,9 +171,9 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Resources\drawable\" />
-    <Folder Include="Resources\values\" />
+    <AndroidResource Include="Resources\drawable\add.png" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>

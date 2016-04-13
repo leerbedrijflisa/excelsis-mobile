@@ -6,6 +6,7 @@ namespace Lisa.Excelsis.Mobile
     [Table("Assessments")]
     public class Assessmentdb
     {
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public DateTime Assessed { get; set; }
         public string Name { get; set; }

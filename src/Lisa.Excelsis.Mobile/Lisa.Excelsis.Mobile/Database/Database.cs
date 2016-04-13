@@ -13,9 +13,9 @@ namespace Lisa.Excelsis.Mobile
         {
         }
 
-        public Assessment FetchAssessment()
+        public Assessment FetchAssessment(int id)
         {
-            var assessment_metadata = _db.Table<Assessmentdb>().FirstOrDefault();
+            var assessment_metadata = _db.Table<Assessmentdb>().Where(x => x.Id == id).FirstOrDefault();
             var categories = _db.Table<Categorydb>().Where(x => x.AssessmentId == assessment_metadata.Id);
 
             if (assessment_metadata != null)
@@ -78,11 +78,10 @@ namespace Lisa.Excelsis.Mobile
             return null;
         }
 
-        public void SaveAssessment(Assessment assessment)
+        public int SaveAssessment(Assessment assessment)
         {
             var adb = new Assessmentdb()
             {
-                Id = assessment.Id,
                 Assessed = assessment.Assessed,
                 Name = assessment.Exam.Name,
                 Subject = assessment.Exam.Subject,
@@ -91,14 +90,14 @@ namespace Lisa.Excelsis.Mobile
                 StudentName = assessment.Student.Name,
                 StudentNumber = assessment.Student.Number
             };
-            _db.InsertOrReplace(adb);
+             _db.Insert(adb);
+            assessment.Id = adb.Id;
 
             var categoryList = new List<Categorydb>();
             foreach (var category in assessment.Categories)
             {
                 var cdb = new Categorydb()
                 {
-                    Id = category.Id,
                     Name = category.Name,
                     Order = category.Order,
                     AssessmentId = assessment.Id
@@ -110,7 +109,6 @@ namespace Lisa.Excelsis.Mobile
                 {
                     var odb = new Observationdb()
                     {
-                        Id = observation.Id,
                         Result = observation.Result,
                         Order = observation.Criterion.Order,
                         Title = observation.Criterion.Title,
@@ -137,6 +135,7 @@ namespace Lisa.Excelsis.Mobile
                 _db.InsertOrReplaceAll(observationList);
             }
             _db.InsertOrReplaceAll(categoryList);
+            return adb.Id;
         }
 
         public void UpdateAssessed(object id, DateTime assessed)
