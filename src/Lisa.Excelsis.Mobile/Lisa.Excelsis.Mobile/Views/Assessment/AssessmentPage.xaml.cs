@@ -4,8 +4,6 @@ using System;
 
 namespace Lisa.Excelsis.Mobile
 {
-    public delegate void ChangedEventHandler(ObservationViewModel item, string result);
-
     public partial class AssessmentPage : ContentPage
     {
         public AssessmentPage ()
@@ -19,7 +17,7 @@ namespace Lisa.Excelsis.Mobile
             InitializeComponent();
             Title = assessment.Exam.Subject + " - " + assessment.Exam.Name + " " + assessment.Exam.Cohort;
 
-            assessmentView = new AssessmentViewModel(this.Navigation, this)
+            var _assessment = new AssessmentViewModel(this.Navigation, this)
             {
                 Id = assessment.Id,
                 Assessed = assessment.Assessed,
@@ -27,8 +25,8 @@ namespace Lisa.Excelsis.Mobile
                 Student = assessment.Student,
                 Exam = assessment.Exam
             };
-
-            assessmentView.Categories = new List<CategoryViewModel>();
+            
+            _assessment.Categories = new List<CategoryViewModel>();
             foreach (var categories in assessment.Categories)
             {
                 var _category = new CategoryViewModel()
@@ -49,62 +47,23 @@ namespace Lisa.Excelsis.Mobile
                         Skip = observations.Marks.Contains("skip"),
                         Unclear = observations.Marks.Contains("unclear"),
                         Change = observations.Marks.Contains("change")
-                    };
-                    UpdateFooter(_observation, "notrated");     
-                    _observation.Changed += UpdateFooter;
+                    };           
                     _observation.ChangeObserveColor();
                     _category.Observations.Add(_observation);
                 }
-                assessmentView.Categories.Add(_category);
+                _assessment.Categories.Add(_category);
             }
 
-            BindingContext = assessmentView;
+            BindingContext = _assessment;
 
             foreach (var assessor in DummyData.FetchAssessors())
             {
                 AssessorPicker.Items.Add(string.Join(" ", assessor.FirstName, assessor.LastName));
             }
             
-            ExamDate.Date = assessmentView.Assessed.Date;
-            ExamTime.Time = TimeZoneInfo.ConvertTime(assessmentView.Assessed, TimeZoneInfo.Local).TimeOfDay;
-            ExamTime.PropertyChanged += DateTimeChanged;            
-        }
-
-        public void UpdateFooter(ObservationViewModel item, string result)
-        {
-            switch(item.Criterion.Weight)
-            {
-                case "fail":
-                    if(result == "unseen")
-                    {
-                        assessmentView.TotalFail--;
-                    }
-                    else if (result == "seen" || (item.Result == "seen" && result == "notrated"))
-                    {
-                        assessmentView.TotalFail++;
-                    }
-                    break;
-                case "pass":
-                    if (result == "unseen")
-                    {
-                        assessmentView.TotalPass--;
-                    }
-                    else if (result == "seen" || (item.Result == "seen" && result == "notrated"))
-                    {
-                        assessmentView.TotalPass++;
-                    }
-                    break;
-                case "excellent":
-                    if (result == "unseen")
-                    {
-                        assessmentView.TotalExcellent--;
-                    }
-                    else if (result == "seen" || (item.Result == "seen" && result == "notrated"))
-                    {
-                        assessmentView.TotalExcellent++;
-                    }
-                    break;
-            }
+            ExamDate.Date = _assessment.Assessed.Date;
+            ExamTime.Time = TimeZoneInfo.ConvertTime(_assessment.Assessed, TimeZoneInfo.Local).TimeOfDay;
+            ExamTime.PropertyChanged += DateTimeChanged;
         }
 
         public void EntryChanged(object sender, EventArgs e)
@@ -171,7 +130,7 @@ namespace Lisa.Excelsis.Mobile
             _oldPage = this;
             _oldAnimation = CollapseAnimation(row);
         }
-               
+       
         private Animation ExpandAnimation(RowDefinition row)
         {
             return new Animation(
@@ -205,7 +164,6 @@ namespace Lisa.Excelsis.Mobile
         private static Page _oldPage;
         private static ObservationViewModel _oldItem;
         private static Assessment assessment;
-        private static AssessmentViewModel assessmentView;
         private readonly Database _db = new Database();
     }
 }
