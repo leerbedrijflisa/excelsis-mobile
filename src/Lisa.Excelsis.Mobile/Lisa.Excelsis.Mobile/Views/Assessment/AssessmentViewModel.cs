@@ -30,10 +30,48 @@ namespace Lisa.Excelsis.Mobile
                 OnPropertyChanged();
             } 
         }
-        
-        private INavigation _Navigation { get; set; }
-        private Page _Page { get; set; }
 
+        public int TotalFail
+        {
+            get { return _totalFail; }
+            set
+            {
+                if (_totalFail != value)
+                {
+                    _totalFail = value;
+                    OnPropertyChanged("TotalFail");
+                }
+            }
+        }
+
+        public int TotalPass
+        {
+            get { return _totalPass; }
+            set
+            {
+                if (_totalPass != value)
+                {
+                    _totalPass = value;
+                    OnPropertyChanged("TotalPass");
+                }
+            }
+        }
+
+        public int TotalExcellent
+        {
+            get { return _totalExcellent; }
+            set
+            {
+                if (_totalExcellent != value)
+                {
+                    _totalExcellent = value;
+                    OnPropertyChanged("TotalExcellent");
+                }
+            }
+        }
+        
+        
+        
         private async void Clear(AssessmentViewModel item)
         {
             if (await _Page.DisplayAlert("Alles resetten", "Weet u zeker dat u alles wilt weggooien?", "Ja", "Nee"))
@@ -47,6 +85,13 @@ namespace Lisa.Excelsis.Mobile
                 }
             }
         }
+
+        private int _totalFail = 0;
+        private int _totalPass = 0;
+        private int _totalExcellent = 0;
+
+        private INavigation _Navigation { get; set; }
+        private Page _Page { get; set; }
 
         private List<CategoryViewModel> _categories;
 

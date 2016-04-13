@@ -9,22 +9,27 @@ namespace Lisa.Excelsis.Mobile
         public ObservationViewModel(AssessmentPage Owner)
         {
             _owner = Owner;
+
             SetSeenResult = new Command<ObservationViewModel>((item) =>
             { 
                 OnChangeResult(item, "seen"); 
                 ChangeObserveColor(); 
             });
+
             SetNotSeenResult = new Command<ObservationViewModel>((item) =>
             { 
                 OnChangeResult(item, "unseen"); 
                 ChangeObserveColor();
             });
+
             SetMaybeNotActive = new Command<ObservationViewModel>(ToggleMark(() => Maybe_Not = !Maybe_Not, "maybenot"));
             SetSkipActive = new Command<ObservationViewModel>(ToggleMark(() => Skip = !Skip, "skip"));
             SetUnclearActive = new Command<ObservationViewModel>(ToggleMark(() => Unclear = !Unclear, "unclear"));
             SetChangeActive = new Command<ObservationViewModel>(ToggleMark(() => Change = !Change, "change"));
             OpenItem = new Command<StackLayout>(ToggleObservation);
         }
+
+        public event ChangedEventHandler Changed;
             
         public ICommand SetSeenResult { get; set; }
         public ICommand SetNotSeenResult { get; set; }
@@ -33,8 +38,10 @@ namespace Lisa.Excelsis.Mobile
         public ICommand SetUnclearActive { get; set; }
         public ICommand SetChangeActive { get; set; }
         public ICommand OpenItem { get; set; }
-
+        
         public string Id { get; set; }
+        public Criterion Criterion { get; set; }
+
         public string Result
         { 
             get { return _Result; }
@@ -47,7 +54,7 @@ namespace Lisa.Excelsis.Mobile
                 }
             }
         }
-        public Criterion Criterion { get; set; }
+        
         public bool Maybe_Not
         {
             get { return _Maybe_Not; }
@@ -60,6 +67,7 @@ namespace Lisa.Excelsis.Mobile
                 }
             }
         }
+
         public bool Skip
         {
             get { return _Skip; }
@@ -72,6 +80,7 @@ namespace Lisa.Excelsis.Mobile
                 }
             }
         }
+
         public bool Unclear
         {
             get { return _Unclear; }
@@ -84,6 +93,7 @@ namespace Lisa.Excelsis.Mobile
                 }
             }
         }
+
         public bool Change
         {
             get { return _Change; }
@@ -148,34 +158,7 @@ namespace Lisa.Excelsis.Mobile
                 }
             }
         }
-
-        private bool _IsSelected;
-        private Color _ResultFillColor;
-        private Color _ResultStrokeColor;
-        private Color _OrderColor;
-        private string _Result;
-        private bool _Maybe_Not;
-        private bool _Skip;
-        private bool _Unclear;
-        private bool _Change;
-
-        private void OnChangeResult(ObservationViewModel item, string result)
-        {
-            if (item.Result != "notrated" && item.Result != result)
-            {
-                item.Result = (item.Result == "seen") ? "unseen" : "seen";
-            }
-            else if (item.Result == "notrated")
-            {
-                item.Result = result;
-            }
-            else
-            {
-                item.Result = "notrated";
-            }
-            _db.UpdateResult(item.Id, item.Result);
-        }
-
+        
         public void ChangeObserveColor()
         {
             if ((Skip || Change || Unclear || Maybe_Not) && Result == "notrated")
@@ -224,6 +207,41 @@ namespace Lisa.Excelsis.Mobile
             };
         }
 
+        private void OnChangeResult(ObservationViewModel item, string result)
+        {
+            if (Changed != null)
+            {
+                Changed(item, result);
+            }
+            if (item.Result != "notrated" && item.Result != result)
+            {
+                item.Result = (item.Result == "seen") ? "unseen" : "seen";
+            }
+            else if (item.Result == "notrated")
+            {
+                item.Result = result;
+            }
+            else
+            {
+                item.Result = "notrated";
+            }
+            _db.UpdateResult(item.Id, item.Result);
+
+            
+        }
+
+        private bool _IsSelected;
+
+        private Color _ResultFillColor;
+        private Color _ResultStrokeColor;
+        private Color _OrderColor;
+
+        private string _Result;
+
+        private bool _Maybe_Not;
+        private bool _Skip;
+        private bool _Unclear;
+        private bool _Change;
 
         private static AssessmentPage _owner;
 
