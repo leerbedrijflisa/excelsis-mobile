@@ -251,7 +251,30 @@
       </StackLayout>
     </ScrollView>
     <StackLayout HeightRequest="50" VerticalOptions="End" Spacing="0" BackgroundColor="#17607f">
-      <Label Text="test" TextColor="White" />
+      <StackLayout WidthRequest="100" Padding="15,10,10,10" VerticalOptions="Start">
+        <Grid WidthRequest="100">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+          </Grid.RowDefinitions>
+          
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="30"/>
+          </Grid.ColumnDefinitions>
+        
+          <Label TextColor="White" Grid.Row="0" Grid.Column="0" Text="O:"/>
+          <Label TextColor="White" Grid.Row="0" Grid.Column="1" Text="1"/>
+          <Label TextColor="White" Grid.Row="0" Grid.Column="2" Text="V:"/>
+          <Label TextColor="White" Grid.Row="0" Grid.Column="3" Text="2"/>
+          <Label TextColor="White" Grid.Row="0" Grid.Column="4" Text="G:"/>
+          <Label TextColor="White" Grid.Row="0" Grid.Column="5" Text="3"/>
+      
+        </Grid>
+      </StackLayout>
     </StackLayout>
   </StackLayout>
 </ContentPage>
