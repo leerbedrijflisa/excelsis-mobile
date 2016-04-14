@@ -161,6 +161,7 @@
     <BundleResource Include="Resources\Logo_excelsis_Beeld_Word_240.png" />
     <BundleResource Include="Resources\Logo_excelsis_Beeld_Word_480.png" />
     <BundleResource Include="Resources\Logo_excelsis_Beeld_Word_800.png" />
+    <BundleResource Include="Resources\add.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
