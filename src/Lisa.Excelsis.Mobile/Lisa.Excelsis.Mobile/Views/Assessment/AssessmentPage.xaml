@@ -267,11 +267,11 @@
           </Grid.ColumnDefinitions>
         
           <Label TextColor="White" Grid.Row="0" Grid.Column="0" Text="O:"/>
-          <Label TextColor="White" Grid.Row="0" Grid.Column="1" Text="1"/>
+          <Label TextColor="White" Grid.Row="0" Grid.Column="1" Text="{Binding TotalFail}"/>
           <Label TextColor="White" Grid.Row="0" Grid.Column="2" Text="V:"/>
-          <Label TextColor="White" Grid.Row="0" Grid.Column="3" Text="2"/>
+          <Label TextColor="White" Grid.Row="0" Grid.Column="3" Text="{Binding TotalPass}"/>
           <Label TextColor="White" Grid.Row="0" Grid.Column="4" Text="G:"/>
-          <Label TextColor="White" Grid.Row="0" Grid.Column="5" Text="3"/>
+          <Label TextColor="White" Grid.Row="0" Grid.Column="5" Text="{Binding TotalExcellent}"/>
       
         </Grid>
       </StackLayout>

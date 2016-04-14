@@ -92,8 +92,7 @@ namespace Lisa.Excelsis.Mobile
             };
              _db.Insert(adb);
             assessment.Id = adb.Id;
-
-            var categoryList = new List<Categorydb>();
+            
             foreach (var category in assessment.Categories)
             {
                 var cdb = new Categorydb()
@@ -102,9 +101,9 @@ namespace Lisa.Excelsis.Mobile
                     Order = category.Order,
                     AssessmentId = assessment.Id
                 };
-                categoryList.Add(cdb);
-
-                var observationList = new List<Observationdb>();
+                _db.Insert(cdb);
+                category.Id = cdb.Id;
+                
                 foreach (var observation in category.Observations)
                 {
                     var odb = new Observationdb()
@@ -117,9 +116,9 @@ namespace Lisa.Excelsis.Mobile
                         CategoryId = category.Id,
                         AssessmentId = assessment.Id
                     };
-                    observationList.Add(odb);
-
-                    var markList = new List<Markdb>();
+                    _db.Insert(odb);
+                    observation.Id = odb.Id;
+                    
                     foreach (var mark in observation.Marks)
                     {
                         var mdb = new Markdb()
@@ -128,13 +127,10 @@ namespace Lisa.Excelsis.Mobile
                             ObservationId = observation.Id,
                             AssessmentId = assessment.Id
                         };
-                        markList.Add(mdb);
+                        _db.Insert(mdb);
                     }
-                    _db.InsertOrReplaceAll(markList);
                 }
-                _db.InsertOrReplaceAll(observationList);
             }
-            _db.InsertOrReplaceAll(categoryList);
             return adb.Id;
         }
 

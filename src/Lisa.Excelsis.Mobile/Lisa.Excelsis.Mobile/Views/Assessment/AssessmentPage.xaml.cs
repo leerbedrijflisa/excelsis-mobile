@@ -83,7 +83,7 @@ namespace Lisa.Excelsis.Mobile
             switch(item.Criterion.Weight)
             {
                 case "fail":
-                    if(result == "unseen")
+                    if (result != "notrated" && item.Result == "seen")
                     {
                         assessmentView.TotalFail--;
                     }
@@ -93,7 +93,7 @@ namespace Lisa.Excelsis.Mobile
                     }
                     break;
                 case "pass":
-                    if (result == "unseen")
+                    if (result != "notrated" && item.Result == "seen")
                     {
                         assessmentView.TotalPass--;
                     }
@@ -103,7 +103,7 @@ namespace Lisa.Excelsis.Mobile
                     }
                     break;
                 case "excellent":
-                    if (result == "unseen")
+                    if (result != "notrated" && item.Result == "seen")
                     {
                         assessmentView.TotalExcellent--;
                     }
