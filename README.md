@@ -1,6 +1,6 @@
 Excelsis Mobile
 ===============
-View the backlog [here](https://docs.google.com/document/d/1V8YXQh1_NAvQ_9YNo5njdSHFEQxdh90enG0bmWtlJ7E/edit)
+View the backlog [here](https://docs.google.com/document/d/1V8YXQh1_NAvQ_9YNo5njdSHFEQxdh90enG0bmWtlJ7E/edit?usp=sharing)
 
 Prerequisites
 -------------
