@@ -48,7 +48,7 @@ namespace Lisa.Excelsis.Mobile
             Navigation.PushAsync(new ExamPage());
         }
 
-        public void UpdateAssessments(object sender, EventArgs e)
+        public void UpdateAssessments(object sender = null, EventArgs e = null)
         {
             var assessments = new List<Assessmentdb>();
             foreach (var assessment in _db.Table<Assessmentdb>())
@@ -57,6 +57,12 @@ namespace Lisa.Excelsis.Mobile
             }
             HistoryList.ItemsSource = assessments;
             HistoryList.EndRefresh();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            UpdateAssessments();
         }
 
         private bool _Tapped;
