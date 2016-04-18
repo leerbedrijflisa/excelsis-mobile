@@ -1,20 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:Lisa.Excelsis.Mobile;assembly=Lisa.Excelsis.Mobile"
-             x:Class="Lisa.Excelsis.Mobile.HistoryPage">
-  <ContentPage.Resources>
-    <ResourceDictionary>
-      <local:TimeZoneConverter x:Key="TimeZoneConverter" />
-    </ResourceDictionary>
-  </ContentPage.Resources>
-  <ContentPage.ToolbarItems>
-    <ToolbarItem Order="Primary" Name="Nieuw" Icon="add.png" Command="{Binding NewCommand}" />
-  </ContentPage.ToolbarItems>
-  
-  <ListView x:Name="HistoryList"
-            ItemsSource="{Binding Assessments}"
-            Refreshing="UpdateAssessments">
+             x:Class="Lisa.Excelsis.Mobile.ExamPage">
+  <ListView x:Name="ExamList"
+           ItemsSource="{Binding Exams}"
+           Refreshing="UpdateExams">
     <ListView.ItemTemplate>
       <DataTemplate>
         <ViewCell>
@@ -29,14 +19,12 @@
                   <ColumnDefinition Width="Auto" />
                   <ColumnDefinition Width="Auto" />
                   <ColumnDefinition Width="Auto" />
-                  <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Row="0" Grid.Column="0" Text="{Binding Id}"/>
                 <Label Grid.Row="0" Grid.Column="1" Text="{Binding Subject}"/>
                 <Label Grid.Row="0" Grid.Column="2" Text="{Binding Cohort}"/>
                 <Label Grid.Row="0" Grid.Column="3" Text="{Binding Name}"/>
-                <Label Grid.Row="0" Grid.Column="4" Text="{Binding Assessed,Converter={StaticResource TimeZoneConverter}}" HorizontalOptions="End"/>
               </Grid>
             </StackLayout>
           </ViewCell.View>

@@ -21,10 +21,14 @@ namespace Lisa.Excelsis.Mobile
             db.CreateTable<AssessmentAssessordb>();
             db.CreateTable<Assessmentdb>();
             db.CreateTable<Categorydb>();
+            db.CreateTable<Criteriondb>();
             db.CreateTable<Observationdb>();
+            db.CreateTable<Exam_Categorydb>();
             db.CreateTable<Markdb>();
 
             base.OnStart();
+
+            Initialize.Exams();
 
             MainPage = new NavigationPage(new HistoryPage()){
                // BarBackgroundColor = Color.FromRgb(255, 165, 0), ORANGE

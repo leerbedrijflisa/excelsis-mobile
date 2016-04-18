@@ -22,22 +22,30 @@ namespace Lisa.Excelsis.Mobile
             {
                 Assessments = assessments
             };
-            context.OnNewAssessment += NewAssessment;
+            context.OnOpenExamPage += OpenExamPage;
 
             BindingContext = context;
 
             HistoryList.IsPullToRefreshEnabled = true;
+            HistoryList.ItemTapped += async(sender, e) => {
+                if (_Tapped)
+                    return;
+                _Tapped = true;
+                var assessment = (Assessmentdb)e.Item;
+                await Navigation.PushAsync(new AssessmentPage(assessment));
+                _Tapped = false;
+            };
+            HistoryList.ItemSelected += (sender, e) => {
+                if (HistoryList.SelectedItem == null)
+                    return;
+                //deselect item when pushing
+                HistoryList.SelectedItem = null;
+            };
         }
 
-        public void NewAssessment()
+        public void OpenExamPage()
         {
-            Navigation.PushAsync(new AssessmentPage());
-        }
-
-        public void OpenAssessment(object sender, EventArgs e)
-        {
-            var assessment = (Assessmentdb)((ListView)sender).SelectedItem;
-            Navigation.PushAsync(new AssessmentPage(assessment));
+            Navigation.PushAsync(new ExamPage());
         }
 
         public void UpdateAssessments(object sender, EventArgs e)
@@ -50,6 +58,8 @@ namespace Lisa.Excelsis.Mobile
             HistoryList.ItemsSource = assessments;
             HistoryList.EndRefresh();
         }
+
+        private bool _Tapped;
 
         private readonly SQLiteConnection _db = DependencyService.Get<ISQLite>().GetConnection();
     }

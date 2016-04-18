@@ -6,7 +6,7 @@ namespace Lisa.Excelsis.Mobile
 {
     public partial class AssessmentPage : ContentPage
     {
-        public AssessmentPage (Assessmentdb item = null)
+        public AssessmentPage (Assessmentdb item = null, Exam exam = null)
         {
             if (item != null)
             {
@@ -18,9 +18,8 @@ namespace Lisa.Excelsis.Mobile
             }
             else
             {
-                assessment = DummyData.FetchAssessment();
-                int id = _db.SaveAssessment(assessment);
-                assessment.Id = id;
+                var id = _db.InsertAssessment(exam);
+                assessment = _db.FetchAssessment(id);
             }
 
             InitializeComponent();
@@ -67,12 +66,7 @@ namespace Lisa.Excelsis.Mobile
             }
 
             BindingContext = assessmentView;
-
-            foreach (var assessor in DummyData.FetchAssessors())
-            {
-                AssessorPicker.Items.Add(string.Join(" ", assessor.FirstName, assessor.LastName));
-            }
-            
+         
             ExamDate.Date = assessmentView.Assessed.Date;
             ExamTime.Time = TimeZoneInfo.ConvertTime(assessmentView.Assessed, TimeZoneInfo.Local).TimeOfDay;
             ExamTime.PropertyChanged += DateTimeChanged;            

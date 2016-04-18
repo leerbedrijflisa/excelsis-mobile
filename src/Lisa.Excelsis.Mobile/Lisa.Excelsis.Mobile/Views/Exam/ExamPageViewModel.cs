@@ -4,21 +4,21 @@ using Xamarin.Forms;
 
 namespace Lisa.Excelsis.Mobile
 {
-    public class HistoryPageViewModel
+    public class ExamPageViewModel
     {
-        public HistoryPageViewModel()
+        public ExamPageViewModel()
         {
             NewCommand = new Command(NewAssessment);
         }
 
-        public event NewAssessmentEventHandler OnOpenExamPage;
+        public event NewAssessmentEventHandler OnNewAssessment;
         public ICommand NewCommand { get; set; }
 
         public void NewAssessment()
         {
-            OnOpenExamPage();
+            OnNewAssessment();
         }
 
-        public List<Assessmentdb> Assessments { get; set; }
+        public List<Examdb> Exams { get; set; }
     }
 }
