@@ -5,8 +5,6 @@ using Xamarin.Forms;
 
 namespace Lisa.Excelsis.Mobile
 {
-    public delegate void NewAssessmentEventHandler();
-
     public partial class HistoryPage : ContentPage
     {
         public HistoryPage()

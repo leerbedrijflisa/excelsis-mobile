@@ -6,10 +6,8 @@ namespace Lisa.Excelsis.Mobile
 {
     public class ObservationViewModel : BindableObject
     {
-        public ObservationViewModel(AssessmentPage Owner)
+        public ObservationViewModel()
         {
-            _owner = Owner;
-
             SetSeenResult = new Command<ObservationViewModel>((item) =>
             { 
                 OnChangeResult(item, "seen"); 
@@ -29,8 +27,9 @@ namespace Lisa.Excelsis.Mobile
             OpenItem = new Command<StackLayout>(ToggleObservation);
         }
 
-        public event ChangedEventHandler Changed;
-            
+        public event ResultEventHandler OnResultChanged; 
+        public event ToggleObservationEventHandler OnToggleChanged;
+
         public ICommand SetSeenResult { get; set; }
         public ICommand SetNotSeenResult { get; set; }
         public ICommand SetMaybeNotActive { get; set; }
@@ -187,7 +186,7 @@ namespace Lisa.Excelsis.Mobile
 
         public void ToggleObservation(object sender)
         {
-            _owner.OpenItem(sender);
+            OnToggleChanged(sender);
         }
 
         private Action<ObservationViewModel> ToggleMark(Func<bool> toggle, string mark)
@@ -209,9 +208,9 @@ namespace Lisa.Excelsis.Mobile
 
         private void OnChangeResult(ObservationViewModel item, string result)
         {
-            if (Changed != null)
+            if (OnResultChanged != null)
             {
-                Changed(item, result);
+                OnResultChanged(item, result);
             }
             if (item.Result != "notrated" && item.Result != result)
             {
@@ -242,9 +241,7 @@ namespace Lisa.Excelsis.Mobile
         private bool _Skip;
         private bool _Unclear;
         private bool _Change;
-
-        private static AssessmentPage _owner;
-
+        
         private readonly Database _db = new Database();
     }
 }

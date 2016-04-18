@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Behaviors\EventHandlers.cs" />
     <Compile Include="Behaviors\NumericValidationBehavior.cs" />
     <Compile Include="Controls\CategoryListView.cs" />
     <Compile Include="Controls\ObservationListView.cs" />

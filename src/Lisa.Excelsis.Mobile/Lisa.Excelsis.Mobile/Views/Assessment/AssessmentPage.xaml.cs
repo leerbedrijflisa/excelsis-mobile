@@ -4,8 +4,6 @@ using System;
 
 namespace Lisa.Excelsis.Mobile
 {
-    public delegate void ChangedEventHandler(ObservationViewModel item, string result);
-
     public partial class AssessmentPage : ContentPage
     {
         public AssessmentPage (Assessmentdb item = null)
@@ -24,6 +22,7 @@ namespace Lisa.Excelsis.Mobile
                 int id = _db.SaveAssessment(assessment);
                 assessment.Id = id;
             }
+
             InitializeComponent();
             Title = assessment.Exam.Subject + " - " + assessment.Exam.Name + " " + assessment.Exam.Cohort;
 
@@ -48,7 +47,7 @@ namespace Lisa.Excelsis.Mobile
                _category.Observations = new List<ObservationViewModel>();
                 foreach (var observations in categories.Observations)
                 {
-                    var _observation = new ObservationViewModel(this)
+                    var _observation = new ObservationViewModel()
                     {
                         Id = observations.Id.ToString(),
                         Result = observations.Result,
@@ -59,7 +58,8 @@ namespace Lisa.Excelsis.Mobile
                         Change = observations.Marks.Contains("change")
                     };
                     UpdateFooter(_observation, "notrated");     
-                    _observation.Changed += UpdateFooter;
+                    _observation.OnResultChanged += UpdateFooter;
+                    _observation.OnToggleChanged += ToggleItem;
                     _observation.ChangeObserveColor();
                     _category.Observations.Add(_observation);
                 }
@@ -152,7 +152,7 @@ namespace Lisa.Excelsis.Mobile
             var picker = (TimePicker)sender;
         }
 
-        public void OpenItem(object sender)
+        public void ToggleItem(object sender)
         {
             var stacklayout = sender as StackLayout;
             var item = stacklayout.BindingContext as ObservationViewModel;
