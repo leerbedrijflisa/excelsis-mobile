@@ -5,7 +5,7 @@ namespace Lisa.Excelsis.Mobile
     [Table("Exams")]
     public class Examdb
     {
-        [PrimaryKey]
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public string Name { get; set; }
 		public string NameId { get; set; }
