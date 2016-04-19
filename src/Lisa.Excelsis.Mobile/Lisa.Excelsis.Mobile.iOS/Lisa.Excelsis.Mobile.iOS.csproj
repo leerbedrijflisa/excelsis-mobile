@@ -163,6 +163,9 @@
     <BundleResource Include="Resources\.DS_Store" />
     <BundleResource Include="Resources\Logo_excelsis_Beeld_RGB_2016.png" />
     <BundleResource Include="Resources\Logo_excelsis_Beeld_word_2016.png" />
+    <BundleResource Include="Resources\excelsis-120x120.png" />
+    <BundleResource Include="Resources\excelsis-152x152.png" />
+    <BundleResource Include="Resources\excelsis-76x76.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
