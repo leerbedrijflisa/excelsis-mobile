@@ -10,7 +10,7 @@ namespace Lisa.Excelsis.Mobile
         {
             var date = TimeZoneInfo.ConvertTime((DateTime)value, TimeZoneInfo.Local).Date.ToString("ddd d MMMM yyyy");
             var time = TimeZoneInfo.ConvertTime((DateTime)value, TimeZoneInfo.Local).TimeOfDay.ToString();
-            var datetime = date + " " + time;
+            var datetime = date + "  " + time;
             return datetime;
         }
 
