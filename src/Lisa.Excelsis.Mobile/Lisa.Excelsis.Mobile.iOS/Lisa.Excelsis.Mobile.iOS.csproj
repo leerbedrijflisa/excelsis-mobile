@@ -112,8 +112,6 @@
     <None Include="Resources\settings.png" />
     <None Include="Resources\settings%402x.png" />
     <None Include="Resources\icon.png" />
-    <None Include="Resources\Logo_excelsis_Beeld_RGB_2016.png" />
-    <None Include="Resources\Logo_excelsis_Beeld_word_2016.png" />
     <None Include="Resources\yesnobutton1-old.png" />
     <None Include="Resources\yesnobutton2-old.png" />
     <Compile Include="RoundedBoxRenderer.cs" />
@@ -162,6 +160,9 @@
     <BundleResource Include="Resources\Logo_excelsis_Beeld_Word_480.png" />
     <BundleResource Include="Resources\Logo_excelsis_Beeld_Word_800.png" />
     <BundleResource Include="Resources\add.png" />
+    <BundleResource Include="Resources\.DS_Store" />
+    <BundleResource Include="Resources\Logo_excelsis_Beeld_RGB_2016.png" />
+    <BundleResource Include="Resources\Logo_excelsis_Beeld_word_2016.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
