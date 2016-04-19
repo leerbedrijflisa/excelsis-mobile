@@ -16,7 +16,7 @@
   <StackLayout Spacing="0">
     <ScrollView IsClippedToBounds="true">
       <StackLayout x:Name="AssessmentView">
-        <StackLayout Padding="10,5,5,5" >
+        <StackLayout Padding="10,15,10,5" >
           <Grid>
             <Grid.RowDefinitions>
               <RowDefinition Height="Auto"/>
