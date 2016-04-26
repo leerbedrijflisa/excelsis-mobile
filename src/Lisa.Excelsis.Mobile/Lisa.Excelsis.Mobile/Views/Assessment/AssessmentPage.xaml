@@ -10,9 +10,6 @@
       <local:MarkConverter x:Key="MarkConverter" />
     </ResourceDictionary>
   </ContentPage.Resources>
-  <ContentPage.ToolbarItems>
-    <ToolbarItem Order="Primary" Name="Clear" Icon="refresh.png" Command="{Binding ClearAssessment}" CommandParameter="{Binding}" />
-  </ContentPage.ToolbarItems>
   <StackLayout Spacing="0">
     <ScrollView IsClippedToBounds="true">
       <StackLayout x:Name="AssessmentView">

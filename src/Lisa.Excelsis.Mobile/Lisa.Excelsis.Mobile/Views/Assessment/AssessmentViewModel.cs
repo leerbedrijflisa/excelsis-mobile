@@ -11,10 +11,8 @@ namespace Lisa.Excelsis.Mobile
         {
             _Navigation = navigation;
             _Page = page;
-            ClearAssessment = new Command<AssessmentViewModel>(Clear);
         }
-
-        public ICommand ClearAssessment { get; set; }       
+      
 
         public int Id { get; set; }
         public DateTime Assessed { get; set; }
@@ -70,22 +68,6 @@ namespace Lisa.Excelsis.Mobile
             }
         }
         
-        
-        
-        private async void Clear(AssessmentViewModel item)
-        {
-            if (await _Page.DisplayAlert("Alles resetten", "Weet u zeker dat u alles wilt weggooien?", "Ja", "Nee"))
-            {
-                if (await _Page.DisplayAlert("Alles resetten", "Weet u het heel zeker? ", "Ja", "Nee"))
-                {
-                   // _db.RemoveAssessment(item.Id);
-
-                    _Navigation.InsertPageBefore(new AssessmentPage(), _Page);
-                    await _Navigation.PopAsync();
-                }
-            }
-        }
-
         private int _totalFail = 0;
         private int _totalPass = 0;
         private int _totalExcellent = 0;

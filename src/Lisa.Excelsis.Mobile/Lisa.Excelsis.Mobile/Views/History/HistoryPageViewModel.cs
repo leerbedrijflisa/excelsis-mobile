@@ -19,6 +19,7 @@ namespace Lisa.Excelsis.Mobile
             OnOpenExamPage();
         }
 
+        public bool NoDataMessage { get; set; }
         public List<Assessmentdb> Assessments { get; set; }
     }
 }

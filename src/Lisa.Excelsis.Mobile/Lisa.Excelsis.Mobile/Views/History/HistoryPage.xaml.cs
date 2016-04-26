@@ -24,23 +24,12 @@ namespace Lisa.Excelsis.Mobile
             };
             context.OnOpenExamPage += OpenExamPage;
 
+            noDataMessage.IsVisible = (assessments.Count == 0);
             BindingContext = context;
 
             HistoryList.IsPullToRefreshEnabled = true;
-            HistoryList.ItemTapped += async(sender, e) => {
-                if (_Tapped)
-                    return;
-                _Tapped = true;
-                var assessment = (Assessmentdb)e.Item;
-                await Navigation.PushAsync(new AssessmentPage(assessment));
-                _Tapped = false;
-            };
-            HistoryList.ItemSelected += (sender, e) => {
-                if (HistoryList.SelectedItem == null)
-                    return;
-                //deselect item when pushing
-                HistoryList.SelectedItem = null;
-            };
+            HistoryList.ItemTapped += OnItemTapped;
+            HistoryList.ItemSelected += OnItemSelected;
         }
 
         public void OpenExamPage()
@@ -55,6 +44,7 @@ namespace Lisa.Excelsis.Mobile
             {
                 assessments.Add(assessment);
             }
+            noDataMessage.IsVisible = (assessments.Count == 0);
             HistoryList.ItemsSource = assessments;
             HistoryList.EndRefresh();
         }
@@ -63,6 +53,27 @@ namespace Lisa.Excelsis.Mobile
         {
             base.OnAppearing();
             UpdateAssessments();
+        }
+
+        private async void OnItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            if (_Tapped)
+                return;
+            var loadingPage = new LoadingPage();
+            await Navigation.PushAsync(loadingPage);
+            _Tapped = true;
+            var assessment = (Assessmentdb)e.Item;
+            Navigation.InsertPageBefore(new AssessmentPage(assessment), loadingPage);
+            _Tapped = false;
+            await Navigation.PopAsync();
+        }
+
+        private void OnItemSelected(object sender, EventArgs e)
+        {
+            if (HistoryList.SelectedItem == null)
+                return;
+            //deselect item when pushing
+            HistoryList.SelectedItem = null;
         }
 
         private bool _Tapped;

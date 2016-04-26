@@ -66,7 +66,6 @@ namespace Lisa.Excelsis.Mobile
             }
 
             BindingContext = assessmentView;
-         
             ExamDate.Date = assessmentView.Assessed.Date;
             ExamTime.Time = TimeZoneInfo.ConvertTime(assessmentView.Assessed, TimeZoneInfo.Local).TimeOfDay;
             ExamTime.PropertyChanged += DateTimeChanged;            

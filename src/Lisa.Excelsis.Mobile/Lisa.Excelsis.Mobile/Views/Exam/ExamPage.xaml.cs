@@ -22,34 +22,13 @@ namespace Lisa.Excelsis.Mobile
             {
                 Exams = exams
             };
-            context.OnNewAssessment += NewAssessment;
-
+            noDataMessage.IsVisible = (exams.Count == 0);
             BindingContext = context;
 
             ExamList.IsPullToRefreshEnabled = true;
 
-            ExamList.ItemTapped += async(sender, e) => {
-                if (_Tapped)
-                    return;
-                _Tapped = true;
-                var examId = ((Examdb)e.Item).Id;
-                var exam = _database.FetchExam(examId);
-                Navigation.InsertPageBefore(new AssessmentPage(null, exam), this);
-                await Navigation.PopAsync();
-
-                _Tapped = false;
-            };
-            ExamList.ItemSelected += (sender, e) => {
-                if (ExamList.SelectedItem == null)
-                    return;
-                //deselect item when pushing
-                ExamList.SelectedItem = null;
-            };
-        }
-
-        public void NewAssessment()
-        {
-            Navigation.PushAsync(new AssessmentPage());
+            ExamList.ItemTapped += OnItemTapped;
+            ExamList.ItemSelected += OnItemSelected;
         }
 
         public void UpdateExams(object sender, EventArgs e)
@@ -59,10 +38,33 @@ namespace Lisa.Excelsis.Mobile
             {
                 exams.Add(exam);
             }
+            noDataMessage.IsVisible = (exams.Count == 0);
             ExamList.ItemsSource = exams;
             ExamList.EndRefresh();
         }
 
+        private async void OnItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            if (_Tapped)
+                return;
+            var loadingPage = new LoadingPage();
+            await Navigation.PushAsync(loadingPage);
+            _Tapped = true;
+            var examId = ((Examdb)e.Item).Id;
+            var exam = _database.FetchExam(examId);
+            Navigation.InsertPageBefore(new AssessmentPage(null, exam), loadingPage);
+            _Tapped = false;
+            await Navigation.PopAsync();
+            Navigation.RemovePage(this);
+        }
+
+        private void OnItemSelected(object sender, EventArgs e)
+        {
+            if (ExamList.SelectedItem == null)
+                return;
+            //deselect item when pushing
+            ExamList.SelectedItem = null;
+        }
         private bool _Tapped;
         
         private readonly SQLiteConnection _db = DependencyService.Get<ISQLite>().GetConnection();
