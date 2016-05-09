@@ -1,4 +1,5 @@
 ﻿
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Lisa.Excelsis.Mobile
@@ -34,8 +35,10 @@ namespace Lisa.Excelsis.Mobile
             Navigation.RemovePage(this);
         }
             
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
+            //android hack https://forums.xamarin.com/discussion/comment/93957/#Comment_93957;
+            await Task.Yield();
             //The page is loaded when the loading page appeares, otherwise the loading page will come over the "to load" page
             LoadPage();
         }

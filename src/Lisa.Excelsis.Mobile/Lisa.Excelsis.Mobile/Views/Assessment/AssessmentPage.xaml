@@ -31,7 +31,7 @@
             </Grid.ColumnDefinitions>
 
             <Label Text="Kandidaat: " Grid.Column="0" Grid.Row="0" VerticalTextAlignment="Center"/>
-            <Entry Keyboard="Default" Grid.Column="1" Grid.Row="0" TextChanged="EntryChanged" Text="{Binding Student.Name}"/>
+            <Entry Keyboard="Default" Grid.Column="1" Grid.Row="0" TextChanged="EntryChanged" Text="{Binding Student.Name}" />
             <Label Text="Studentnummer: " Grid.Column="2" Grid.Row="0" VerticalTextAlignment="Center"/>
             <Entry Keyboard="Numeric" Grid.Column="3" Grid.Row="0" TextChanged="EntryChanged" Text="{Binding Student.Number}"/>
 

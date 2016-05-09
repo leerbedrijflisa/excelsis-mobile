@@ -52,6 +52,7 @@ namespace Lisa.Excelsis.Mobile
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            NavigationPage.SetHasNavigationBar(this, true);
             UpdateAssessments();
         }
 
@@ -61,6 +62,7 @@ namespace Lisa.Excelsis.Mobile
                 return;
             _Tapped = true;
             var assessment = (Assessmentdb)e.Item;
+            NavigationPage.SetHasNavigationBar(this, false);
             await Navigation.PushAsync(new LoadingPage("assessment_old", assessment));
             _Tapped = false;
         }

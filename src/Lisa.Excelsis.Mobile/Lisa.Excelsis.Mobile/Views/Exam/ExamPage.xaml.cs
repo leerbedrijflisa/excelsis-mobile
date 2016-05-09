@@ -50,6 +50,7 @@ namespace Lisa.Excelsis.Mobile
             _Tapped = true;
             var examId = ((Examdb)e.Item).Id;
             var exam = _database.FetchExam(examId);
+            NavigationPage.SetHasNavigationBar(this, false);
             await Navigation.PushAsync(new LoadingPage("assessment_new", exam));
             _Tapped = false;
             Navigation.RemovePage(this);
@@ -63,7 +64,13 @@ namespace Lisa.Excelsis.Mobile
             ExamList.SelectedItem = null;
         }
         private bool _Tapped;
-        
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            NavigationPage.SetHasNavigationBar(this, true);
+        }
+
         private readonly SQLiteConnection _db = DependencyService.Get<ISQLite>().GetConnection();
         private readonly Database _database = new Database();
     }
