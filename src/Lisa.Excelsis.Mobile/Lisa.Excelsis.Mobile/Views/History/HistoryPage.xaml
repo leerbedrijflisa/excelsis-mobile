@@ -11,37 +11,44 @@
   <ContentPage.ToolbarItems>
     <ToolbarItem Order="Primary" Name="Nieuw" Icon="add.png" Command="{Binding NewCommand}" />
   </ContentPage.ToolbarItems>
-  <StackLayout>
-    <Label x:Name="noDataMessage" Text="Geen gegevens gevonden..." HorizontalOptions="Center" />
-    <ListView x:Name="HistoryList"
-              ItemsSource="{Binding Assessments}"
-              Refreshing="UpdateAssessments">
-      <ListView.ItemTemplate>
-        <DataTemplate>
-          <ViewCell>
-            <ViewCell.View>
-              <StackLayout Padding="10,10,10,10">
-                <Grid>
-                  <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                  </Grid.RowDefinitions>
-                  <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                  </Grid.ColumnDefinitions>
+  <AbsoluteLayout>
 
-                  <Label Grid.Row="0" Grid.Column="0" Text="{Binding Subject}"/>
-                  <Label Grid.Row="0" Grid.Column="1" Text="{Binding Cohort}"/>
-                  <Label Grid.Row="0" Grid.Column="2" Text="{Binding Name}"/>
-                  <Label Grid.Row="0" Grid.Column="3" Text="{Binding Assessed,Converter={StaticResource TimeZoneConverter}}" HorizontalOptions="End"/>
-                </Grid>
-              </StackLayout>
-            </ViewCell.View>
-          </ViewCell>
-        </DataTemplate>
-      </ListView.ItemTemplate>
-    </ListView>
-  </StackLayout>
+	  <StackLayout x:Name="Content" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+	    <Label x:Name="noDataMessage" Text="Geen gegevens gevonden..." HorizontalOptions="Center" />
+	    <ListView x:Name="HistoryList"
+	              ItemsSource="{Binding Assessments}"
+	              Refreshing="UpdateAssessments">
+	      <ListView.ItemTemplate>
+	        <DataTemplate>
+	          <ViewCell>
+	            <ViewCell.View>
+	              <StackLayout Padding="10,10,10,10">
+	                <Grid>
+	                  <Grid.RowDefinitions>
+	                    <RowDefinition Height="Auto" />
+	                  </Grid.RowDefinitions>
+	                  <Grid.ColumnDefinitions>
+	                    <ColumnDefinition Width="Auto" />
+	                    <ColumnDefinition Width="Auto" />
+	                    <ColumnDefinition Width="Auto" />
+	                    <ColumnDefinition Width="*" />
+	                  </Grid.ColumnDefinitions>
+
+	                  <Label Grid.Row="0" Grid.Column="0" Text="{Binding Subject}"/>
+	                  <Label Grid.Row="0" Grid.Column="1" Text="{Binding Cohort}"/>
+	                  <Label Grid.Row="0" Grid.Column="2" Text="{Binding Name}"/>
+	                  <Label Grid.Row="0" Grid.Column="3" Text="{Binding Assessed,Converter={StaticResource TimeZoneConverter}}" HorizontalOptions="End"/>
+	                </Grid>
+	              </StackLayout>
+	            </ViewCell.View>
+	          </ViewCell>
+	        </DataTemplate>
+	      </ListView.ItemTemplate>
+	    </ListView>
+	  </StackLayout>
+	  <StackLayout x:Name="Loading"  AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" IsVisible="false" BackgroundColor="White">
+	 </StackLayout>
+	  <Label x:Name="LoadingText" Text="Beoordeling laden..." AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"  AbsoluteLayout.LayoutFlags="PositionProportional" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="false" />
+	   
+   </AbsoluteLayout>
 </ContentPage>

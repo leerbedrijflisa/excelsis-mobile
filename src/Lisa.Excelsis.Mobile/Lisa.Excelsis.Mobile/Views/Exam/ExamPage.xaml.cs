@@ -47,15 +47,16 @@ namespace Lisa.Excelsis.Mobile
         {
             if (_Tapped)
                 return;
-            var loadingPage = new LoadingPage();
-            await Navigation.PushAsync(loadingPage);
             _Tapped = true;
+            Loading.IsVisible = true;
+            LoadingText.IsVisible = true;
             var examId = ((Examdb)e.Item).Id;
             var exam = _database.FetchExam(examId);
-            Navigation.InsertPageBefore(new AssessmentPage(null, exam), loadingPage);
+            Navigation.InsertPageBefore(new AssessmentPage(null, exam), this);
             _Tapped = false;
             await Navigation.PopAsync();
-            Navigation.RemovePage(this);
+            Loading.IsVisible = false;
+            LoadingText.IsVisible = false;
         }
 
         private void OnItemSelected(object sender, EventArgs e)

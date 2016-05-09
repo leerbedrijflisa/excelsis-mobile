@@ -2,7 +2,5 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Lisa.Excelsis.Mobile.LoadingPage">
-  <Grid VerticalOptions="Center" HorizontalOptions="Center">  
-    <Label Text="Beoordeling laden..." HorizontalOptions="Center" VerticalOptions="Center" />
-  </Grid>
+ 
 </ContentPage>
