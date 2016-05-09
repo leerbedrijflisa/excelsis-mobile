@@ -2,5 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Lisa.Excelsis.Mobile.LoadingPage">
- 
+  <Grid VerticalOptions="Center" HorizontalOptions="Center">  
+  <Grid.RowDefinitions>
+    <RowDefinition Height="Auto" />
+    <RowDefinition Height="Auto" />
+  </Grid.RowDefinitions>
+  	<ActivityIndicator IsRunning="true" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center"/>
+    <Label Text="Beoordeling laden..." Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center" />
+  </Grid>
 </ContentPage>

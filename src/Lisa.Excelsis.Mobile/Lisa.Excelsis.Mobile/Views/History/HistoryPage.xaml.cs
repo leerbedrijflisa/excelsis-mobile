@@ -60,14 +60,9 @@ namespace Lisa.Excelsis.Mobile
             if (_Tapped)
                 return;
             _Tapped = true;
-            Loading.IsVisible = true;
-            LoadingText.IsVisible = true;
             var assessment = (Assessmentdb)e.Item;
-            await Navigation.PushAsync(new AssessmentPage(assessment));
+            await Navigation.PushAsync(new LoadingPage("assessment_old", assessment));
             _Tapped = false;
-
-            Loading.IsVisible = false;
-            LoadingText.IsVisible = false;
         }
 
         private void OnItemSelected(object sender, EventArgs e)

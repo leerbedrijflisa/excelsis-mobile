@@ -11,9 +11,7 @@
   <ContentPage.ToolbarItems>
     <ToolbarItem Order="Primary" Name="Nieuw" Icon="add.png" Command="{Binding NewCommand}" />
   </ContentPage.ToolbarItems>
-  <AbsoluteLayout>
-
-	  <StackLayout x:Name="Content" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+	  <StackLayout>
 	    <Label x:Name="noDataMessage" Text="Geen gegevens gevonden..." HorizontalOptions="Center" />
 	    <ListView x:Name="HistoryList"
 	              ItemsSource="{Binding Assessments}"
@@ -46,9 +44,4 @@
 	      </ListView.ItemTemplate>
 	    </ListView>
 	  </StackLayout>
-	  <StackLayout x:Name="Loading"  AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" IsVisible="false" BackgroundColor="White">
-	 </StackLayout>
-	  <Label x:Name="LoadingText" Text="Beoordeling laden..." AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"  AbsoluteLayout.LayoutFlags="PositionProportional" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="false" />
-	   
-   </AbsoluteLayout>
 </ContentPage>
