@@ -61,8 +61,7 @@ namespace Lisa.Excelsis.Mobile
             if (_Tapped)
                 return;
             _Tapped = true;
-            var assessment = (Assessmentdb)e.Item;
-            NavigationPage.SetHasNavigationBar(this, false);
+            var assessment = (Assessmentdb)e.Item;            
             await Navigation.PushAsync(new LoadingPage("assessment_old", assessment));
             _Tapped = false;
         }

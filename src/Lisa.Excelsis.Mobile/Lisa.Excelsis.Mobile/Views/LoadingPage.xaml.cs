@@ -10,9 +10,9 @@ namespace Lisa.Excelsis.Mobile
         private object Parameter;
 
         public LoadingPage(string page, object parameter)
-        {
-            NavigationPage.SetHasNavigationBar(this, false);
+        {           
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
             Page = page;
             Parameter = parameter;
 
@@ -36,7 +36,7 @@ namespace Lisa.Excelsis.Mobile
         }
             
         protected async override void OnAppearing()
-        {
+        {            
             //android hack https://forums.xamarin.com/discussion/comment/93957/#Comment_93957;
             await Task.Yield();
             //The page is loaded when the loading page appeares, otherwise the loading page will come over the "to load" page

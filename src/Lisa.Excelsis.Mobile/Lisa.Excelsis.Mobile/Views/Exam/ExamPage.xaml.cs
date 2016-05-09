@@ -50,7 +50,6 @@ namespace Lisa.Excelsis.Mobile
             _Tapped = true;
             var examId = ((Examdb)e.Item).Id;
             var exam = _database.FetchExam(examId);
-            NavigationPage.SetHasNavigationBar(this, false);
             await Navigation.PushAsync(new LoadingPage("assessment_new", exam));
             _Tapped = false;
             Navigation.RemovePage(this);
