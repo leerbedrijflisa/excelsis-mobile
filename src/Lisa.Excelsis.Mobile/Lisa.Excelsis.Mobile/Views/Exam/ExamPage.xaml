@@ -4,7 +4,7 @@
              x:Class="Lisa.Excelsis.Mobile.ExamPage">
 	  <StackLayout>
 	    
-	    <Label x:Name="noDataMessage" Text="Geen gegevens gevonden..." HorizontalOptions="Center" />
+	    <Label x:Name="noDataMessage" Text="Er zijn geen proeve." HorizontalOptions="Center" />
 	    <ListView x:Name="ExamList"
 	             ItemsSource="{Binding Exams}"
 	             Refreshing="UpdateExams">

@@ -12,7 +12,7 @@
     <ToolbarItem Order="Primary" Name="Nieuw" Icon="add.png" Command="{Binding NewCommand}" />
   </ContentPage.ToolbarItems>
 	  <StackLayout>
-	    <Label x:Name="noDataMessage" Text="Geen gegevens gevonden..." HorizontalOptions="Center" />
+	    <Label x:Name="noDataMessage" Text="Er zijn geen beoordelingen." HorizontalOptions="Center" />
 	    <ListView x:Name="HistoryList"
 	              ItemsSource="{Binding Assessments}"
 	              Refreshing="UpdateAssessments">
