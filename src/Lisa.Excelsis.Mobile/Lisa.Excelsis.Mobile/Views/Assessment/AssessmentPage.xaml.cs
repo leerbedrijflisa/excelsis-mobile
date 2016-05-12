@@ -6,7 +6,7 @@ namespace Lisa.Excelsis.Mobile
 {
     public partial class AssessmentPage : ContentPage
     {
-        public AssessmentPage (Assessmentdb item = null, Exam exam = null)
+        public AssessmentPage(Assessmentdb item = null, Exam exam = null)
         {
             if (item != null)
             {
@@ -33,6 +33,7 @@ namespace Lisa.Excelsis.Mobile
                 Student = assessment.Student,
                 Exam = assessment.Exam
             };
+            assessmentView.OnTogglePopup += TogglePopup;
 
             assessmentView.Categories = new List<CategoryViewModel>();
             foreach (var categories in assessment.Categories)
@@ -43,7 +44,7 @@ namespace Lisa.Excelsis.Mobile
                     Name = categories.Name
                 };
 
-               _category.Observations = new List<ObservationViewModel>();
+                _category.Observations = new List<ObservationViewModel>();
                 foreach (var observations in categories.Observations)
                 {
                     var _observation = new ObservationViewModel()
@@ -56,7 +57,8 @@ namespace Lisa.Excelsis.Mobile
                         Unclear = observations.Marks.Contains("unclear"),
                         Change = observations.Marks.Contains("change")
                     };
-                    UpdateFooter(_observation, "notrated");     
+                    UpdateFooter(_observation, "notrated");
+                    _observation.OnTogglePopup += TogglePopup;
                     _observation.OnResultChanged += UpdateFooter;
                     _observation.OnToggleChanged += ToggleItem;
                     _observation.ChangeObserveColor();
@@ -68,12 +70,12 @@ namespace Lisa.Excelsis.Mobile
             BindingContext = assessmentView;
             ExamDate.Date = assessmentView.Assessed.Date;
             ExamTime.Time = TimeZoneInfo.ConvertTime(assessmentView.Assessed, TimeZoneInfo.Local).TimeOfDay;
-            ExamTime.PropertyChanged += DateTimeChanged;            
+            ExamTime.PropertyChanged += DateTimeChanged;
         }
 
         public void UpdateFooter(ObservationViewModel item, string result)
         {
-            switch(item.Criterion.Weight)
+            switch (item.Criterion.Weight)
             {
                 case "fail":
                     if (result != "notrated" && item.Result == "seen")
@@ -172,7 +174,36 @@ namespace Lisa.Excelsis.Mobile
             _oldPage = this;
             _oldAnimation = CollapseAnimation(row);
         }
-               
+
+        public void TogglePopup(string popup, object sender = null)
+        {
+            switch (popup)
+            {
+                case "info":
+                    if (sender != null)
+                    {
+                        var observation = sender as ObservationViewModel;
+                        InfoPopupLabel.Text = (observation.Criterion.Description.Length > 0) ? observation.Criterion.Description : "Geen beschrijving aanwezig.";
+                        PopupOverlayBackground.IsVisible = true;
+                    }
+                    else
+                    {
+                        InfoPopupLabel.Text = string.Empty;
+                        PopupOverlayBackground.IsVisible = false;
+                    }
+                    InfoPopup.IsVisible = !InfoPopup.IsVisible;
+                    FeedbackPopup.IsVisible = false;
+                    break;
+                case "feedback":
+
+                    PopupOverlayBackground.IsVisible = !FeedbackPopup.IsVisible;
+                    InfoPopup.IsVisible = false;
+                    FeedbackPopup.IsVisible = !FeedbackPopup.IsVisible;
+                    break;
+            }
+
+        }
+
         private Animation ExpandAnimation(RowDefinition row)
         {
             return new Animation(
@@ -200,7 +231,7 @@ namespace Lisa.Excelsis.Mobile
             return value;
         }
 
-        private static double _rowHeight= 90;
+        private static double _rowHeight = 150; //90
         private static Animation _oldAnimation;
         private static RowDefinition _oldRow;
         private static Page _oldPage;

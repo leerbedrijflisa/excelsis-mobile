@@ -25,9 +25,11 @@ namespace Lisa.Excelsis.Mobile
             SetUnclearActive = new Command<ObservationViewModel>(ToggleMark(() => Unclear = !Unclear, "unclear"));
             SetChangeActive = new Command<ObservationViewModel>(ToggleMark(() => Change = !Change, "change"));
             OpenItem = new Command<StackLayout>(ToggleObservation);
+            OpenPopup = new Command<ObservationViewModel>(TogglePopup);
         }
 
-        public event ResultEventHandler OnResultChanged; 
+        public event ResultEventHandler OnResultChanged;
+        public event TogglePopupEventHandler OnTogglePopup;
         public event ToggleObservationEventHandler OnToggleChanged;
 
         public ICommand SetSeenResult { get; set; }
@@ -37,7 +39,8 @@ namespace Lisa.Excelsis.Mobile
         public ICommand SetUnclearActive { get; set; }
         public ICommand SetChangeActive { get; set; }
         public ICommand OpenItem { get; set; }
-        
+        public ICommand OpenPopup { get; set; }
+
         public string Id { get; set; }
         public Criterion Criterion { get; set; }
 
@@ -182,6 +185,11 @@ namespace Lisa.Excelsis.Mobile
             }
 
             OrderColor = (ResultFillColor == Color.White) ? ResultStrokeColor : Color.White;
+        }
+
+        public void TogglePopup(object sender = null)
+        {
+            OnTogglePopup("info", sender);
         }
 
         public void ToggleObservation(object sender)

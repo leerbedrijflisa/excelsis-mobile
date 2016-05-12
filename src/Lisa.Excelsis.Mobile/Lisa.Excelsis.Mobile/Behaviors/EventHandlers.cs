@@ -7,4 +7,6 @@
     public delegate void OpenAssessmentEventHandler(Assessmentdb item);
 
     public delegate void ToggleObservationEventHandler(object item);
+
+    public delegate void TogglePopupEventHandler(string popup, object item = null);
 }

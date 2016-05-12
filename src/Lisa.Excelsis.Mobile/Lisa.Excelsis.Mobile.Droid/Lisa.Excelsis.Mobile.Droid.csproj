@@ -181,7 +181,9 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Feedback.png" />
+  </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\add.png" />
   </ItemGroup>

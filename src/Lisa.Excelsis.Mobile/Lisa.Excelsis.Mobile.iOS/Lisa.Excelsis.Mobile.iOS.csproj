@@ -230,6 +230,9 @@
       <HintPath>..\..\packages\Xamarin.Forms.2.2.0.31\lib\Xamarin.iOS10\Xamarin.Forms.Platform.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Feedback.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
