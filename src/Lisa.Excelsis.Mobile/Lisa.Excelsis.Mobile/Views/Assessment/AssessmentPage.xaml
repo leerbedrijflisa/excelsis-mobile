@@ -15,7 +15,7 @@
     <ToolbarItem Order="Primary" Name="Opmerking plaatsen" Icon="Feedback.png" Command="{Binding OpenFeedback}"  />
   </ContentPage.ToolbarItems>
 
-  <AbsoluteLayout>
+  <AbsoluteLayout x:Name="Container">
     <StackLayout Spacing="0" HorizontalOptions="Fill" VerticalOptions="Fill" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
       <StackLayout Spacing="0" VerticalOptions="StartAndExpand">
         <ScrollView IsClippedToBounds="true">
@@ -246,7 +246,7 @@
                                 </Grid>
                               </StackLayout>
                             </Grid>
-                            <BoxView Color="Black" HeightRequest="1" />
+                            <BoxView Color="#17607f" HeightRequest="1" />
                           </StackLayout>
                         </DataTemplate>
                       </local:ObservationListView.ItemTemplate>
@@ -287,46 +287,56 @@
       </StackLayout>
     </StackLayout>
 
-    <BoxView x:Name="PopupOverlayBackground" IsVisible="False" Color="White" Opacity="0.9" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" VerticalOptions="Fill" HorizontalOptions="Fill">
-      <BoxView.GestureRecognizers>
-        <TapGestureRecognizer Command="{Binding ClosePopup}" />
-      </BoxView.GestureRecognizers>
-    </BoxView>
 
-    <Grid AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" VerticalOptions="Fill" HorizontalOptions="Fill">
-      <Grid.RowDefinitions>
-        <RowDefinition Height="1*" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="1*" />
-      </Grid.RowDefinitions>
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="1*" />
-        <ColumnDefinition Width="5*" />
-        <ColumnDefinition Width="1*" />
-      </Grid.ColumnDefinitions>
+     <BoxView x:Name="ContainerOverlay" Color="White" Opacity="0.9" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" VerticalOptions="Fill" HorizontalOptions="Fill" />
+    <StackLayout x:Name="PopupHolder" Padding="50,50,50,50" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" VerticalOptions="Fill" HorizontalOptions="Fill">
+	   
 
-      <Frame x:Name="InfoPopup" HasShadow="True" OutlineColor="Gray" Padding="50,50,50,50" BackgroundColor="White" Grid.Column="1" Grid.Row="1"   VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" IsVisible="False">
-        <StackLayout>
-          <StackLayout VerticalOptions="StartAndExpand">
-            <Label x:Name="InfoPopupLabel" Text="Geen omschrijving aanwezig"/>
-          </StackLayout>
-          <StackLayout VerticalOptions="End" >
-            <Button Text="Sluiten" HorizontalOptions="Center" Command="{Binding CloseInfo}"/>
-          </StackLayout>
-        </StackLayout>
-      </Frame>
-      
-    <Frame x:Name="FeedbackPopup" HasShadow="True" OutlineColor="Gray" Padding="50,50,50,50" BackgroundColor="White" Grid.Column="1" Grid.Row="1"   VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" IsVisible="False">
-        <StackLayout>
-          <StackLayout VerticalOptions="StartAndExpand" HeightRequest="400">
-            <Editor Text="test" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" MinimumHeightRequest="200"/>
-          </StackLayout>
-          <StackLayout VerticalOptions="End" >
-            <Button Text="Sluiten" HorizontalOptions="Center" Command="{Binding CloseFeedback}"/>
-          </StackLayout>
-        </StackLayout>
-      </Frame>
+	    <Grid AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" VerticalOptions="Fill" HorizontalOptions="Fill">
+	      <Grid.RowDefinitions>
+	        <RowDefinition Height="1*" />
+	        <RowDefinition Height="Auto" />
+	        <RowDefinition Height="1*" />
+	      </Grid.RowDefinitions>
+	      <Grid.ColumnDefinitions>
+	        <ColumnDefinition Width="1*" />
+	        <ColumnDefinition Width="5*" />
+	        <ColumnDefinition Width="1*" />
+	      </Grid.ColumnDefinitions>
 
-    </Grid>
+	      <Frame x:Name="InfoPopup" HasShadow="True" OutlineColor="Gray"  BackgroundColor="White" Grid.Column="1" Grid.Row="1"   VerticalOptions="Fill" HorizontalOptions="FillAndExpand" IsVisible="False">
+	        <StackLayout VerticalOptions="Fill" Padding="10,10,10,10">
+  		      <StackLayout HorizontalOptions="Fill" VerticalOptions="StartAndExpand"  Padding="10,10,10,10">
+	    		<Label x:Name="InfoPopupLabelTitle" Text="Samenvatting" TextColor="#17607f" HorizontalOptions="Fill" />
+		  		<BoxView Color="#17607f" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+		      </StackLayout>
+		      <StackLayout VerticalOptions="Fill" >
+		      	
+	            	<Label x:Name="InfoPopupLabel" Text="Geen omschrijving aanwezig"/>
+	            
+	          </StackLayout>
+	          <StackLayout VerticalOptions="End" Padding="0,10,0,0" >
+	            <Button Text="Sluiten" HorizontalOptions="Center" Command="{Binding CloseInfo}"/>
+	          </StackLayout>
+	        </StackLayout>
+	      </Frame>
+	      
+	    <Frame x:Name="FeedbackPopup" HasShadow="True" OutlineColor="Gray" BackgroundColor="White" Grid.Column="1" Grid.Row="1"   VerticalOptions="Fill"  HorizontalOptions="FillAndExpand" IsVisible="False">
+	        <StackLayout VerticalOptions="Fill" Padding="10,10,10,10">
+  		      <StackLayout HorizontalOptions="Fill" VerticalOptions="StartAndExpand" Padding="10,10,10,10">
+	    		<Label Text="Aantekeningen" TextColor="#17607f" HorizontalOptions="Fill" />
+		  		<BoxView Color="#17607f" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+		      </StackLayout>
+	          <StackLayout VerticalOptions="Fill">
+	            <Editor Text="test" VerticalOptions="Fill" HorizontalOptions="FillAndExpand" MinimumHeightRequest="400"/>
+	          </StackLayout>
+	          <StackLayout VerticalOptions="End" Padding="0,10,0,0">
+	            <Button Text="Sluiten" HorizontalOptions="Center" Command="{Binding CloseFeedback}"/>
+	          </StackLayout>
+	        </StackLayout>
+	      </Frame>
+
+	    </Grid>
+    </StackLayout>
   </AbsoluteLayout>
 </ContentPage>

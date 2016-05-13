@@ -71,6 +71,11 @@ namespace Lisa.Excelsis.Mobile
             ExamDate.Date = assessmentView.Assessed.Date;
             ExamTime.Time = TimeZoneInfo.ConvertTime(assessmentView.Assessed, TimeZoneInfo.Local).TimeOfDay;
             ExamTime.PropertyChanged += DateTimeChanged;
+
+            _popupHolder = PopupHolder;
+            Container.Children.Remove(PopupHolder);
+            _containerOverlay = ContainerOverlay;
+            Container.Children.Remove(ContainerOverlay);
         }
 
         public void UpdateFooter(ObservationViewModel item, string result)
@@ -182,28 +187,40 @@ namespace Lisa.Excelsis.Mobile
                 case "info":
                     if (sender != null)
                     {
+                        Container.Children.Add(_containerOverlay);
+                        Container.Children.Add(_popupHolder);
                         var observation = sender as ObservationViewModel;
-                        InfoPopupLabel.Text = (observation.Criterion.Description.Length > 0) ? observation.Criterion.Description : "Geen beschrijving aanwezig.";
-                        PopupOverlayBackground.IsVisible = true;
+                        InfoPopupLabel.Text = (observation.Criterion.Description.Length > 0) ? observation.Criterion.Description : "Geen beschrijving aanwezig";
+                        InfoPopupLabelTitle.Text = (observation.Criterion.Title.Length > 0) ? observation.Criterion.Title.TrimEnd('.') : "Geen titel beschikbaar";
                     }
                     else
                     {
+                        Container.Children.Remove(_containerOverlay);
+                        Container.Children.Remove(_popupHolder);
                         InfoPopupLabel.Text = string.Empty;
-                        PopupOverlayBackground.IsVisible = false;
                     }
                     InfoPopup.IsVisible = !InfoPopup.IsVisible;
                     FeedbackPopup.IsVisible = false;
                     break;
                 case "feedback":
+                    if (FeedbackPopup.IsVisible)
+                    {
+                        Container.Children.Remove(_containerOverlay);
+                        Container.Children.Remove(_popupHolder);
+                    }
+                    else
+                    {
+                        Container.Children.Add(_containerOverlay);
+                        Container.Children.Add(_popupHolder);
+                    }
 
-                    PopupOverlayBackground.IsVisible = !FeedbackPopup.IsVisible;
                     InfoPopup.IsVisible = false;
                     FeedbackPopup.IsVisible = !FeedbackPopup.IsVisible;
                     break;
             }
 
         }
-
+            
         private Animation ExpandAnimation(RowDefinition row)
         {
             return new Animation(
@@ -231,6 +248,8 @@ namespace Lisa.Excelsis.Mobile
             return value;
         }
 
+        private static BoxView _containerOverlay;
+        private static StackLayout _popupHolder;
         private static double _rowHeight = 150; //90
         private static Animation _oldAnimation;
         private static RowDefinition _oldRow;
