@@ -12,7 +12,7 @@
   </ContentPage.Resources>
 
   <ContentPage.ToolbarItems>
-    <ToolbarItem Order="Primary" Name="Opmerking plaatsen" Icon="Feedback.png" Command="{Binding OpenFeedback}"  />
+    <ToolbarItem Order="Primary" Name="Opmerking plaatsen" Icon="Feedback.png" Command="{Binding OpenEditor}"  />
   </ContentPage.ToolbarItems>
 
   <AbsoluteLayout x:Name="Container">
@@ -142,6 +142,7 @@
                                   <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
                                   </Grid.RowDefinitions>
 
                                   <Grid.ColumnDefinitions>
@@ -243,6 +244,8 @@
                                   </Image>
 
                                   <Button Text="Extra Informatie" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="7" HorizontalOptions="Center" Command="{Binding OpenPopup}" CommandParameter="{Binding}" />
+                                
+                                  <Editor Text="Something" HorizontalOptions="Fill" VerticalOptions="Fill"  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="7" HeightRequest="75" />
                                 </Grid>
                               </StackLayout>
                             </Grid>
@@ -321,17 +324,17 @@
 	        </StackLayout>
 	      </Frame>
 	      
-	    <Frame x:Name="FeedbackPopup" HasShadow="True" OutlineColor="Gray" BackgroundColor="White" Grid.Column="1" Grid.Row="1"   VerticalOptions="Fill"  HorizontalOptions="FillAndExpand" IsVisible="False">
+	    <Frame x:Name="EditorPopup" HasShadow="True" OutlineColor="Gray" BackgroundColor="White" Grid.Column="1" Grid.Row="1"   VerticalOptions="Fill"  HorizontalOptions="FillAndExpand" IsVisible="False">
 	        <StackLayout VerticalOptions="Fill" Padding="10,10,10,10">
   		      <StackLayout HorizontalOptions="Fill" VerticalOptions="StartAndExpand" Padding="10,10,10,10">
 	    		<Label Text="Aantekeningen" TextColor="#17607f" HorizontalOptions="Fill" />
 		  		<BoxView Color="#17607f" HeightRequest="1" HorizontalOptions="FillAndExpand" />
 		      </StackLayout>
 	          <StackLayout VerticalOptions="Fill">
-	            <Editor Text="test" VerticalOptions="Fill" HorizontalOptions="FillAndExpand" MinimumHeightRequest="400"/>
+              <Editor x:Name="EditorText" Text="{Binding Note}" VerticalOptions="Fill" HorizontalOptions="FillAndExpand" MinimumHeightRequest="400"/>
 	          </StackLayout>
 	          <StackLayout VerticalOptions="End" Padding="0,10,0,0">
-	            <Button Text="Sluiten" HorizontalOptions="Center" Command="{Binding CloseFeedback}"/>
+	            <Button Text="Sluiten" HorizontalOptions="Center" Command="{Binding CloseEditor}"/>
 	          </StackLayout>
 	        </StackLayout>
 	      </Frame>

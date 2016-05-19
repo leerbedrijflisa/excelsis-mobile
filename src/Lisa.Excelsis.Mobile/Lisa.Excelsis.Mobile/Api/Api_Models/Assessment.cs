@@ -7,6 +7,7 @@ namespace Lisa.Excelsis.Mobile
     {
         public int Id { get; set; }
         public DateTime Assessed { get; set; }
+        public string Note { get; set; }
         public Student Student { get; set; }
         public Exam Exam { get; set; }
         public List<Assessor> Assessors { get; set; }

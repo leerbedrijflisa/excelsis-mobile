@@ -8,6 +8,7 @@ namespace Lisa.Excelsis.Mobile
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+        public string Note { get; set; }
         public DateTime Assessed { get; set; }
         public string Name { get; set; }
 		public string Subject { get; set; }

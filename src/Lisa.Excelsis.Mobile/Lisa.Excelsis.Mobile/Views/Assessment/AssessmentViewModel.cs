@@ -12,12 +12,12 @@ namespace Lisa.Excelsis.Mobile
             _Navigation = navigation;
             _Page = page;
             CloseInfo = new Command(CloseInfoPopup);
-            OpenFeedback = new Command(ToggleFeedback);
-            CloseFeedback = new Command(ToggleFeedback);
+            OpenEditor = new Command(ToggleEditor);
+            CloseEditor = new Command(ToggleEditor);
         }
 
-        public ICommand OpenFeedback { get; set; }
-        public ICommand CloseFeedback { get; set; }
+        public ICommand OpenEditor { get; set; }
+        public ICommand CloseEditor { get; set; }
         public ICommand CloseInfo { get; set; }
         
         public event TogglePopupEventHandler OnTogglePopup;
@@ -27,6 +27,18 @@ namespace Lisa.Excelsis.Mobile
         public Student Student { get; set; }
         public List<Assessor> Assessors { get; set; }
         public Exam Exam { get; set; }
+        public string Note
+        {
+            get { return _note; }
+            set
+            {
+                if (_note != value)
+                {
+                    _note = value;
+                    OnPropertyChanged("Note");
+                }
+            }
+        }
         public List<CategoryViewModel> Categories 
         { 
             get { return _categories; }
@@ -76,17 +88,18 @@ namespace Lisa.Excelsis.Mobile
             }
         }
 
-        public void ToggleFeedback()
+        public void ToggleEditor()
         {
-            OnTogglePopup("feedback");
+            OnTogglePopup("editor");
         }
 
 
         public void CloseInfoPopup()
         {
-            OnTogglePopup("info", null);
+            OnTogglePopup("info");
         }
-        
+
+        private string _note;
         private int _totalFail = 0;
         private int _totalPass = 0;
         private int _totalExcellent = 0;

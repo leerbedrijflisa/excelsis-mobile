@@ -16,6 +16,7 @@ namespace Lisa.Excelsis.Mobile
                 var assessment = new Assessment()
                 {
                     Id = assessment_metadata.Id,
+                    Note = assessment_metadata.Note,
                     Assessed = assessment_metadata.Assessed,
                     Exam = new Exam()
                     {
@@ -167,6 +168,11 @@ namespace Lisa.Excelsis.Mobile
                 }
             }
             return adb.Id;
+        }
+
+        public void UpdateAssessmentNote(object id, string text)
+        {
+            _db.Execute("UPDATE Assessments SET Note = ? WHERE Assessments.Id == ?", text, id);
         }
 
         public void UpdateAssessed(object id, DateTime assessed)

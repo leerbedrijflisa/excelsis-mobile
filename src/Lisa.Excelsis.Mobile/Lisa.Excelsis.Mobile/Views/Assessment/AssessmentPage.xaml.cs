@@ -28,6 +28,7 @@ namespace Lisa.Excelsis.Mobile
             assessmentView = new AssessmentViewModel(this.Navigation, this)
             {
                 Id = assessment.Id,
+                Note = assessment.Note,
                 Assessed = assessment.Assessed,
                 Assessors = assessment.Assessors,
                 Student = assessment.Student,
@@ -76,6 +77,8 @@ namespace Lisa.Excelsis.Mobile
             Container.Children.Remove(PopupHolder);
             _containerOverlay = ContainerOverlay;
             Container.Children.Remove(ContainerOverlay);
+
+            EditorText.TextChanged += OnEditorTextChanged;
         }
 
         public void UpdateFooter(ObservationViewModel item, string result)
@@ -200,10 +203,10 @@ namespace Lisa.Excelsis.Mobile
                         InfoPopupLabel.Text = string.Empty;
                     }
                     InfoPopup.IsVisible = !InfoPopup.IsVisible;
-                    FeedbackPopup.IsVisible = false;
+                    EditorPopup.IsVisible = false;
                     break;
-                case "feedback":
-                    if (FeedbackPopup.IsVisible)
+                case "editor":
+                    if (EditorPopup.IsVisible)
                     {
                         Container.Children.Remove(_containerOverlay);
                         Container.Children.Remove(_popupHolder);
@@ -215,12 +218,20 @@ namespace Lisa.Excelsis.Mobile
                     }
 
                     InfoPopup.IsVisible = false;
-                    FeedbackPopup.IsVisible = !FeedbackPopup.IsVisible;
+                    EditorPopup.IsVisible = !EditorPopup.IsVisible;
                     break;
             }
-
         }
-            
+
+        private void OnEditorTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (e.NewTextValue != null)
+            {
+                assessment.Note = e.NewTextValue;
+                _db.UpdateAssessmentNote(assessment.Id, e.NewTextValue);
+            }
+        }
+
         private Animation ExpandAnimation(RowDefinition row)
         {
             return new Animation(
@@ -250,7 +261,7 @@ namespace Lisa.Excelsis.Mobile
 
         private static BoxView _containerOverlay;
         private static StackLayout _popupHolder;
-        private static double _rowHeight = 150; //90
+        private static double _rowHeight = 230; //90
         private static Animation _oldAnimation;
         private static RowDefinition _oldRow;
         private static Page _oldPage;
