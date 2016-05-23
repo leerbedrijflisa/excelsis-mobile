@@ -44,6 +44,19 @@ namespace Lisa.Excelsis.Mobile
         public string Id { get; set; }
         public Criterion Criterion { get; set; }
 
+        public string Note
+        {
+            get { return _note; }
+            set
+            {
+                if (_note != value)
+                {
+                    _note = value;
+                    OnPropertyChanged("Note");
+                }
+            }
+        }
+
         public string Result
         { 
             get { return _Result; }
@@ -232,10 +245,9 @@ namespace Lisa.Excelsis.Mobile
             {
                 item.Result = "notrated";
             }
-            _db.UpdateResult(item.Id, item.Result);
-
-            
+            _db.UpdateResult(item.Id, item.Result);            
         }
+
 
         private bool _IsSelected;
 
@@ -245,6 +257,7 @@ namespace Lisa.Excelsis.Mobile
 
         private string _Result;
 
+        private string _note;
         private bool _Maybe_Not;
         private bool _Skip;
         private bool _Unclear;

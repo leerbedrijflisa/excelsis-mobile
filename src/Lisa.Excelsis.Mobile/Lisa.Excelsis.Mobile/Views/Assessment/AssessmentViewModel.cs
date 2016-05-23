@@ -99,6 +99,7 @@ namespace Lisa.Excelsis.Mobile
             OnTogglePopup("info");
         }
 
+
         private string _note;
         private int _totalFail = 0;
         private int _totalPass = 0;

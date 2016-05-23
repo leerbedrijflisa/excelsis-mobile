@@ -52,6 +52,7 @@ namespace Lisa.Excelsis.Mobile
                     {
                         Id = observations.Id.ToString(),
                         Result = observations.Result,
+                        Note = observations.Note,
                         Criterion = observations.Criterion,
                         Maybe_Not = observations.Marks.Contains("maybenot"),
                         Skip = observations.Marks.Contains("skip"),
@@ -77,8 +78,6 @@ namespace Lisa.Excelsis.Mobile
             Container.Children.Remove(PopupHolder);
             _containerOverlay = ContainerOverlay;
             Container.Children.Remove(ContainerOverlay);
-
-            EditorText.TextChanged += OnEditorTextChanged;
         }
 
         public void UpdateFooter(ObservationViewModel item, string result)
@@ -223,11 +222,10 @@ namespace Lisa.Excelsis.Mobile
             }
         }
 
-        private void OnEditorTextChanged(object sender, TextChangedEventArgs e)
+        public void OnEditorTextChanged(object sender, TextChangedEventArgs e)
         {
             if (e.NewTextValue != null)
             {
-                assessment.Note = e.NewTextValue;
                 _db.UpdateAssessmentNote(assessment.Id, e.NewTextValue);
             }
         }
