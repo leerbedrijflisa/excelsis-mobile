@@ -1,6 +1,5 @@
 ﻿using Xamarin.Forms;
 using System.Collections.Generic;
-using System;
 
 namespace Lisa.Excelsis.Mobile
 {
@@ -65,10 +64,7 @@ namespace Lisa.Excelsis.Mobile
                 assessmentView.Categories.Add(_category);
             }
 
-            BindingContext = assessmentView;
-            ExamDate.Date = assessmentView.Assessed.Date;
-            ExamTime.Time = TimeZoneInfo.ConvertTime(assessmentView.Assessed, TimeZoneInfo.Local).TimeOfDay;
-            ExamTime.PropertyChanged += DateTimeChanged;            
+            BindingContext = assessmentView;       
         }
 
         public void UpdateFooter(ObservationViewModel item, string result)
@@ -107,49 +103,11 @@ namespace Lisa.Excelsis.Mobile
                     break;
             }
         }
-
-        public void EntryChanged(object sender, EventArgs e)
-        {
-            var entry = (Entry)sender;
-
-            if (entry.Text != null && entry.Text.Length != 0)
-            {
-                int iDontCare;
-                if (entry.Keyboard == Keyboard.Numeric && Int32.TryParse(entry.Text, out iDontCare))
-                {
-                    entry.BackgroundColor = Color.Default;
-                    _db.UpdateStudent(assessment.Id, "Studentnumber", entry.Text);
-                }
-                else
-                {
-                    if (entry.Keyboard == Keyboard.Default)
-                    {
-                        _db.UpdateStudent(assessment.Id, "Studentname", entry.Text);
-                    }
-                    return;
-                }
-
-                entry.BackgroundColor = Color.Default;
-            }
-        }
-
-        public void DateTimeChanged(object sender, EventArgs e)
-        {
-            DateTime date = new DateTime(ExamDate.Date.Year, ExamDate.Date.Month, ExamDate.Date.Day,
-                                         ExamTime.Time.Hours, ExamTime.Time.Minutes, ExamTime.Time.Seconds);
-            _db.UpdateAssessed(assessment.Id, date);
-        }
-
-        public void TimeChanged(object sender, EventArgs e)
-        {
-            var picker = (TimePicker)sender;
-        }
-
+        
         public void ToggleItem(object sender)
         {
-            var stacklayout = sender as StackLayout;
-            var item = stacklayout.BindingContext as ObservationViewModel;
-            var row = stacklayout.FindByName<RowDefinition>("ShowButtons");
+            var buttonRow = sender as RowDefinition;
+            var item = buttonRow.BindingContext as ObservationViewModel;
 
             if (_oldItem != null && _oldItem != item)
             {
@@ -158,21 +116,21 @@ namespace Lisa.Excelsis.Mobile
             }
             if (item.IsSelected)
             {
-                CollapseAnimation(row).Commit(this, "the animation", length: 100);
+                CollapseAnimation(buttonRow).Commit(this, "the animation", length: 100);
                 item.IsSelected = false;
             }
             else
             {
                 item.IsSelected = true;
-                ExpandAnimation(row).Commit(this, "the animation", length: 100);
+                ExpandAnimation(buttonRow).Commit(this, "the animation", length: 100);
             }
 
-            _oldRow = row;
+            _oldRow = buttonRow;
             _oldItem = item;
             _oldPage = this;
-            _oldAnimation = CollapseAnimation(row);
+            _oldAnimation = CollapseAnimation(buttonRow);
         }
-               
+
         private Animation ExpandAnimation(RowDefinition row)
         {
             return new Animation(
@@ -210,4 +168,3 @@ namespace Lisa.Excelsis.Mobile
         private readonly Database _db = new Database();
     }
 }
-

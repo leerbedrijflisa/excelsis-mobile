@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="Api\Api_Models\Exam_Category.cs" />
     <Compile Include="App.cs" />
+    <Compile Include="Behaviors\CommandBehavior.cs" />
     <Compile Include="Behaviors\EventHandlers.cs" />
     <Compile Include="Behaviors\NumericValidationBehavior.cs" />
     <Compile Include="Controls\CategoryListView.cs" />
@@ -48,17 +49,25 @@
     <Compile Include="Database\Database_Models\Exam_Category.cs" />
     <Compile Include="Interfaces\IConnectionChecker.cs" />
     <Compile Include="Interfaces\ISQLite.cs" />
-    <Compile Include="Mappers\Mapper.cs" />
+    <Compile Include="Pages\Assessment\AssessmentMetadataView.xaml.cs">
+      <DependentUpon>AssessmentMetadataView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Assessment\AssessmentFooterView.xaml.cs">
+      <DependentUpon>AssessmentFooterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Assessment\AssessmentObservationView.xaml.cs">
+      <DependentUpon>AssessmentObservationView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proxy.cs" />
-    <Compile Include="Views\Exam\ExamPage.xaml.cs">
+    <Compile Include="Pages\Exam\ExamPage.xaml.cs">
       <DependentUpon>ExamPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Exam\ExamPageViewModel.cs" />
-    <Compile Include="Views\History\HistoryPage.xaml.cs">
+    <Compile Include="Pages\Exam\ExamPageViewModel.cs" />
+    <Compile Include="Pages\History\HistoryPage.xaml.cs">
       <DependentUpon>HistoryPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\History\HistoryPageViewModel.cs" />
+    <Compile Include="Pages\History\HistoryPageViewModel.cs" />
     <Compile Include="Database\Database_Models\Assessment.cs" />
     <Compile Include="Database\Database_Models\AssessmentAssessor.cs" />
     <Compile Include="Database\Database_Models\Assessor.cs" />
@@ -78,34 +87,34 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Observation.cs" />
     <Compile Include="Properties\DummyData.cs" />
-    <Compile Include="Views\Assessment\AssessmentPage.xaml.cs">
+    <Compile Include="Pages\Assessment\AssessmentPage.xaml.cs">
       <DependentUpon>AssessmentPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Dashboard\Dashboard.xaml.cs">
+    <Compile Include="Pages\Dashboard\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Assessment\CategoryViewModel.cs">
+    <Compile Include="Pages\Assessment\CategoryViewModel.cs">
       <DependentUpon>AssessmentPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Assessment\ObservationViewModel.cs">
+    <Compile Include="Pages\Assessment\ObservationViewModel.cs">
       <DependentUpon>AssessmentPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Assessment\AssessmentViewModel.cs">
+    <Compile Include="Pages\Assessment\AssessmentViewModel.cs">
       <DependentUpon>AssessmentPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\ResultConverter.cs" />
     <Compile Include="Converters\MarkConverter.cs" />
     <Compile Include="Database\Databse.Exam.cs" />
     <Compile Include="Controls\RoundedBoxView.cs" />
-    <Compile Include="Views\LoadingPage.xaml.cs">
+    <Compile Include="Pages\LoadingPage.xaml.cs">
       <DependentUpon>LoadingPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\Assessment\AssessmentPage.xaml">
+    <EmbeddedResource Include="Pages\Assessment\AssessmentPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Dashboard\Dashboard.xaml">
+    <EmbeddedResource Include="Pages\Dashboard\Dashboard.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -191,19 +200,37 @@
   </Target>
   -->
   <ItemGroup>
-    <EmbeddedResource Include="Views\Exam\ExamPage.xaml">
+    <EmbeddedResource Include="Pages\Exam\ExamPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\History\HistoryPage.xaml">
+    <EmbeddedResource Include="Pages\History\HistoryPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\LoadingPage.xaml">
+    <EmbeddedResource Include="Pages\LoadingPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\Assessment\AssessmentMetadataView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\Assessment\AssessmentObservationView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\Assessment\AssessmentFooterView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

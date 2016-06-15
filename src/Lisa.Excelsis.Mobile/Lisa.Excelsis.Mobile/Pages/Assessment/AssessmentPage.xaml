@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 x:Class="Lisa.Excelsis.Mobile.AssessmentPage"
+			 xmlns:local="clr-namespace:Lisa.Excelsis.Mobile;assembly=Lisa.Excelsis.Mobile"
+       xmlns:xlabs="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms.Controls">
+  
+  <StackLayout Spacing="0">
+    <StackLayout Spacing="0" VerticalOptions="StartAndExpand">
+      <ScrollView IsClippedToBounds="true">
+        <StackLayout x:Name="AssessmentView">
+          
+          <local:AssessmentMetadataView x:Name="Metadata" BindingContext="{Binding }"/>
+                                  
+          <local:CategoryListView x:Name="CategoryList"
+                ItemsSource = "{Binding Categories}">
+            <local:CategoryListView.ItemTemplate>
+              <DataTemplate>
+                <StackLayout BackgroundColor="#17607f" Padding="0,5,0,0">
+                  <StackLayout Padding="5,5,5,5">
+                    <Label Text="{Binding Name}" TextColor="White" HorizontalOptions="Center"/>
+                  </StackLayout>
+                  
+                  <local:ObservationListView x:Name="ObservationList" ItemsSource = "{Binding Observations}">
+                    <local:ObservationListView.ItemTemplate>
+                      <DataTemplate>
+                        <local:AssessmentObservationView BindingContext="{Binding }"/>
+                      </DataTemplate>
+                    </local:ObservationListView.ItemTemplate>
+                  </local:ObservationListView>
+                </StackLayout>
+              </DataTemplate>
+            </local:CategoryListView.ItemTemplate>
+          </local:CategoryListView>
+        </StackLayout>
+      </ScrollView>
+    </StackLayout>
+    
+    <local:AssessmentFooterView BindingContext="{Binding }"/>
+  </StackLayout>
+</ContentPage>

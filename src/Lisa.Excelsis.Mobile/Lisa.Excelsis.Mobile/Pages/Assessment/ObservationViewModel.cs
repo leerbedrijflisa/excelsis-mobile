@@ -24,7 +24,7 @@ namespace Lisa.Excelsis.Mobile
             SetSkipActive = new Command<ObservationViewModel>(ToggleMark(() => Skip = !Skip, "skip"));
             SetUnclearActive = new Command<ObservationViewModel>(ToggleMark(() => Unclear = !Unclear, "unclear"));
             SetChangeActive = new Command<ObservationViewModel>(ToggleMark(() => Change = !Change, "change"));
-            OpenItem = new Command<StackLayout>(ToggleObservation);
+            OpenItem = new Command<RowDefinition>(ToggleObservation);
         }
 
         public event ResultEventHandler OnResultChanged; 
@@ -196,7 +196,7 @@ namespace Lisa.Excelsis.Mobile
                 if (toggle())
                 {
                     _db.AddMark(item.Id, mark);
-                }
+                } 
                 else
                 {
                     _db.RemoveMark(item.Id, mark);

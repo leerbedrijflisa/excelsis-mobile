@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Xamarin.Forms;
 using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace Lisa.Excelsis.Mobile
 {
@@ -11,8 +11,11 @@ namespace Lisa.Excelsis.Mobile
         {
             _Navigation = navigation;
             _Page = page;
-        }
-      
+
+            SaveAssessedCommand = new Command(SaveAssessed);
+        }      
+
+        public ICommand SaveAssessedCommand { get; set; }
 
         public int Id { get; set; }
         public DateTime Assessed { get; set; }
@@ -67,7 +70,12 @@ namespace Lisa.Excelsis.Mobile
                 }
             }
         }
-        
+
+        private void SaveAssessed()
+        {                       
+            _db.UpdateAssessed(Id, Assessed);
+        }
+
         private int _totalFail = 0;
         private int _totalPass = 0;
         private int _totalExcellent = 0;

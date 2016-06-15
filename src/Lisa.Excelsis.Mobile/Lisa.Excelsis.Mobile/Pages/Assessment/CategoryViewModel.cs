@@ -10,4 +10,3 @@ namespace Lisa.Excelsis.Mobile
         public List<ObservationViewModel> Observations { get; set; }
     }
 }
-
